@@ -60,7 +60,7 @@ class Application extends Component{
 			xmlhttp.send(null);  
 			if(xmlhttp.status == 200) {
 			var request = JSON.parse(xmlhttp.responseText).result
-			// var request ='4f832a3b59577363977eb0c4f6d8f4593e1e7324'
+			var request ='fc4249d352c02ab06d3e32ce68a917889a964e30'
 			if (request){
 				this.setTokenInRedux(request)
 				return(request)

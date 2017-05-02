@@ -40,6 +40,27 @@ constructor(props) {
 		  		achievs: !this.state.achievs
 		  	})
 		  }
+		  getTitle=(path)=>{
+			  	switch(path){
+				case '/chemistry':
+					return('Химия')
+				case '/math':
+					return('Математика базовый')
+				case '/math-pro':
+					return('Математика профиль')
+				case '/russian':
+					return('Русский язык')
+				case '/english':
+					return('Английский язык')
+				case '/physics':
+					return('Физика')
+				case '/history':
+					return('История')
+				case '/information':
+					return('Информатика')
+			}
+			return('Facexem');
+		  }
 
 render(){
 	const closeStyle={
@@ -47,9 +68,11 @@ render(){
 			top: '18px',
 			right: '20px'
 		}
+
+		var title = this.getTitle(window.location.pathname)
 	return( <div> 
 				<AppBar
-				    title="Facexem"
+				    title={title}
 				    titleStyle={{ display: 'inline-block'}}
 				    style={{height: 50, background: '#2196F3', position: 'fixed', top: "0px"}}
 				    zDepth={2}
@@ -72,6 +95,7 @@ render(){
 				    contentStyle={{padding: 0}}
 					onRequestClose={this.achievs}
 				    contentLabel="Modal"
+				     task={true}
 				    contentStyle={{maxWidth: 900, width: "90%"}}
 				    autoScrollBodyContent={true}
 				  	titleStyle={{color: 'rgb(33, 150, 243)'}}

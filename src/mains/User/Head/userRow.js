@@ -8,7 +8,7 @@ import UserInfo from './info.js';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import IconButton from 'material-ui/IconButton';
 import Close from 'material-ui/svg-icons/navigation/close';
-import ChangeInfo from './ChangeInfo.js';
+import Change from './change.js';
 import {fullWhite} from 'material-ui/styles/colors';
 import Dialog from 'material-ui/Dialog';
 // import MiniMenu from './mini-menu.js';
@@ -189,7 +189,7 @@ export default class UserRow extends Component{
 					  autoScrollBodyContent={true}
 					>	
 					<IconButton onClick={this.closeBest} style={closeStyle}><Close color='rgb(150, 198, 95)'/></IconButton>
-					<ChangeInfo data={this.state.data} token={this.state.token}/>
+					<Change data={this.state.data} token={this.state.token}/>
 					</Dialog>
 
 					</ReactCSSTransitionGroup>
