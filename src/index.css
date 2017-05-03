@@ -525,22 +525,24 @@ opacity: 0;
 	display: inline-block;
 }
 .achivLine{
-	width: 100%;
 	overflow-x: auto;
 	white-space: nowrap; 
 }
 .achivElement{
 	width: 70px;
+	height: 70px;
 	margin: 5px 10px;
 	display: inline-block;
 	cursor: pointer;
+	background-size: 120% !important;
+	background-repeat: round !important;
 
 }
 .chooseAchiv{
 	
 	background-color: rgba(150, 198, 95, 0.2) !important;
 	opacity: 1;
-	border-radius: 10px;
+	
 
 }
 .TextAchivLine{
@@ -1030,3 +1032,19 @@ a{
 }
 /*[data-reactroot] { 
 	padding-top: 0 !important;}*/
+
+
+
+
+
+
+.chooseAchiev{
+	opacity: 0.6
+}
+.chooseAchiev:after{
+	content: '✔';
+    font-size: 35px;
+    color:rgb(81, 232, 93);
+    margin-left: 25px;
+    float: left;
+}
