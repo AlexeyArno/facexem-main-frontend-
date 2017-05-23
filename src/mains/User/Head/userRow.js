@@ -116,7 +116,7 @@ export default class UserRow extends Component{
 		
 
 		const stylePhoto = {
-			backgroundImage: 'url(' + photo + ')',
+			backgroundImage: 'url(/avatars/' + photo + ')',
 			width: 100,
 			height: 100,
 			float: 'left',

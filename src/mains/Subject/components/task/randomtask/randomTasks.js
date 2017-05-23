@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component , PropTypes} from 'react';
 import Paper from 'material-ui/Paper';
 import RaisedButton from 'material-ui/RaisedButton';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
@@ -6,6 +6,10 @@ import Dialog from 'material-ui/Dialog';
 import ContentTask from './contentTaskModal.js'
 import IconButton from 'material-ui/IconButton';
 import Close from 'material-ui/svg-icons/navigation/close';
+
+
+// SELFMADE
+import SmallInfoGrafic from './small-info-grafic.js'
 
 
 export default class Random extends Component{
@@ -17,9 +21,18 @@ constructor(props) {
 		    };
 		  }
 		 openTasks=()=>{
-		 	 this.setState({open: !this.state.open});
+		 	 // this.setState({open: !this.state.open});
+		 	 this.handllink('randomtask')
 
 		 }
+
+		  handllink=(name)=>{
+			this.context.router.push({
+				 pathname: window.location.pathname+'/'+name
+			});
+					
+			 }
+
 
 
 render(){
@@ -34,7 +47,8 @@ render(){
 			lineHeight: 2,
 			margin: "auto",
 			marginTop: 15,
-			marginBottom: 15
+			marginBottom: 15,
+			cursor: 'default'
 		}
 
 	var hr ={
@@ -53,22 +67,17 @@ render(){
 				<ReactCSSTransitionGroup
 				 transitionName="example"
 	               transitionAppear = {true} transitionAppearTimeout = {2000}
-	               transitionEnter = {false} transitionLeave = {false}>
+	               transitionEnter = {true} transitionLeave = {true}>
 
-					<div className="lastResult">
-							{last}
-						</div>
-						<div className="lastResultTitle">
-							Лучший результат
-						</div>
+						<div className="lastResult">
+								{last}
+							</div>
+							<div className="lastResultTitle">
+								Лучший результат
+							</div>
 						<hr style={hr}/>
-						<Paper style={styleBad}>
-						        	17 12 13
-						</Paper>
-						<div className="lastResultTitle">
-							Наиболее провальные 
-						</div>
-						
+					
+						<SmallInfoGrafic/>
 						<hr style={hr}/>
 
 						<RaisedButton
@@ -81,18 +90,21 @@ render(){
 				          style={{ marginTop: 0 }}
 					        />
 					        </ReactCSSTransitionGroup>
+				
 				       <Dialog
 				          title="Случайные задания"
 				          modal={false}
+				          bodyClassName = 'dialogBodyTable'
 				          open={this.state.open}
+				          task={true}
 				          autoScrollBodyContent={true}
 				          onRequestClose={this.openTasks}
 				           contentStyle={{padding: 0,  maxWidth: 900, width: "90%"}}
 				           autoDetectWindowHeight={false}
 				           style ={{maxHeight: 500}}
 				        >	
-				        <IconButton onClick={this.openTasks} style={closeStyle}><Close color='rgb(33, 150, 243)'/></IconButton>
-				         <ContentTask/>
+				        	<IconButton onClick={this.openTasks} style={closeStyle}><Close color='rgb(33, 150, 243)'/></IconButton>
+				         	<ContentTask/>
 				        </Dialog>
 
 				</div>
@@ -105,4 +117,8 @@ render(){
 
 
 
+}
+
+Random.contextTypes	=	{		
+	router:	PropTypes.object.isRequired 
 }

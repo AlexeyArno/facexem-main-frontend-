@@ -9,6 +9,7 @@ import NotFound from './mains/Shells/NotFound.js';
 import LectionPage from './mains/Shells/LectionPage.js';
 import PageWithTest from './mains/Shells/PageWithTests.js';
 import AuthorPage from './mains/Shells/AuthorPage.js'
+import TaskPage from './mains/Shells/TaskPage.js'
 import { Provider } from 'react-redux';
 import { connect } from 'react-redux'
 
@@ -22,14 +23,18 @@ class RoutersApp extends Component{
 			var subjects=data.subjects.map(function (item, index) {
 				var testsLink = item.link+'/test'
 				var testLink = testsLink+'/:test'
-
+				var SinglTaskLink = item.link+'/singletask/:task'
+				var RandomTaskLink = item.link +'/randomtask'
 				var mysubject = (props) => <Provider store={store}><SubjectPage/></Provider>
+				var singletask = (props) => <Provider store={store}><TaskPage/></Provider>
+				var randomtask = (props) => <Provider store={store}><TaskPage/></Provider>
 				return(
 						<div key={index}>
 								<Route path={item.link} component={mysubject}/>
 								<Route path={testsLink} component={PageWithTest}/>
 								<Route path={testLink} component={TestPage}/>
-							
+								<Route path={SinglTaskLink} component={singletask}/>
+								<Route path={RandomTaskLink} component={randomtask}/>
 						  </div>
 
 
@@ -63,7 +68,6 @@ class RoutersApp extends Component{
 						    <IndexRedirect to="/mypage"/>
 						  	{subjects}
 						  	<Route path='mypage' component={NewUser} />
-						  	<Route path='author' component={AuthorPage} />
 						  	<Route path='*' component={NotFound} />
 						</Route>
 					</Router>

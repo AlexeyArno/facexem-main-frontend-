@@ -272,3 +272,10 @@
 .c100.jesus:hover > span {
   color: #B276B2;
 }
+.c100.yellow .bar,
+.c100.yellow .fill {
+  border-color: #ffcd39 !important;
+}
+.c100.yellow:hover > span {
+  color: #ffcd39;
+}

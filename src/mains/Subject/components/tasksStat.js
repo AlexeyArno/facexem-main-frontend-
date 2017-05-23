@@ -45,13 +45,14 @@ export default class TasksStat extends Component{
 			    textAlign: "left",
 			    padding: "5px",
 			    borderRadius: "20px",
-			    background: background
+			    background: background,
+			    boxShadow: " rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px"
 			}
 
 			var tip = "Уровень подготовки номера - " + numeric + "%"
 			var id = index+'task' 
-			return(<div>
-						<Paper style={style} key={index} data-for={id} data-tip={tip}>{item.num}</Paper>
+			return(<div key={index} >
+						<div style={style}  data-for={id} data-tip={tip}>{item.num}</div>
 						<ReactTooltip place="bottom" type="dark" effect='solid' id={id} class="TooltipTasksTooltip"/>
 					</div>)
 		})

@@ -16,13 +16,13 @@ export default class GlobalStatic extends Component{
 
 
  		var PaperStyle = {
- 			background: 'rgb(178, 118, 178)'
+ 			background: '#3fbf69'
  		}
  		var PaperStyle2 = {
- 			background: 'rgba(255, 255, 255)'
+ 			background: '#fff'
  		}
  		var PaperStyle3 = {
- 			background: 'rgb(96, 189, 104)'
+ 			background: '#498cdd'
  		}
  		var iconStyle={
  			width: 40,

@@ -10,7 +10,7 @@ export default class Statistics extends Component{
 		var color;
 		var styleFill={transform: "rotate(180deg)"};
 		var styleSlice={};
-		var rating = 22;
+		var rating = 56;
 		if(rating<45){
 			color="red"
 		}else if(rating<75){

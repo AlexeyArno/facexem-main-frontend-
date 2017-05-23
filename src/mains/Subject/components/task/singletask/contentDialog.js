@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
 
 
+
 export default class DialogContent extends Component{
 
 constructor(props) {
@@ -14,6 +15,7 @@ constructor(props) {
 
 	clickOnRow=(n)=>{
 		this.props.chooseNumberClick(n+1)
+
 	}
 
 	getCountsTasks=(number)=>{
@@ -47,7 +49,7 @@ constructor(props) {
 				select = true
 			}
 			return(
-				<TableRow id={id} selected={select}>
+				<TableRow id={id} selected={select} style={{cursor: 'pointer', textAlign: 'center'}}>
 			        <TableRowColumn>{item.number}</TableRowColumn>
 			        <TableRowColumn>{item.theme}</TableRowColumn>
 			        <TableRowColumn>{item.points}</TableRowColumn>
@@ -65,14 +67,16 @@ render(){
 	return(
 
 		<Table style={{padding: 0}} onCellClick={(rowNumber )=>this.clickOnRow(rowNumber)}>
-    <TableHeader>
+    <TableHeader displaySelectAll={false}
+				            adjustForCheckbox={false}
+				            enableSelectAll={false}>
       <TableRow>
         <TableHeaderColumn>Номер</TableHeaderColumn>
         <TableHeaderColumn>Тема</TableHeaderColumn>
         <TableHeaderColumn>Баллы</TableHeaderColumn>
       </TableRow>
     </TableHeader>
-    <TableBody>
+    <TableBody  showRowHover={true}>
     {content}
     </TableBody>
     </Table>

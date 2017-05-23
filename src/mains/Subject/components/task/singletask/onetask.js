@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component , PropTypes} from 'react';
 import Paper from 'material-ui/Paper';
 import RaisedButton from 'material-ui/RaisedButton';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
@@ -19,20 +19,29 @@ constructor(props) {
 		    	opentask: false 
 		    };
 		  }
+
+		  handllink=(name)=>{
+			this.context.router.push({
+				 pathname: window.location.pathname+'/'+name
+			});
+					
+			 }
 		 openChange=()=>{
 		 	 this.setState({openchange: !this.state.openchange});
 
 		 }
 
 		chooseNumberClick=(n)=>{
-			console.log(n)
 			this.setState({
-				number: n
+				number: n,
+				openchange: false
 			})
 		}
 
 		openTasks=()=>{
-		 	 this.setState({opentask: !this.state.opentask});
+		 	 // this.setState({opentask: !this.state.opentask});
+		 	 var link = 'singletask/'+this.state.number
+		 	 this.handllink(link)
 
 		 }
 
@@ -68,7 +77,7 @@ render(){
 	               transitionEnter = {false} transitionLeave = {false}>
 
 	
-	               		<div className="lastResult">
+	               		<div className="lastResult" style={{cursor: 'pointer'}} onClick={this.openChange} >
 							{this.state.number}
 						</div>
 						<div className="lastResultTitle">
@@ -134,4 +143,9 @@ render(){
 
 
 
+}
+
+
+Onetask.contextTypes	=	{		
+	router:	PropTypes.object.isRequired 
 }

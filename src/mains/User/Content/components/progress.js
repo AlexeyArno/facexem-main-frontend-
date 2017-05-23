@@ -1,8 +1,15 @@
-import React, {Component} from 'react';
+import React, {Component , PropTypes} from 'react';
 import Paper from 'material-ui/Paper';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group' // ES6
+import {List, ListItem} from 'material-ui/List';
 
 export default class Progress extends Component{
+
+	handllink=(name)=>{
+		this.context.router.push({
+			 pathname: '/'+name
+		});
+	}
 
 	render(){
 		var loaderstyle;
@@ -20,20 +27,23 @@ export default class Progress extends Component{
 			background: '#2196F3',
 			height: 20,
 			borderRadius: 2,
-		}			
-			return(
-				<div key={index} className="progressLine">
-					<div className="progressTitle">{item.subjectName}</div>
-					<div className="loader" style={loaderstyle}>
+		}	
+		var subjectName = item.subjectName
+		// if(subjectName.length > 13){
+		// 	subjectName = subjectName.substr(0,14)+'...'
+		// }
+		var line = <div className="loader" style={loaderstyle}>
 
-					<div className="insideLoader" style={insideLoader}></div>
-</div>
-					<div className="procent">{c}</div>
-				</div>
-				)
-
-
-		})
+						<div className="insideLoader" style={insideLoader}></div>
+					</div>		
+		return(
+			 <ListItem key={index}
+			 	onClick={()=>this.handllink(item.link)}
+		        primaryText={subjectName}
+		        rightIcon={<div className="procent">{c}</div>}
+		      />
+		     )
+		}.bind(this))
 		return(
 				<div className="col-xs-12 col-sm-4 paper">
 				<Paper className="progresspaper">
@@ -44,11 +54,17 @@ export default class Progress extends Component{
 		               transitionAppear = {true} transitionAppearTimeout = {2000}
 		               transitionEnter = {false} transitionLeave = {false}>
 		               <div className="testContent">
-					{progress}
+		                <List style={{padding: 0}}>
+							{progress}
+						</List>
 					</div>
 					</ReactCSSTransitionGroup>
 				</Paper>
 			</div>
 			)
 	}
+}
+
+Progress.contextTypes	=	{		
+	router:	PropTypes.object.isRequired 
 }

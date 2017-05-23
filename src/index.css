@@ -766,6 +766,7 @@ width: 0;
 .lastResult{
 	font-size: 100px;
 	font-weight: 300;
+	cursor: default;
 	color: rgb(115, 135, 156);
 	margin-top: 0px;
 }

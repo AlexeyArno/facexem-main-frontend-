@@ -10,7 +10,7 @@ import Chart from 'chart.js';
 export default class StatiscGraph extends Component{
 	componentDidMount(){
 var data = {
-    labels:this.props.data[1],
+    labels:this.props.data.dates,
     datasets: [
         {
             label: "Решенно заданий",
@@ -21,16 +21,16 @@ var data = {
             borderDash: [],
             borderDashOffset: 0.0,
             borderJoinStyle: 'miter',
-            pointBorderColor: "rgba(75,192,192,1)",
+            pointBorderColor: "rgb(33, 150, 243)",
             pointBackgroundColor: "#fff",
             pointBorderWidth: 1,
             pointHoverRadius: 5,
-            pointHoverBackgroundColor: "rgba(75,192,192,1)",
+            pointHoverBackgroundColor: "rgb(33, 150, 243)",
             pointHoverBorderColor: "rgba(220,220,220,1)",
             pointHoverBorderWidth: 2,
             pointRadius: 1,
             pointHitRadius: 10,
-            data: this.props.data[0],
+            data: this.props.data.values,
             spanGaps: false,
         }
     ]
@@ -62,7 +62,12 @@ var chartInstance = new Chart(ctx, {
                 display: false
             }],
             yAxes: [{
-                display: false
+                display: false,
+                 ticks: {
+                suggestedMin: 0,    // minimum will be 0, unless there is a lower value.
+                // OR //
+                beginAtZero: true   // minimum value will be 0.
+            }
             }]
         }
     }

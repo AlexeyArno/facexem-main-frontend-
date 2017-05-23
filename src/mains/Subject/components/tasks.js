@@ -54,7 +54,7 @@ export default class Tasks extends Component{
 
 		var element = random
 		//LOOK HERE
-		if(this.state.value == 1){
+		if(this.state.value == 2){
 			element = staticElement
 		}
 			

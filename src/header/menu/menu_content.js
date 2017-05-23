@@ -22,6 +22,10 @@ export default class MenuContent extends Component{
 	
 	clickOnItem=(name)=>{
 					this.props.close()
+					if(name == 'author'){
+						window.location.pathname = '/author'
+						return 0 
+					}
 					this.context.router.push({
 					  pathname: '/'+name
 					});
