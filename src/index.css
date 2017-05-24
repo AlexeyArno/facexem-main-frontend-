@@ -36,6 +36,18 @@ body {
 	height: 50px !important;
 	line-height: 1,6 !important;
 }
+.codeDescription>h1{
+	line-height: 2 !important
+}
+.codeDescription{
+	z-index: 10 !important
+}
+.Code{
+	margin: 0 !important;
+}
+.CodeShell{
+	margin: 10px auto;
+}
 .UserRow{
 	max-width: 1100px;
 	margin: 10px auto;
@@ -955,6 +967,23 @@ a{
 .Purple{
 	color: rgb(178, 118, 178) !important;
 }
+
+
+
+
+
+/*Animations of Task Page*/
+
+.answer-appear {
+  margin-top: 220px;
+}
+
+.answer-appear.answer-appear-active {
+  margin-top: 0 ;
+  transition: margin-top 3s ease-in;
+}
+
+/**/
 @media (max-width: 1600px) {
 
 

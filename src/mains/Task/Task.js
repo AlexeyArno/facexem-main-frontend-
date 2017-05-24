@@ -9,7 +9,8 @@ export default class Task extends Component{
 constructor(props) {
 		    super(props);
 		    this.state = {
-		    	answer: false
+		    	answer: false,
+		    	type: 0
 		    };
 		  }
 
@@ -20,8 +21,17 @@ constructor(props) {
 		  }
 		  sendAnswer=()=>{
 		  	this.props.answer(this.props.data.id, this.state.answer)
-
 		  }
+
+		  next = ()=>{
+		  	this.setState({
+		  		type: 0,
+		  		answer: false
+		  	})
+		  	this.props.next()
+		  }
+
+	
 		  
 
 
@@ -30,12 +40,15 @@ render(){
 	// if(this.props.type == 1){
 	// 	element = <Answer/>
 	// }
-	console.log(this.state.answer)
-	var element = (this.props.type == 1)? <Answer data={this.props.data} next={this.props.next}/> : <ContentTask data={this.props.data} answer={this.answer} sendAnswer={this.sendAnswer} nowAnswer={this.state.answer}/>
-	
-	return(<div>
+	var completeElement = <Answer data={this.props.description} next={this.next} id={this.props.data.id}  nowAnswer={this.state.answer}/>
+	var element = (this.state.type) ? completeElement : <div/>
+	var style=(this.state.type)?{maxHeight: document.getElementById('mainTaskWindow').offsetHeight, overflow: 'hidden'} : {}
+	return(<div style={style}>
+				<ContentTask data={this.props.data} answer={this.answer} sendAnswer={()=>this.setState({type: 1})} 
+								nowAnswer={this.state.answer} type={this.state.type}/>
+			
 				{element}
-
+		
 			</div>
 
 		

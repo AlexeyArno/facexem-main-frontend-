@@ -32,24 +32,22 @@ render(){
 	this.props.data.content.map(function(item, index){
 		item.type == "mainquest" ? content = this.getContent(item) : inputs = this.getInputs(item)
 	}.bind(this))
-	var button  = (this.props.nowAnswer)?  <div style={{textAlign: 'right'}}> <RaisedButton
-																				          primary={true}
-																				          label='Ответить'
-																				          disableTouchRipple={true}
-																				          disableFocusRipple={true}
-																				          onClick={this.props.sendAnswer}
-																				          labelColor='#fff'
-																				          style={{ margin: 10}}
-																					        /> </div> :  <div/>
-	return(<div>
+	var buttonElement =  <div style={{textAlign: 'right'}}> <RaisedButton label='Ответить'  onClick={this.props.sendAnswer} style={{ margin: 10}} /> </div>
+	var button  = (this.props.nowAnswer) ?  buttonElement :  <div/>
 
-		{content}
+	var opacity = (this.props.type)? 0.3 : 1	
+	return(<div style={{opacity: opacity, transition: 'opacity .2s ease-in', padding: '10px 0px'}} id='mainTaskWindow'>
+			<div className="col-md-12">
+				{content}
+			</div>
 		<hr/>
-		{inputs}
+			<div className="col-md-12">
+				{inputs}
+			</div>
 		<hr/>
-		{button}
-						
-		
+			<div>
+				{button}
+			</div>
 		</div>
 
 		

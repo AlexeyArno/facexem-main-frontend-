@@ -9,8 +9,7 @@ class TaskPage extends Component{
 constructor(props) {
 		    super(props);
 		    this.state = {
-		    	type: 0,
-		    	data: []
+		    	data: 0
 		    };
 		  }
 
@@ -39,6 +38,13 @@ constructor(props) {
 		  	return({subject:subject.join(''), type: type.join(''), number:number.join('')})
 		  }
 
+		  next=()=>{
+		  	var data = this.getTask()
+		  	this.setState({
+		  		data: data
+		  	})
+
+		  }
 
 		  getTask=()=>{
 		  	const {token} = this.props.user
@@ -57,25 +63,6 @@ constructor(props) {
 
 		  }
 
-		  getAnswer=(id, answers)=>{
-		  	var xmlhttp = new XMLHttpRequest()
-		  	const {token} = this.props.user
-		  	var body=  JSON.stringify({token: token, id: id, answers: answers})
-			xmlhttp.open('POST', 'http://127.0.0.1:9999/api/user/get_answer', false);
-			xmlhttp.send(body);  
-			if(xmlhttp.status == 200) {
-				var request = JSON.parse(xmlhttp.responseText)
-				request = ['hello']
-				if (!request.result){
-					this.setState({
-							type: 1,
-							data: request
-						})
-		
-				}
-			}
-
-		  }
 
 		  
 
@@ -83,10 +70,12 @@ constructor(props) {
 
 
 render(){
-    var data = (this.state.type) ? this.state.data : this.getTask()
+	const {token} = this.props.user
+	var data = (this.state.data)? this.state.data : this.getTask() 
+    // var data = (this.state.type) ? this.state.data : this.getTask()
 	return(<div className="contentRow">
 				<Paper style={{maxWidth: 700, margin: 'auto', marginTop: 60}}>
-					<Task data={data} type={this.state.type} answer={this.getAnswer} next={()=>this.setState({type: 0, data: []})}/>
+					<Task next={()=>this.setState({type: 0, data: [], answer: 0})} data={data}  token={token} next={this.next}/>
 				</Paper>
 			</div>
 

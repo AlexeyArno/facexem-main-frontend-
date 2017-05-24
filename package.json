@@ -20,6 +20,7 @@
     "npm": "^4.0.5",
     "react": "^15.5.4",
     "react-addons-css-transition-group": "^15.5.2",
+    "react-appear": "^1.0.1",
     "react-dom": "^15.5.4",
     "react-motion": "^0.4.5",
     "react-router": "^3.0.0",
