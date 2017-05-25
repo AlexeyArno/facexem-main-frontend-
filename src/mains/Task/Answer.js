@@ -3,6 +3,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import Paper from 'material-ui/Paper';
 import {Motion, spring} from 'react-motion';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'; // ES6
+import MainDecodeWorkDisplay from '../Decode/mainDecode.js'
 
 
 
@@ -11,7 +12,9 @@ export default class Answer extends Component{
 constructor(props) {
 		    super(props);
 		    this.state = {
-		    	position: false
+		    	position: false,
+		    	description: [],
+		    	answer: 0
 		    };
 		  }
 
@@ -20,22 +23,56 @@ constructor(props) {
 		  }
 
 
-		  getAnswer=(id, answers, token)=>{
-		  	var xmlhttp = new XMLHttpRequest()
-		  	var body=  JSON.stringify({token: token, id: id, answers: answers})
-			xmlhttp.open('POST', 'http://127.0.0.1:9999/api/user/get_answer', false);
-			xmlhttp.send(body);  
-			if(xmlhttp.status == 200) {
-				var request = JSON.parse(xmlhttp.responseText)
-				request = ['hello']
-				if (!request.result){
-					return request
+	
+
+		  getDescription=()=>{
+			  	var xmlhttp = new XMLHttpRequest()
+			  	var body=  JSON.stringify({token: this.props.token, id: this.props.id})
+				xmlhttp.open('POST', 'http://127.0.0.1:9999/api/user/get_description', false);
+				xmlhttp.send(body);  
+				if(xmlhttp.status == 200) {
+					var request = JSON.parse(xmlhttp.responseText)
+					if (!request.result){
+						return request
+					}
 				}
+			  }
+
+			processDescription=(data)=>{
+				if(data.length==0){
+					return <div/>
+				}
+				var final =  data.map(function (item, index) {
+					return(
+						<MainDecodeWorkDisplay item={item} key={index}/>)
+				})
+
+				return(<ReactCSSTransitionGroup
+						 transitionName="example"
+			               transitionAppear = {true} transitionAppearTimeout = {3000}
+			               transitionEnter = {false} transitionLeave = {false}>
+					               {final}
+					        </ReactCSSTransitionGroup>)
 			}
 
-		  }
+			controlDescription=()=>{
+				if(this.state.description.length == 0){
+					var data = this.getDescription()
+					this.setState({
+						description: data,
+						position: !this.state.position
+					})
+				}else{
+					this.setState({
+						position: !this.state.position
+					})
+				}
+			}
+		
+
+
 render(){
-	var data = this.getAnswer(this.props.id, this.props.nowAnswer, this.props.token)
+	var data = this.props.data
 	var height = document.getElementById('mainTaskWindow').offsetHeight
 	var style1={
 		maxHeight: height,
@@ -50,13 +87,35 @@ render(){
 	var style2={
 		maxHeight: height,
 		position: 'relative',
-		bottom: height - 100,
+		bottom: height - 80,
 		minHeight: height - 100,
-		overflow: 'auto',
+		overflow: 'hidden',
 		width: '100%',
 		boxShadow: '0 0 94px rgba(0,0,0,0.3)',
 		padding: 10
 	}
+
+	
+	var description = this.processDescription(this.state.description)
+	var right = <div>
+					<div  style={{textAlign: 'center', color: "rgb(115, 135, 156)",
+										 fontSize: 24, margin: 10}}>
+							Правильно!
+						</div>
+						<div style={{textAlign: 'center'}}>
+							<img src='/checked.svg' style={{width: 100}}/>
+						</div>
+				</div>
+	var issue = <div>
+					<div  style={{textAlign: 'center', color: "rgb(115, 135, 156)",
+										 fontSize: 24, margin: 10}}>
+							Ошибочка!
+						</div>
+						<div style={{textAlign: 'center'}}>
+							<img src='/cancel.svg' style={{width: 100}}/>
+						</div>
+				</div>
+	var final_answer = (data)?right:issue
 	var style= (this.state.position)? style2:style1
 	var label = (this.state.position)? "Свернуть": "Расследовать"
 	return(	
@@ -67,16 +126,10 @@ render(){
 	      transitionEnter={false}
 	      transitionLeave={false}>
 				<Paper style={style} zDepth={1} >
-					<div  style={{textAlign: 'center', color: "rgb(115, 135, 156)",
-									 fontSize: 24, margin: 10}}>
-						Правильно!
-					</div>
-					<div style={{textAlign: 'center'}}>
-						<img src='/checked.svg' style={{width: 100}}/>
-					</div>
+					{final_answer}
 					<RaisedButton
 					          label={label}
-					          onClick={()=>this.setState({position: !this.state.position})}
+					          onClick={()=>this.controlDescription()}
 					          style={{ marginTop: 10, position: 'absolute', top: 0 }}
 						        />
 					<RaisedButton
@@ -86,6 +139,14 @@ render(){
 						        />
 
 					<hr style={{margin: '20px auto'}}/>
+				
+						<div style={{overflow: 'auto', maxHeight:height-300, padding: 10, margin: '20px 0px', 
+									boxShadow:"1px 1px 6px 0px rgba(0,0,0,0.2) inset"}}>
+							
+							{description}
+					
+						</div>
+				
 				</Paper>
 		
 </ReactCSSTransitionGroup>

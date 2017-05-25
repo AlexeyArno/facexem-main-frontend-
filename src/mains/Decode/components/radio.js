@@ -39,7 +39,6 @@ constructor(props) {
 						    checkedIcon={<ToggleRadioButtonChecked/>}
 						    iconStyle={{fill: '#4285f4'}}
 						    value={index}
-						    onClick={()=>this.answer(index+1)}
 						    style={{ padding: 16, paddingLeft: 0}}
 						    />
 
@@ -64,7 +63,8 @@ render(){
 	var checks = this.getBoxes(this.props.data.content)
 
 	return(<div className={name}>
-				 <RadioButtonGroup name={String(this.props.data.id)} defaultSelected="nothing">
+				 <RadioButtonGroup name={String(this.props.data.id)} defaultSelected="nothing" 
+				 			onChange={(event: object, value: undefined)=>this.answer(value+1)}>
 					{checks}
 				</RadioButtonGroup>
 			</div>)

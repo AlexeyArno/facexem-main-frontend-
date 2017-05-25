@@ -33,9 +33,9 @@ export default class CodeWorkWindow extends Component{
 
 
 render(){
-	var name = 'col-md-12'
+	var name = 'col-md-12 col-xs-12 col-sm-12 col-lg-12'
 		if(this.props.data.size == 'half'){
-			name = 'col-md-6'
+			name = 'col-md-6 col-xs-12 	col-sm-6 col-lg-6'
 		}
 		const closeStyle={
 			position: 'absolute',

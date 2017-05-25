@@ -31,17 +31,36 @@ constructor(props) {
 		  	this.props.next()
 		  }
 
+		  	getAnswer=()=>{
+		  	var xmlhttp = new XMLHttpRequest()
+		  	var data = {
+		  		token: this.props.token,
+		  		id: this.props.data.id,
+		  		answer: [this.state.answer] 
+		  	}
+		  	var body=  JSON.stringify({token: data.token, id: data.id, answers: data.answer})
+			xmlhttp.open('POST', 'http://127.0.0.1:9999/api/user/get_answer', false);
+			xmlhttp.send(body);  
+			if(xmlhttp.status == 200) {
+				var request = JSON.parse(xmlhttp.responseText)
+				if (!request.result){
+					return request.answer
+				}
+			}
+
+		  }
+
 	
 		  
 
 
 render(){
-	// var element = <ContentTask/>
-	// if(this.props.type == 1){
-	// 	element = <Answer/>
-	// }
-	var completeElement = <Answer data={this.props.description} next={this.next} id={this.props.data.id}  nowAnswer={this.state.answer}/>
-	var element = (this.state.type) ? completeElement : <div/>
+	var element = <div/>
+	if(this.state.type){
+		var answer = this.getAnswer()
+		element = <Answer data={answer} token={this.props.token} next={this.next} id={this.props.data.id}/>
+	}
+
 	var style=(this.state.type)?{maxHeight: document.getElementById('mainTaskWindow').offsetHeight, overflow: 'hidden'} : {}
 	return(<div style={style}>
 				<ContentTask data={this.props.data} answer={this.answer} sendAnswer={()=>this.setState({type: 1})} 
