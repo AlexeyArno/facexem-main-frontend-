@@ -14,11 +14,22 @@ constructor(props) {
 		    };
 		  }
 
+		  //  	 shouldComponentUpdate=(nextProps, nextState)=>{
+		  //  	 	if(nextState.answer){
+		  //  	 		var objControl=document.getElementById("answer");
+				// 	objControl.scrollTop = objControl.offsetTop+10;
+		  //  	 	}
+		  //   	return true
+		  // }
+
+
+
 		  answer=(data)=>{
 		  	this.setState({
 		  		answer: data
 		  	})
 		  }
+
 		  sendAnswer=()=>{
 		  	this.props.answer(this.props.data.id, this.state.answer)
 		  }
@@ -31,7 +42,7 @@ constructor(props) {
 		  	this.props.next()
 		  }
 
-		  	getAnswer=()=>{
+		 getAnswer=()=>{
 		  	var xmlhttp = new XMLHttpRequest()
 		  	var data = {
 		  		token: this.props.token,
@@ -56,15 +67,17 @@ constructor(props) {
 
 render(){
 	var element = <div/>
+	var cowntentMaxHeight = 0
 	if(this.state.type){
 		var answer = this.getAnswer()
 		element = <Answer data={answer} token={this.props.token} next={this.next} id={this.props.data.id}/>
+		cowntentMaxHeight = 580
 	}
 
-	var style=(this.state.type)?{maxHeight: document.getElementById('mainTaskWindow').offsetHeight, overflow: 'hidden'} : {}
+	var style=(this.state.type)?{maxHeight: 655, overflow: 'hidden'} : {}
 	return(<div style={style}>
-				<ContentTask data={this.props.data} answer={this.answer} sendAnswer={()=>this.setState({type: 1})} 
-								nowAnswer={this.state.answer} type={this.state.type}/>
+				<ContentTask data={this.props.data} answer={this.answer}   sendAnswer={()=>this.setState({type: 1})} 
+					maxHeight={cowntentMaxHeight} nowAnswer={this.state.answer} type={this.state.type}/>
 			
 				{element}
 		

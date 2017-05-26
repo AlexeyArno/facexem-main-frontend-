@@ -31,9 +31,9 @@ export default class ParagraphWorkWindow extends Component{
 
 render(){	
 			var content = this.props.data.content
-			var name = 'col-md-12'
+			var name = 'col-md-12 col-lg-12'
 			if(this.props.data.size == 'half'){
-				name = 'col-md-6'
+				name = 'col-md-6 col-lg-6'
 			}
 
 			return(

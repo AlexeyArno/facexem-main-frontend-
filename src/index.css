@@ -969,6 +969,12 @@ a{
 }
 
 
+.deployDescription{
+	opacity: .7
+}
+.deployDescription:hover{
+	opacity: .9
+}
 
 
 
@@ -980,12 +986,39 @@ a{
 
 .answer-appear.answer-appear-active {
   margin-top: 0 ;
-  transition: margin-top 3s ease-in;
+  transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
+}
+
+/**/
+/*Animations of Height*/
+
+.opacity-appear {
+  opacity: 0;
+  margin-top: -50px
+}
+
+.opacity-appear.opacity-appear-active {
+	opacity: 1;
+	margin-top: 0px;
+  transition: all 800ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
+}
+
+/**/
+/*Animations of Height*/
+
+.height-appear {
+  height: 0px;
+}
+
+.height-appear.height-appear-active {
+  transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
 }
 
 /**/
 @media (max-width: 1600px) {
-
+#mobile-answer{
+	display: none
+}
 
 }
 @media (max-width: 996px) {
@@ -1010,6 +1043,13 @@ a{
 
 }
 @media (max-width: 459px) {
+	#answer{
+		display: none
+	}
+	#mobile-answer{
+		display: block
+	}
+
 	.onePaper{
 		width: 300px;
 	}

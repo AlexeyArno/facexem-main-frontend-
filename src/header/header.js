@@ -73,7 +73,7 @@ render(){
 	return( <div> 
 				<AppBar
 				    title={title}
-				    titleStyle={{ display: 'inline-block'}}
+				    titleStyle={{ display: 'inline-block', fontSize: 19, marginTop: 14}}
 				    style={{height: 50, background: '#2196F3', position: 'fixed', top: "0px"}}
 				    zDepth={2}
 				    iconElementLeft={   <IconButton style={{margin: 0}} 

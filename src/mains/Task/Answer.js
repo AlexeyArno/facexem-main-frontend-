@@ -4,8 +4,8 @@ import Paper from 'material-ui/Paper';
 import {Motion, spring} from 'react-motion';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'; // ES6
 import MainDecodeWorkDisplay from '../Decode/mainDecode.js'
-
-
+import IconButton from 'material-ui/IconButton';
+import ControlPanel from './ControlPanel.js'
 
 export default class Answer extends Component{
 
@@ -14,7 +14,7 @@ constructor(props) {
 		    this.state = {
 		    	position: false,
 		    	description: [],
-		    	answer: 0
+		    	answer: 0,
 		    };
 		  }
 
@@ -68,18 +68,22 @@ constructor(props) {
 					})
 				}
 			}
+
+
+
 		
 
 
 render(){
+
 	var data = this.props.data
 	var height = document.getElementById('mainTaskWindow').offsetHeight
 	var style1={
 		maxHeight: height,
 		position: 'relative',
-		bottom: 200,
+		bottom: 120,
 		overflow: 'hidden',
-		minHeight: 200,
+		minHeight: 120,
 		width: '100%',
 		boxShadow: '0 0 94px rgba(0,0,0,0.3)',
 		padding: 10
@@ -118,14 +122,18 @@ render(){
 	var final_answer = (data)?right:issue
 	var style= (this.state.position)? style2:style1
 	var label = (this.state.position)? "Свернуть": "Расследовать"
+
 	return(	
-		<ReactCSSTransitionGroup
+			<ReactCSSTransitionGroup
 	      transitionName="answer"
 	      transitionAppear={true}
-	      transitionAppearTimeout={3000}
+	      transitionAppearTimeout={500}
 	      transitionEnter={false}
 	      transitionLeave={false}>
+		<div>
+				
 				<Paper style={style} zDepth={1} >
+	
 					{final_answer}
 					<RaisedButton
 					          label={label}
@@ -138,8 +146,9 @@ render(){
 					          style={{ marginTop: 10, position: 'absolute', top: 0, right:10 }}
 						        />
 
-					<hr style={{margin: '20px auto'}}/>
-				
+
+					<hr style={{margin: '20px auto'}} />
+						<ControlPanel description={description}/>
 						<div style={{overflow: 'auto', maxHeight:height-300, padding: 10, margin: '20px 0px', 
 									boxShadow:"1px 1px 6px 0px rgba(0,0,0,0.2) inset"}}>
 							
@@ -149,7 +158,9 @@ render(){
 				
 				</Paper>
 		
+</div>
 </ReactCSSTransitionGroup>
+
 		   )
 
 }
