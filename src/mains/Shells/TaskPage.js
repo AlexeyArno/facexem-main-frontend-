@@ -74,8 +74,12 @@ render(){
 	var data = (this.state.data)? this.state.data : this.getTask() 
     // var data = (this.state.type) ? this.state.data : this.getTask()
 	return(<div className="contentRow">
-				<Paper style={{maxWidth: 700, margin: 'auto', marginTop: 60}}>
-					<Task next={()=>this.setState({type: 0, data: [], answer: 0})} data={data}  token={token} next={this.next}/>
+				<Paper style={{padding: '5px', maxWidth: 700, margin: 'auto', marginTop: 80, transform: "rotate(1deg)"}}>
+					<Paper style={{padding: '5px', maxWidth: 700, margin: 'auto',  transform: "rotate(358deg)"}}>
+						<Paper style={{maxWidth: 700, margin: 'auto', transform: "rotate(1deg)"}}>
+							<Task next={()=>this.setState({type: 0, data: [], answer: 0})} data={data}  token={token} next={this.next}/>
+						</Paper>
+					</Paper>
 				</Paper>
 			</div>
 

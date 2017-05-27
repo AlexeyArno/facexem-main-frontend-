@@ -7,6 +7,9 @@ import Close from 'material-ui/svg-icons/navigation/close';
 import Slider from 'material-ui/Slider';
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
+import IconMenu from 'material-ui/IconMenu';
+import MenuItem from 'material-ui/MenuItem';
+import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 
 
 export default class Variants extends Component{
@@ -17,7 +20,8 @@ export default class Variants extends Component{
 			    count: 19,
 			    open: false,
 				nowvalue: 0,
-				nowid: '' };
+				nowid: '' 
+			};
 	 }
 	 Modal=(id)=>{
 	 
@@ -114,10 +118,18 @@ export default class Variants extends Component{
 						</div>
 					</div>
 					<hr/>
-					<RaisedButton  label="Вперед!" labelColor="#fff" style={{marginTop: 5, float:'left', marginLeft: 20}} backgroundColor="rgb(33, 150, 243)"/>
-					<FlatButton label="Обычный" style={{color:"rgb(33, 150, 243)", marginTop: 5, float: 'right', marginRight: 20}}  onClick={()=>this.shutdown(1)}/>
+					<IconMenu
+					className='iconMenuVariants'
+				    iconButtonElement={<IconButton><MoreVertIcon /></IconButton>}
+				    anchorOrigin={{horizontal: 'left', vertical: 'top'}}
+      				targetOrigin={{horizontal: 'left', vertical: 'top'}}
+				    >
+				      <MenuItem primaryText="Обычный" onClick={()=>this.shutdown(1)}/>
+				      <MenuItem primaryText="Сбросить" onClick={()=>this.shutdown(0)}/>
+				    </IconMenu>
+					<RaisedButton  label="Вперед!" labelColor="#fff" style={{marginTop: 5, float:'right', marginRight: 20}} backgroundColor="rgb(33, 150, 243)"/>
 
-					<FlatButton label="Сбросить" style={{color:"rgb(247, 89, 89)", marginTop: 5, float: 'right', marginRight: 20}} onClick={()=>this.shutdown(0)} />
+
 				</Paper>
 				<Dialog
 		          title="Количество"
@@ -138,3 +150,6 @@ export default class Variants extends Component{
 }
 Variants.contextTypes	=	{		
 }
+
+					// <FlatButton label="Обычный" style={{color:"rgb(33, 150, 243)", marginTop: 5, float: 'right', marginRight: 20}}  onClick={()=>this.shutdown(1)}/>
+					// <FlatButton label="Сбросить" style={{color:"rgb(247, 89, 89)", marginTop: 5, float: 'right', marginRight: 20}} onClick={()=>this.shutdown(0)} />

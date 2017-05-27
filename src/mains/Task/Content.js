@@ -106,8 +106,17 @@ render(){
 	if(this.props.maxHeight){
 		style.maxHeight = this.props.maxHeight
 	}
-	var mobile_button = (this.props.nowAnswer) ?  this.getMobileAnswer() :  <div/>	
+	var mobile_button = (this.props.nowAnswer) ?  this.getMobileAnswer() :  <div/>
+	const overpaper_style = {
+		width: "100%",
+		height: "100%",
+		position: 'absolute',
+		opacity: 0.6,
+		zIndex: 220
+	}
+	var overpaper = (this.props.type)? <div style={overpaper_style}/> : <div/>	
 	return(<div style={style} id='mainTaskWindow'>
+				{overpaper}
 				<div style={{display:'inline-block', width:" 100%"}}>
 					{content}
 				</div>

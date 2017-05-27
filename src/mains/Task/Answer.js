@@ -103,7 +103,7 @@ render(){
 	var description = this.processDescription(this.state.description)
 	var right = <div>
 					<div  style={{textAlign: 'center', color: "rgb(115, 135, 156)",
-										 fontSize: 24, margin: 10}}>
+										 fontSize: 24, margin: 10}} id='answerLabel'>
 							Правильно!
 						</div>
 						<div style={{textAlign: 'center'}}>
@@ -112,7 +112,7 @@ render(){
 				</div>
 	var issue = <div>
 					<div  style={{textAlign: 'center', color: "rgb(115, 135, 156)",
-										 fontSize: 24, margin: 10}}>
+										 fontSize: 24, margin: 10}} id='answerLabel'>
 							Ошибочка!
 						</div>
 						<div style={{textAlign: 'center'}}>
