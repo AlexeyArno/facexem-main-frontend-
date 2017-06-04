@@ -11,6 +11,7 @@ import Close from 'material-ui/svg-icons/navigation/close';
 // CUSTOM MODULES
 import UserMenu from './menu.js'
 import Achievs from './achievs.js'
+import Settings from './settings.js'
 
 export default class Header extends Component{
 
@@ -18,7 +19,8 @@ constructor(props) {
 		    super(props);
 		    this.state = {
 		    	menu: false,
-		    	achievs: false
+		    	achievs: false,
+		    	settings: false
 		    };
 		  }
 
@@ -34,12 +36,21 @@ constructor(props) {
 		  	})
 		  }
 
+
+		  settings =()=>{
+		  	this.menu_close()
+		  	this.setState({
+		  		settings: !this.state.settings
+		  	})
+		  }
+
 		  achievs = () =>{
 		  	this.menu_close()
 		  	this.setState({
 		  		achievs: !this.state.achievs
 		  	})
 		  }
+
 		  getTitle=(path)=>{
 			  	switch(path){
 				case '/chemistry':
@@ -69,7 +80,9 @@ render(){
 			right: '20px'
 		}
 
-		var title = this.getTitle(window.location.pathname)
+	var title = this.getTitle(window.location.pathname)
+	var color_achiev = 'rgb(33, 150, 243)'
+	var color_sett = 'rgb(28, 206, 144)'
 	return( <div> 
 				<AppBar
 				    title={title}
@@ -87,7 +100,7 @@ render(){
 		          onRequestChange={() => this.menu_close()}
 		        >
 		          <UserMenu data={this.props.usermenu} subjects={this.props.subjects} 
-		           achievs={this.achievs} close={this.menu_close}/>
+		           achievs={this.achievs} close={this.menu_close} settings={this.settings}/>
 		        </Drawer>
 		        <Dialog
 				 	open={this.state.achievs}
@@ -98,11 +111,24 @@ render(){
 				     task={true}
 				    contentStyle={{maxWidth: 900, width: "90%"}}
 				    autoScrollBodyContent={true}
-				  	titleStyle={{color: 'rgb(33, 150, 243)'}}
+				  	titleStyle={{color: color_achiev}}
 					>
-				<IconButton onClick={this.achievs} style={closeStyle}><Close color='rgb(33, 150, 243)'/></IconButton>
-				<Achievs token={this.props.token}/>
-			</Dialog>
+					<IconButton onClick={this.achievs} style={closeStyle}><Close color={color_achiev}/></IconButton>
+					<Achievs token={this.props.token} color={color_sett}/>
+				</Dialog>
+				<Dialog
+				 	open={this.state.settings}
+		 			title="Настройки"
+				    contentStyle={{padding: 0}}
+					onRequestClose={this.settings}
+				    contentLabel="Modal"
+				    contentStyle={{maxWidth:500}}
+				    autoScrollBodyContent={true}
+				  	titleStyle={{color: color_sett}}
+					>
+					<IconButton onClick={this.settings} style={closeStyle}><Close color={color_sett}/></IconButton>
+					<Settings token={this.props.token} color={color_sett}/>
+				</Dialog>
 
 
 

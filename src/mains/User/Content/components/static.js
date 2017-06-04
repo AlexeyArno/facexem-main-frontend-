@@ -15,6 +15,10 @@ export default class Statisc extends Component{
 		var myChart = new Chart(ctx, {
 		    type: 'line',
 			options: {
+				responsive: true,
+				legend:{
+        	 		display: false
+       				 },
 						scales: {
 		        yAxes: [{
 		            display: true,

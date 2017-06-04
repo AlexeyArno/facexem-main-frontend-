@@ -19,6 +19,14 @@ constructor(props) {
 		    };
 		  }
 
+		  onChange=(value)=>{
+		  	this.props.answer(value, this.props.index)
+		  }
+
+
+
+
+
 
 render(){
 		var name = 'col-md-12'
@@ -45,7 +53,9 @@ render(){
 				style={{display: 'inline-block', maxWidth: 200}}
 				underlineStyle ={styles.underlineStyle}
 				underlineFocusStyle={styles.underlineStyle}
+				onChange={(e, v)=>this.onChange(v)}
 				 />
+				
 			<div style={{marginLeft: 10, display: 'inline-block'}}>{this.props.data.ext}</div>
 			</div>
 

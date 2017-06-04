@@ -11,6 +11,9 @@ export default class Preference extends Component{
 	componentDidMount(){
 		var labels = this.props.data[1]
 		var data = this.props.data[0]
+		data = data.map(function(item, index){
+			return (item)? item: 1
+		})
 		var ctx = document.getElementById("myChart");
 		var myChart = new Chart(ctx, {
 		    type: 'doughnut',

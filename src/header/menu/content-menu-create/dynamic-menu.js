@@ -31,7 +31,7 @@ export default class DynamicMenu extends Component{
 				 			<Divider className="DividerMenu"/>
 				 		</div> )
 		 		break; 
-		 	case 'writer': 
+		 	case 'author': 
 		 		return(<div> 
 		 					<MenuItem onClick={()=>this.click('top')} primaryText="Рейтинг" leftIcon={<AvEqualizer />}/>
 				 			<WriterMenu clickOnItem={this.click}/>

@@ -13,10 +13,13 @@ export default class UserMenu extends Component{
 // 		  }
 
 		  achievs = () =>{
-		  	// this.setState({
-		  	// 	achievs: !this.state.achievs
-		  	// })
+
 		  	this.props.achievs()
+		  }
+
+		   settings = () =>{
+
+		  	this.props.settings()
 		  }
 
 
@@ -27,7 +30,7 @@ render(){
 	<div>
 		<MenuUp data={this.props.data}/>
 		<MenuContent data={this.props.data} subjects={this.props.subjects} achievs={this.achievs}
-		close={this.props.close}/>
+		close={this.props.close} settings={this.settings}/>
 
 	</div>
 

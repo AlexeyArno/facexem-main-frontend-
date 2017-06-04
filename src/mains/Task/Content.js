@@ -11,9 +11,22 @@ export default class ContentTask extends Component{
 constructor(props) {
 		    super(props);
 		    this.state = {
-		    	
+		    	timer: 0
 		    };
 		  }
+
+
+		  componentDidMount=()=>{
+
+		  	var a = setInterval(function(){
+		  		// this.setState({timer: this.state.timer+1})
+		  		this.props.setTimer(this.props.timer+1)
+		  	}.bind(this), 1000)
+		  }
+
+
+
+
 		  getMobileAnswer=()=>{
 		  	const style = {
 				  position:"fixed",
@@ -36,20 +49,26 @@ constructor(props) {
 		  }
 
 
-		  answer=(data)=>{
-		  	this.props.answer(data)
+		  answer=(data, index)=>{
+		  	this.props.answer(data, index)
 		  }
 
 		  getInputs=(data)=>{
 		  	return(data.content.map(function(item, index){
-		  		return <MainDecodeWorkDisplay key={index} item={item} answer={this.answer}/>
+		  		return <MainDecodeWorkDisplay key={index} item={item} answer={this.answer} index={index}/>
 		  	}.bind(this)))
 		  }
 
 		  getContent=(data)=>{
 		  	return(data.content.map(function(item, index){
-		  		return <MainDecodeWorkDisplay key={index} item={item} answer={this.answer}/>
+		  		return <MainDecodeWorkDisplay key={index} item={item} answer={this.answer} index={index}/>
 		  	}.bind(this)))
+		  }
+
+
+
+		  getAnswer =()=>{
+		  	this.props.sendAnswer(this.state.timer)
 		  }
 
 
@@ -76,7 +95,7 @@ render(){
 				               <div id='answer'>
 				               	<div style={{textAlign: 'right'}} > 
 									<RaisedButton label='Ответить'  style={{ margin: 10}} 
-										onClick={this.props.sendAnswer} /> 
+										onClick={this.getAnswer} /> 
 									</div>
 								</div>
 						</ReactCSSTransitionGroup>
@@ -114,6 +133,7 @@ render(){
 		opacity: 0.6,
 		zIndex: 220
 	}
+
 	var overpaper = (this.props.type)? <div style={overpaper_style}/> : <div/>	
 	return(<div style={style} id='mainTaskWindow'>
 				{overpaper}

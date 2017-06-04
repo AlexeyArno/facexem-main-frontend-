@@ -15,6 +15,7 @@ import Streetview from 'material-ui/svg-icons/maps/streetview';
 import Whatshot from 'material-ui/svg-icons/social/whatshot';
 import ActionHome from 'material-ui/svg-icons/action/home';
 import ActionStars 	from 'material-ui/svg-icons/action/stars'
+import ActionSettings from 'material-ui/svg-icons/action/settings'
 
 export default class MenuContent extends Component{
 
@@ -33,6 +34,10 @@ export default class MenuContent extends Component{
 
 	openachievs=()=>{
 		this.props.achievs()
+	}
+
+	settings=()=>{
+		this.props.settings()
 	}
 
 
@@ -56,6 +61,7 @@ render(){
 	return(<div>
 			<MenuItem primaryText="Моя Страница" onClick={()=>this.clickOnItem('mypage')} leftIcon={<ActionHome />}/>
 			<MenuItem onClick={()=>this.openachievs()} primaryText="Достижения" leftIcon={<ActionStars/>}/>
+			<MenuItem onClick={()=>this.settings()} primaryText="Настройки" leftIcon={<ActionSettings/>}/>
 			{addItems}
 			{subjects}
 			<Divider className="DividerMenu" />

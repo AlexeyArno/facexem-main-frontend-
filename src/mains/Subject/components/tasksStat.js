@@ -67,7 +67,7 @@ export default class TasksStat extends Component{
 					numbers.push(tasks[n])
 					nowNum++} 
 			}
-			var numbers=<div className='staticTasks'
+			var numbers=<div className='staticTasks' key={Math.random()}
 			 style={{padding: "10px", display: 'inline-block', width: '330px', verticalAlign: 'top'}}>{numbers}</div>
 			shells.push(numbers)
 

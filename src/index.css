@@ -3,6 +3,7 @@ body {
   padding: 0 !important;
   font-family: sans-serif;
   overflow-x: hidden;
+  background-color: #fafafa;
 }
 ::-webkit-scrollbar {
       width:  '5px' !important;
@@ -530,6 +531,7 @@ opacity: 0;
 .characterCounter{
 	opacity: 0.5;
 	font-size: 14px;
+	text-align: right
 }
 #countElem, #countElemAchiv{
 	display: inline-block;

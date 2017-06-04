@@ -70,6 +70,20 @@ constructor(props) {
 			}
 
 
+			getFinalAnswer=(type)=>{
+				var data = (type)? {label: 'Правильно!','img':'/checked.svg'} : {label: 'Ошибочка!','img':'/cancel.svg'}
+				return  <div>
+							<div  style={{textAlign: 'center', color: "rgb(115, 135, 156)",
+												 fontSize: 24, margin: 10}} id='answerLabel'>
+									{data.label}
+								</div>
+								<div style={{textAlign: 'center', minHeight: 100}}>
+									<img src={data.img} style={{width: 100}}/>
+								</div>
+						</div>
+			}
+
+
 
 		
 
@@ -78,6 +92,7 @@ render(){
 
 	var data = this.props.data
 	var height = document.getElementById('mainTaskWindow').offsetHeight
+	document.getElementById('mainTaskWindow').style.minHeight = '580px'
 	var style1={
 		maxHeight: height,
 		position: 'relative',
@@ -91,8 +106,8 @@ render(){
 	var style2={
 		maxHeight: height,
 		position: 'relative',
-		bottom: height - 80,
-		minHeight: height - 100,
+		bottom: height - 120,
+		minHeight: 540,
 		overflow: 'hidden',
 		width: '100%',
 		boxShadow: '0 0 94px rgba(0,0,0,0.3)',
@@ -101,25 +116,7 @@ render(){
 
 	
 	var description = this.processDescription(this.state.description)
-	var right = <div>
-					<div  style={{textAlign: 'center', color: "rgb(115, 135, 156)",
-										 fontSize: 24, margin: 10}} id='answerLabel'>
-							Правильно!
-						</div>
-						<div style={{textAlign: 'center'}}>
-							<img src='/checked.svg' style={{width: 100}}/>
-						</div>
-				</div>
-	var issue = <div>
-					<div  style={{textAlign: 'center', color: "rgb(115, 135, 156)",
-										 fontSize: 24, margin: 10}} id='answerLabel'>
-							Ошибочка!
-						</div>
-						<div style={{textAlign: 'center'}}>
-							<img src='/cancel.svg' style={{width: 100}}/>
-						</div>
-				</div>
-	var final_answer = (data)?right:issue
+	var final_answer = this.getFinalAnswer(data)
 	var style= (this.state.position)? style2:style1
 	var label = (this.state.position)? "Свернуть": "Расследовать"
 
@@ -148,9 +145,9 @@ render(){
 
 
 					<hr style={{margin: '20px auto'}} />
-						<ControlPanel description={description}/>
+						<ControlPanel description={description} id={this.props.id} token={this.props.token}/>
 						<div style={{overflow: 'auto', maxHeight:height-300, padding: 10, margin: '20px 0px', 
-									boxShadow:"1px 1px 6px 0px rgba(0,0,0,0.2) inset"}}>
+									boxShadow:"1px 1px 6px 0px rgba(0,0,0,0.2) inset", height: 250}}>
 							
 							{description}
 					

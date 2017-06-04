@@ -13,11 +13,9 @@ constructor(props) {
 		    };
 		  }
 
-	componentDidMount=()=>{
+	componentWillMount=()=>{
 
-		if (this.state.achievs == 0){
 			this.LoadData();
-		}
 		
 	}
 
@@ -25,7 +23,6 @@ constructor(props) {
 
 
 	LoadData=()=>{
-				if (this.state.achievs == 0){
 				var xmlhttp = new XMLHttpRequest()
 				var body =  JSON.stringify({token: this.props.token})  
 				xmlhttp.open('POST', 'http://127.0.0.1:9999/api/user/get_achievements', false);
@@ -36,17 +33,15 @@ constructor(props) {
 				if (data.result != 'Error' ){
 					this.setState({achievs: data})
 					// return(data)
-				}else{
 				}
 			}
-		}
 			
 	}
 
 
 
 render(){
-	if(this.state.achievs == 0){
+	if(this.state.achievs === 0){
 		const style = {
 			margin: "auto",
 			maxWidth: '50px',
@@ -59,7 +54,6 @@ render(){
 					<CircularProgress size={40} thickness={5} mode={'indeterminate'}/>
 				</div>)
 	}
-	console.log(this.state.persondata)
 	return(<div>
 				<Main person={this.state.persondata} achievs={this.state.achievs}/>
 			</div>

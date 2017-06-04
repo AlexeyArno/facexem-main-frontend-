@@ -5,10 +5,10 @@ import { Route, IndexRedirect, browserHistory, Router, IndexRoute } from 'react-
 import UserPage from './mains/Shells/UserPage.js';
 import TestPage from './mains/Shells/TestPage.js';
 import SubjectPage from './mains/Shells/SubjectPage.js';
-import NotFound from './mains/Shells/NotFound.js';
+import NotFound from './mains/Shells/NotFound.jsx';
 import LectionPage from './mains/Shells/LectionPage.js';
 import PageWithTest from './mains/Shells/PageWithTests.js';
-import AuthorPage from './mains/Shells/AuthorPage.js'
+// import AuthorPage from './mains/Shells/AuthorPage.js'
 import TaskPage from './mains/Shells/TaskPage.js'
 import { Provider } from 'react-redux';
 import { connect } from 'react-redux'

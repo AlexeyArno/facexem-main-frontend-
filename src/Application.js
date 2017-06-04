@@ -3,10 +3,10 @@ import { Route, IndexRedirect, browserHistory, Router, IndexRoute } from 'react-
 import UserPage from './mains/Shells/UserPage.js';
 import TestPage from './mains/Shells/TestPage.js';
 import SubjectPage from './mains/Shells/SubjectPage.js';
-import NotFound from './mains/Shells/NotFound.js';
+import NotFound from './mains/Shells/NotFound.jsx';
 import LectionPage from './mains/Shells/LectionPage.js';
 import PageWithTest from './mains/Shells/PageWithTests.js';
-import AuthorPage from './mains/Shells/AuthorPage.js'
+// import AuthorPage from './mains/Shells/AuthorPage.js'
 import CircularProgress from 'material-ui/CircularProgress';
 
 import RoutersApp from './Routers.js'
@@ -54,23 +54,28 @@ class Application extends Component{
 	}
 
 
+
+	componentWillMount=()=>{
+		var token = this.getToken()
+		this.LoadData(token);
+	}
+
 	getToken=()=>{
 			var xmlhttp = new XMLHttpRequest()
 			xmlhttp.open('POST', 'http://127.0.0.1:9999/api/user/get_token', false);
 			xmlhttp.send(null);  
 			if(xmlhttp.status == 200) {
-			var request = JSON.parse(xmlhttp.responseText).result
-			var request ='3e61ea7e45dc6bce4c70039fbf50bb934f3f427c'
-			if (request){
-				this.setTokenInRedux(request)
-				return(request)
-			}
+			var request = JSON.parse(xmlhttp.responseText)
+			var request ='bdf4166ff70d65430aacd415b7a0faf3a6747040'
+				if (!request.result){
+					this.setTokenInRedux(request)
+					return(request)
+				}
 			}
 	}
 
 
 	LoadData=(token)=>{
-		if (this.state.fulldata == 0){
 
 			var xmlhttp = new XMLHttpRequest()
 			var body =  JSON.stringify({token: token})  
@@ -86,16 +91,8 @@ class Application extends Component{
 			}
 			}
 			
-		}
 	}
 
-	componentDidMount=()=>{
-		var token = this.getToken()
-		if (this.state.fulldata == 0 && token){
-			this.LoadData(token);
-		}
-		
-	}
 
 
 	render(){
