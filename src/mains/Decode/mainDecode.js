@@ -19,6 +19,7 @@ export default class MainDecodeWorkDisplay extends Component{
 		  }
 
 	answer=(data, index)=>{
+		
 		this.props.answer(data, index)
 		// console.log(data)
 	}

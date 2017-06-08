@@ -81,8 +81,9 @@ render(){
 		}
 
 	var title = this.getTitle(window.location.pathname)
+	document.title = (title!='Facexem')? title+' | Facexem': title
 	var color_achiev = 'rgb(33, 150, 243)'
-	var color_sett = 'rgb(28, 206, 144)'
+	var color_sett = '#7bc6cc'
 	return( <div> 
 				<AppBar
 				    title={title}

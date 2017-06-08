@@ -19,7 +19,7 @@ render(){
     var city = data.city
     var exp = data.exp
 	const stylePhoto = {
-      backgroundImage: 'url(' + photo + ')',
+      backgroundImage: 'url(/avatars/' + photo + ')',
       width: 60,
       height: 60,
       margin: 15,

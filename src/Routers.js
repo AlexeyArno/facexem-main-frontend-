@@ -58,7 +58,7 @@ class RoutersApp extends Component{
 
 				const NewUser = (props) => <div>
 					 <Provider store={this.props.store}>
-						<UserPage/>
+						<UserPage setDataInRedux={this.props.setDataInRedux}/>
 					 </Provider>
 				</div>
 

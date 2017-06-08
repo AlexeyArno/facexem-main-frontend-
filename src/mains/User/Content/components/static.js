@@ -9,26 +9,37 @@ import Chart from 'chart.js';
   
 export default class Statisc extends Component{
 	componentDidMount(){
-		var labels = this.props.data[1]
-		var data = this.props.data[0]
+		var labels = this.props.data.dates
+		var data = this.props.data.values
 		var ctx = document.getElementById("myChart2");
 		var myChart = new Chart(ctx, {
 		    type: 'line',
 			options: {
 				responsive: true,
+				maintainAspectRatio: false,
 				legend:{
         	 		display: false
        				 },
-						scales: {
-		        yAxes: [{
-		            display: true,
-		            ticks: {
-		                suggestedMin: 0,
-		                 stepSize : 1,    // minimum will be 0, unless there is a lower value.
-		                // OR //
-		                beginAtZero: true   // minimum value will be 0.
-		            }
-		        }]
+       			tooltips: {
+		        	enabled: true
+		        },
+		        line:{
+		        	borderWidth: 1
+		        },
+				scales: {
+					 xAxes: [{
+			                display: false
+			            }],
+			        yAxes: [{
+			            display: false,
+			            ticks: {
+			                suggestedMin: 0,
+			                 // stepSize : 1,    // minimum will be 0, unless there is a lower value.
+			                // OR //
+			                beginAtZero: true   // minimum value will be 0.
+			            }
+			        }]
+
 		    }
 		    },
 		    animation:{
@@ -40,22 +51,23 @@ export default class Statisc extends Component{
 		        	label: "Задания",
 		            data: data,
 		            fill: true,
-		            lineTension: 1,
-		            backgroundColor: "rgba(75,192,192,0.4)",
-		            borderColor: "rgba(75,192,192,1)",
+		            lineTension: 0.1,
+		            backgroundColor: "rgba(33, 150, 243, 0.3)",
+		            borderColor: "rgba(33, 150, 243, 0.3)",
 		            borderCapStyle: 'butt',
 		            borderDash: [],
 		            borderDashOffset: 0.0,
 		            borderJoinStyle: 'miter',
-		            pointBorderColor: "rgba(75,192,192,1)",
+		            pointBorderColor: "rgb(33, 150, 243)",
 		            pointBackgroundColor: "#fff",
 		            pointBorderWidth: 1,
 		            pointHoverRadius: 5,
-		            pointHoverBackgroundColor: "rgba(75,192,192,1)",
-		            pointHoverBorderColor: "rgba(220,220,220,1)",
-		            pointHoverBorderWidth: 2,
+		            pointHoverBackgroundColor: "rgb(33, 150, 243)",
+            		pointHoverBorderColor: "rgba(220,220,220,1)",
+		            pointHoverBorderWidth: 1,
 		            pointRadius: 1,
 		            pointHitRadius: 10,
+		            spanGaps: false,
 				       }],
 		    },
 		    
@@ -65,12 +77,18 @@ export default class Statisc extends Component{
 }
 
 	render(){
+		var style={
+			width: 'auto',
+			maxWidth: 733,
+			position: 'absolute',
+			bottom: 0
+		}
 		return(
 			<div className="col-xs-12 col-sm-8 paper activity">
 				<Paper className="preferencepaper activity" >
 					<div className="Up">Активность</div>
 					<hr/>
-					<canvas id="myChart2" width="450px" height="220px"></canvas>
+					<canvas id="myChart2" style={style}/>
 				</Paper>
 			</div>
 

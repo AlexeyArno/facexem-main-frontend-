@@ -65,8 +65,8 @@ export default class Tasks extends Component{
 					<DropDownMenu value={this.state.value} onChange={this.handleChange}  
 					underlineStyle={{opacity: 0}} labelStyle={{fontSize: 15, color: 'rgb(115, 135, 156)', paddingLeft: 56}}
 					style={{top: '-13px'}}>
-			          <MenuItem value={1} primaryText="Случайные задания" onClick={()=>this.smth(1)}/>
-			          <MenuItem value={2} primaryText="Определенный номер" onClick={()=>this.smth(2)}/>
+			          <MenuItem value={1} primaryText="Случайные задания" onClick={()=>this.smth(1)} style={{textAlign: 'center'}}/>
+			          <MenuItem value={2} primaryText="Определенный номер" onClick={()=>this.smth(2)} style={{textAlign: 'center'}}/>
 			        </DropDownMenu>
 					</div>
 					<hr/>

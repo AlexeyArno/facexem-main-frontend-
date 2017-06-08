@@ -20,6 +20,7 @@ constructor(props) {
 		  }
 
 		  onChange=(value)=>{
+		  
 		  	this.props.answer(value, this.props.index)
 		  }
 

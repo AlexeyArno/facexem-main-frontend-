@@ -11,18 +11,12 @@ export default class ContentTask extends Component{
 constructor(props) {
 		    super(props);
 		    this.state = {
-		    	timer: 0
+		    
 		    };
 		  }
 
 
-		  componentDidMount=()=>{
 
-		  	var a = setInterval(function(){
-		  		// this.setState({timer: this.state.timer+1})
-		  		this.props.setTimer(this.props.timer+1)
-		  	}.bind(this), 1000)
-		  }
 
 
 
@@ -50,7 +44,9 @@ constructor(props) {
 
 
 		  answer=(data, index)=>{
+		  	
 		  	this.props.answer(data, index)
+
 		  }
 
 		  getInputs=(data)=>{
@@ -68,7 +64,7 @@ constructor(props) {
 
 
 		  getAnswer =()=>{
-		  	this.props.sendAnswer(this.state.timer)
+		  	this.props.sendAnswer()
 		  }
 
 

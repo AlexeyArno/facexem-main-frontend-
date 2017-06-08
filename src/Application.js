@@ -66,7 +66,7 @@ class Application extends Component{
 			xmlhttp.send(null);  
 			if(xmlhttp.status == 200) {
 			var request = JSON.parse(xmlhttp.responseText)
-			var request ='bdf4166ff70d65430aacd415b7a0faf3a6747040'
+			var request ='2fed86b70dfec7fb46a32468223dd91a782e8093'
 				if (!request.result){
 					this.setTokenInRedux(request)
 					return(request)
@@ -116,7 +116,7 @@ class Application extends Component{
 		}else{
 			const {token, data} = this.props.user
 		return(<div>
-					<RoutersApp store={this.props.store} />
+					<RoutersApp store={this.props.store} setDataInRedux={this.setDataInRedux}/>
 				</div>)
 		}
 		

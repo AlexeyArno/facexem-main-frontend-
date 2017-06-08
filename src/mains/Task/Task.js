@@ -1,8 +1,10 @@
-import React, { Component } from 'react';
+import React, { Component, 	PropTypes } from 'react';
 import Paper from 'material-ui/Paper';
 import Answer from './Answer.js'
 import ContentTask from './Content.js'
-import Timer from './timer.js'
+import RaisedButton from 'material-ui/RaisedButton';
+import FontIcon from 'material-ui/FontIcon';
+import NavigationArrowBack from 'material-ui/svg-icons/navigation/arrow-back'
 
 export default class Task extends Component{
 
@@ -11,7 +13,6 @@ constructor(props) {
 		    this.state = {
 		    	answer: [],
 		    	type: 0,
-		    	timer: 0
 		    };
 		  }
 
@@ -23,9 +24,11 @@ constructor(props) {
 		  //   	return true
 		  // }
 
-		  timer=(timer)=>{
-		  
-		  }
+		  comeback=()=>{
+				this.context.router.push({
+					  pathname: '/'+this.props.subject
+					});
+	}
 
 
 		  componentWillMount=()=>{
@@ -68,7 +71,8 @@ constructor(props) {
 		  		id: this.props.data.id,
 		  		answer: this.state.answer
 		  	}
-		  	var body=  JSON.stringify({token: data.token, id: data.id, answers: data.answer, time})
+		  	var body=  JSON.stringify({token: data.token, id: data.id, answers: data.answer,
+		  	 time, type: this.props.type, session_key:this.props.session_key})
 			xmlhttp.open('POST', 'http://127.0.0.1:9999/api/user/get_answer', false);
 			xmlhttp.send(body);  
 			if(xmlhttp.status == 200) {
@@ -88,6 +92,21 @@ render(){
 	// console.log(this.state.answer)
 	var element = <div/>
 	var cowntentMaxHeight = 0
+	if(this.props.data.result == 'Empty'){
+		return(<div style={{padding: 20}}>
+					<div>Извини, но мы ничего не смогли найти для тебя,
+						можешь немного подождать пока появятся новые задания,
+						или перейти к другим заданиям
+					</div>
+					<RaisedButton
+						  onClick={this.comeback}
+					      label="Вернуться"
+					      secondary={true}
+					      style={{margin: 12}}
+					      icon={<NavigationArrowBack/>}
+					    />
+				</div>)
+	}
 	if(this.state.type){
 		var answer = this.getAnswer()
 		element = <Answer data={answer} token={this.props.token} next={this.next} id={this.props.data.id}/>
@@ -97,8 +116,7 @@ render(){
 	var style=(this.state.type)?{maxHeight: 655, overflow: 'hidden'} : {}
 	return(<div style={style}>
 				<ContentTask data={this.props.data} answer={this.answer}   sendAnswer={()=>this.setState({type: 1})} 
-					maxHeight={cowntentMaxHeight} nowAnswer={this.state.answer} type={this.state.type} timer={this.state.timer}
-					setTimer={this.timer}/>
+					maxHeight={cowntentMaxHeight} nowAnswer={this.state.answer} type={this.state.type} />
 			
 				{element}
 		
@@ -112,4 +130,7 @@ render(){
 
 
 
+}
+Task.contextTypes	=	{		
+	router:	PropTypes.object.isRequired 
 }

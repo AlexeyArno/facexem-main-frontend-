@@ -11,6 +11,13 @@ export default class Preference extends Component{
 	componentDidMount(){
 		var labels = this.props.data[1]
 		var data = this.props.data[0]
+		var sum = 0
+		data.map(function(item){
+			sum+=item
+		})
+		data = data.map(function (item) {
+			return Math.floor(item/sum*100)
+		})
 		data = data.map(function(item, index){
 			return (item)? item: 1
 		})
@@ -18,10 +25,20 @@ export default class Preference extends Component{
 		var myChart = new Chart(ctx, {
 		    type: 'doughnut',
 			options: {
-		    },
-		    animation:{
-        		animateScale:true
-    		},
+				cutoutPercentage: 70,
+			    animation:{
+	        		animateScale:true
+	    		},
+	    		 tooltips: {
+	    		 	mode:'point',
+	    		 	displayColors: false,
+	    		 	callbacks: {
+	    		 		label: function(tooltipItems, data) {
+				        	return data.labels[tooltipItems.index]+" "+data.datasets[0].data[tooltipItems.index] + ' %';
+				      },
+	    		 }
+	    	}
+	    	},
 		    data: {
 		        labels: labels,
 		        datasets: [{
@@ -36,7 +53,8 @@ export default class Preference extends Component{
 				                "#B276B2",
 				            ]
 				       }],
-		    },
+		    }
+		
 		    
 		});
 

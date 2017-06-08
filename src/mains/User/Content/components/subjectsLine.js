@@ -21,7 +21,7 @@ export default class SubjectsLine extends Component{
 		}
 
 			return(
-				<div key={index} className="coub" onClick={()=>this.handllink(item.link)}>
+				<div key={index} className="coub subject-on-user-page" onClick={()=>this.handllink(item.link)}>
 					<Paper style={backstyle} className="coub coub-inside">
 						<div className="DownCountSubject">{item.subjectName}</div>
 					</Paper>
