@@ -77,9 +77,6 @@ render(){
 								Лучший результат
 							</div>
 						<hr style={hr}/>
-					
-						<SmallInfoGrafic mid_time={this.props.data.mid_time} hardest={hardest}/>
-						<hr style={hr}/>
 
 						<RaisedButton
 				          backgroundColor= {this.props.color}
@@ -88,7 +85,7 @@ render(){
 				          disableFocusRipple={true}
 				          onClick={this.openTasks}
 				          labelColor='#fff'
-				          style={{ marginTop: 0 }}
+				          style={{ marginBottom: 10 }}
 					        />
 					        </ReactCSSTransitionGroup>
 				
@@ -123,3 +120,9 @@ render(){
 Random.contextTypes	=	{		
 	router:	PropTypes.object.isRequired 
 }
+
+
+// 	<hr style={hr}/>
+					
+						// <SmallInfoGrafic mid_time={this.props.data.mid_time} hardest={hardest}/>
+						// <hr style={hr}/>

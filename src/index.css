@@ -304,6 +304,7 @@ opacity: 0;
 .DividerMenu{
 	background-color: #e0e0e0;
 	opacity: 0.5;
+	height: 20px !important;
 }
 .circle{
 	width: 230px;

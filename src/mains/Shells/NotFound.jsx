@@ -17,7 +17,7 @@ export default class NotFound extends Component{
 
 	render(){
 
-		return(	<div style={{ marginTop: 60, zIndex: 2, textAlign: "center"}}>
+		return(	<div style={{ marginTop: 60, zIndex: 2, textAlign: "center"}} id='nowpage'>
 
 				<p style={{fontSize: 40, margin: 'auto', fontWeight: 600, opacity: 0.4}}>ПОТРАЧЕНО:(</p>
 				<p style={{ fontSize: 16, marginLeft: 7,

@@ -6,6 +6,7 @@ import Dialog from 'material-ui/Dialog';
 import DialogContent from './contentDialog.js'
 import IconButton from 'material-ui/IconButton';
 import Close from 'material-ui/svg-icons/navigation/close';
+import FlatButton from 'material-ui/FlatButton';
 import ContentTask from '../randomtask/contentTaskModal.js'
 
 export default class Onetask extends Component{
@@ -27,11 +28,17 @@ constructor(props) {
 					
 			 }
 		 openChange=()=>{
+		 	if(this.state.openchange){
+		 		document.getElementById('root').style.filter = 'blur(0px)'
+		 	}else{
+		 		document.getElementById('root').style.filter = 'blur(2px)'
+		 	}
 		 	 this.setState({openchange: !this.state.openchange});
-
-		 }
+		 	}
+		 	
 
 		chooseNumberClick=(n)=>{
+			document.getElementById('root').style.filter = 'blur(0px)'
 			this.setState({
 				number: n,
 				openchange: false
@@ -94,34 +101,16 @@ render(){
 				          labelColor='#fff'
 				          style={{ margin: 10,  }}
 					        />
-					        <RaisedButton
-				          
-				          label='Изменить'
-				          disableTouchRipple={true}
-				          disableFocusRipple={true}
-				          onClick={this.openChange}
-				          labelColor={this.props.color}
-				          style={{ margin: 10 }}
-					        />
+					        <FlatButton label="Изменить"
+					         	style={{ margin: 10 }}
+					            onClick={this.openChange}
+					            labelStyle={{color: this.props.color}}/>
+				
 					       </ReactCSSTransitionGroup>
-					       <Dialog
-				          title="Случайные задания"
-				          titleStyle={{color: 'rgb(33, 150, 243)'}}
-				          modal={false}
-				          open={this.state.opentask}
-				          autoScrollBodyContent={true}
-				          onRequestClose={this.openTasks}
-				           contentStyle={{padding: 0,  maxWidth: 900, width: "90%"}}
-				           autoDetectWindowHeight={true}
-				           task={true}
-				           style ={{maxHeight: 500}}
-				        >	
-					        <IconButton onClick={this.openTasks} style={closeStyle}><Close color='rgb(33, 150, 243)'/></IconButton>
-					         <ContentTask/>
-				        </Dialog>
+					
 
 				       <Dialog
-				          title="Случайные задания"
+				          title="Выбор задания"
 				          modal={false}
 				          titleStyle={{color: 'rgb(33, 150, 243)'}}
 				          open={this.state.openchange}
@@ -154,3 +143,20 @@ render(){
 Onetask.contextTypes	=	{		
 	router:	PropTypes.object.isRequired 
 }
+
+
+       // <Dialog
+				   //        title="Выбор задания"
+				   //        titleStyle={{color: 'rgb(33, 150, 243)'}}
+				   //        modal={false}
+				   //        open={this.state.opentask}
+				   //        autoScrollBodyContent={true}
+				   //        onRequestClose={this.openTasks}
+				   //         contentStyle={{padding: 0,  maxWidth: 900, width: "90%"}}
+				   //         autoDetectWindowHeight={true}
+				   //         task={true}
+				   //         style ={{maxHeight: 500}}
+				   //      >	
+					  //       <IconButton onClick={this.openTasks} style={closeStyle}><Close color='rgb(33, 150, 243)'/></IconButton>
+					  //        <ContentTask/>
+				   //      </Dialog>

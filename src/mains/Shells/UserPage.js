@@ -28,7 +28,7 @@ class UserPage extends Component{
 
 	render(){
 		const {data, token} = this.props.user
- 		return(	<div>
+ 		return(	<div id='nowpage'>
 		  <MuiThemeProvider>
 		      <Whallpaper user={data.info} subjects={data.subjects} last={data.actions} token={token}
 		       static={data.activity} preference={data.preference} globalstatic={data.global_activ}/>

@@ -31,12 +31,14 @@ constructor(props) {
 		}
 
 		  menu_open=()=>{
+		  	document.getElementById('nowpage').style.filter = 'blur(2px)'
 		  	this.setState({
 		  		menu: true
 		  	})
 		  }
 
 		  menu_close=()=>{
+		  	document.getElementById('nowpage').style.filter = 'blur(0px)'
 		  	this.setState({
 		  		menu: false
 		  	})
@@ -45,6 +47,11 @@ constructor(props) {
 
 		  settings =()=>{
 		  	this.menu_close()
+		  	if(this.state.settings){
+		  		document.getElementById('root').style.filter = 'blur(0px)'
+		  	}else{
+		  		document.getElementById('root').style.filter = 'blur(2px)'
+		  	}
 		  	this.setState({
 		  		settings: !this.state.settings
 		  	})
@@ -52,6 +59,11 @@ constructor(props) {
 
 		  achievs = () =>{
 		  	this.menu_close()
+		  	if(this.state.achievs){
+		  		document.getElementById('root').style.filter = 'blur(0px)'
+		  	}else{
+		  		document.getElementById('root').style.filter = 'blur(2px)'
+		  	}
 		  	this.setState({
 		  		achievs: !this.state.achievs
 		  	})

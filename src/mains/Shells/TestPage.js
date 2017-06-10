@@ -49,7 +49,7 @@ export default class TestPage extends Component{
 		}
 		var answers = [1,2,'hello',4,5,6,7,8,9]
 		return(	
-			<div className=" paper variantsPage">
+			<div className=" paper variantsPage" id='nowpage'>
 				<Paper className="" >
 					<div className="Up">Тест</div>
 					<hr/>

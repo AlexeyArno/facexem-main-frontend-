@@ -25,10 +25,13 @@ export default class UserRow extends Component{
 			    	modalIsOpenBest:false};
 			  }
 
-			  closeBest = () => {this.setState({modalIsOpenBest: false});
+			  closeBest = () => {
+			  	this.setState({modalIsOpenBest: false});
+		  			document.getElementById('root').style.filter = 'blur(0px)'
 				}
 				
 			  someFuncBest = () => {
+		  		document.getElementById('root').style.filter = 'blur(2px)'
 			  	this.setState({open: false});
 			  	this.setState({modalIsOpenBest: true});
 			  }
@@ -84,35 +87,6 @@ export default class UserRow extends Component{
 
 
 
-
-		const customStyle = {
-							  overlay : {
-							    position          : 'fixed',
-							    top               : 0,
-							    left              : 0,
-							    right             : 0,
-							    bottom            : 0,
-							    backgroundColor   : 'rgba(0, 0, 0, 0.75)',
-							    zIndex: 9999 
-							  },
-							  content : {
-							    position                   : 'absolute',
-							    top                        : '40px',
-							    left                       : '20px',
-							    right                      : '20px',
-							    margin						: 'auto auto',
-							    maxWidth				   : '560px',
-							    maxHeight				   : '630px',
-							    border                     : 'none',
-							    background                 : '#fff',
-							    overflow                   : 'hidden',
-							    borderRadius               : '1px',
-							    outline                    : 'none',
-							    zIndex: 99999,
-							    padding: 0 
-
-							  }
-							}
 		
 
 		const stylePhoto = {

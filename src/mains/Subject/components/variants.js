@@ -12,6 +12,8 @@ import MenuItem from 'material-ui/MenuItem';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import ContentRemove from 'material-ui/svg-icons/content/remove'
+import ContentAdd from 'material-ui/svg-icons/content/add'
 
 
 export default class Variants extends Component{
@@ -35,6 +37,7 @@ export default class Variants extends Component{
 	 }
 
 	 open=(index)=>{
+	 	document.getElementById('root').style.filter = 'blur(2px)'
 	 	this.setState({
 	 		open: true, index, value: this.state.stories[index]
 	 	})
@@ -48,13 +51,41 @@ export default class Variants extends Component{
 	 	this.setState({
 	 		open: false
 	 	})
+	 	document.getElementById('root').style.filter = 'blur(0px)'
+	 }
+
+
+
+	 changeButton=(type)=>{
+	 	var value = this.state.value
+	 	if(type== 'add'){	
+	 		if(value<5){
+	 			value++
+	 		}
+	 	}else{
+	 		if(value>0){
+	 			value--
+	 		}
+	 	}
+	 	this.setState({
+	 		value
+	 	})
+	 }
+
+	 shutdown=(n)=>{
+	 	var stories = this.state.stories
+	 	stories = stories.map(function(item){
+	 		return n
+	 	})
+	 	this.setState({stories})
 	 }
 
 
 	 acceptCount=()=>{
 	 	var stories = this.state.stories
 	 	stories[this.state.index] = this.state.value
-	 	this.setState({stories, index: -1, value: 0, open: false})
+	 	this.setState({stories, index: -1,  open: false})
+	 	this.Modal()
 	 }
 	 
 
@@ -109,15 +140,15 @@ export default class Variants extends Component{
 			right: '20px'
 		}
 		var number = this.state.count
-		var elPerRow = Math.ceil(number/3)*90
-		if(elPerRow<700){elPerRow=700}
+		// var elPerRow = Math.ceil(number/3)*90
+		// if(elPerRow<700){elPerRow=700}
 		var elements = this.getCountsTasks()
-		return(	<div className="col-xs-12 col-sm-8 paper variants">
+		return(	<div className="col-xs-12 col-sm-4 paper variants">
 				<Paper className="preferencepaper variants" >
 					<div className="Up">Тест</div>
 					<hr/>
 					<div className="testContent">
-						<div style={{minWidth: elPerRow}}>
+						<div >
 							{elements}
 						</div>
 					</div>
@@ -146,12 +177,31 @@ export default class Variants extends Component{
 		          onRequestClose={this.Modal}
 		        >
 		        	<IconButton onClick={()=>this.Modal()} style={closeStyle}><Close color='rgb(33, 150, 243)'/></IconButton>
-		        	<div style={{textAlign: "center", 'fontSize': 22}}>{this.state.value}</div>
-		        	<hr style={{position: 'relative', top: 32.5}}/>
-		        	 <MuiThemeProvider muiTheme={muiTheme}>
-			          	<Slider value={this.state.value} min={0} max={5} step={1}
-			          	 onChange={this.changeSlider}/>
-			           </MuiThemeProvider>
+	
+			        	
+
+			        	<div style={{textAlign: "center", 'fontSize': 22}}>{this.state.value}</div>
+			        		        	<div>
+			        	<IconButton onClick={()=>this.changeButton('del')} 
+			        		style={{display: 'inline-block', position: 'relative', bottom: 44}}>
+				          	<ContentRemove color="#dddddd"/>
+				          </IconButton>
+					        	<div style={{display: 'inline-block', width: 150}}>
+						        	<hr style={{position: 'relative', top: 33}}/>
+						        	<hr style={{position: 'relative', top: 32.5, border: '0.5px solid rgb(33, 150, 243)',
+						        				opacity: 0.5, width: this.state.value*20+'%'}}/>
+						        		
+						        	 <MuiThemeProvider muiTheme={muiTheme}>
+							          
+							          		<Slider value={this.state.value} min={0} max={5} step={1}
+							          	 		onChange={this.changeSlider}/>
+
+							           </MuiThemeProvider>
+						          </div>
+				           	<IconButton onClick={()=>this.changeButton('add')} style={{display: 'inline-block', position: 'relative', bottom: 44}}>
+				          		<ContentAdd color="#dddddd"/>
+				          	</IconButton>
+			         </div>
 		        </Dialog>
 			</div>)
 

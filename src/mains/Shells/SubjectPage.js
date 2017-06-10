@@ -99,7 +99,7 @@ class SubjectPage extends Component{
 		  // </MuiThemeProvider>
 
 		var info=[name]
-		return(	<div style={{marginTop: 60}}>
+		return(	<div style={{marginTop: 60}} id='nowpage'>
 		 	<MuiThemeProvider>
 		 		 <SubjectRow data={this.state.data.activity}/>
 		 	</MuiThemeProvider>

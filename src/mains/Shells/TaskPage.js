@@ -135,7 +135,7 @@ render(){
 								 transitionName="opacity"
 					               transitionAppear = {true} transitionAppearTimeout = {800}
 					               transitionEnter = {false} transitionLeave = {false}>
-				<div className="contentRow">
+				<div className="contentRow" id='nowpage'>
 					
 						<Paper style={{padding: '5px', maxWidth: 700, margin: 'auto', marginTop: 80, transform: "rotate(1deg)"}}>
 							<Paper style={{padding: '5px', maxWidth: 700, margin: 'auto',  transform: "rotate(358deg)"}}>
