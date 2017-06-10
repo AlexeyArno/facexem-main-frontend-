@@ -1,10 +1,11 @@
-import React, { Component } from 'react';
+import React, {Component , PropTypes} from 'react';
 import AppBar from 'material-ui/AppBar';
 import IconButton from 'material-ui/IconButton';
 import Menu from 'material-ui/svg-icons/navigation/menu';
 import Drawer from 'material-ui/Drawer';
 import Dialog from 'material-ui/Dialog';
 import Close from 'material-ui/svg-icons/navigation/close';
+import ContentReply from 'material-ui/svg-icons/content/reply'
 
 
 
@@ -23,6 +24,11 @@ constructor(props) {
 		    	settings: false
 		    };
 		  }
+		   handllink=(name)=>{
+			this.context.router.push({
+				 pathname: '/'+name
+			});
+		}
 
 		  menu_open=()=>{
 		  	this.setState({
@@ -50,24 +56,48 @@ constructor(props) {
 		  		achievs: !this.state.achievs
 		  	})
 		  }
+		  getUrlhData = ()=>{
+		  	// function that decode "/math/singletask/4" to "math", "singletask", "4"
+		  	var body = window.location.pathname
+		  	var workbody = Array.from(body)
+		  	var subject = []
+		  	var type = []
+		  	var number = []
+		  	var count = 0
+		  	for(var i=0; i<workbody.length;i++){
+		  		count =(workbody[i] == '/')? count+1:count
+		  		if(count==1){
+		  			if (workbody[i]=='/') continue;
+		  			subject[subject.length] = workbody[i] 
+		  		}else if(count == 2){
+		  			if (workbody[i]=='/') continue;
+		  			type[type.length] = workbody[i]
+		  		}else if(count == 3){
+		  			if (workbody[i]=='/') continue;
+		  			number[number.length] = workbody[i]
+		  		}
+		  		
+		  	}
+		  	return({subject:subject.join(''), type: type.join(''), number:number.join('')})
+		  }
 
-		  getTitle=(path)=>{
-			  	switch(path){
-				case '/chemistry':
+		  getTitle=(data)=>{
+			  	switch(data.subject){
+				case 'chemistry':
 					return('Химия')
-				case '/math':
+				case 'math':
 					return('Математика базовый')
-				case '/math-pro':
+				case 'math-pro':
 					return('Математика профиль')
-				case '/russian':
+				case 'russian':
 					return('Русский язык')
-				case '/english':
+				case 'english':
 					return('Английский язык')
-				case '/physics':
+				case 'physics':
 					return('Физика')
-				case '/history':
+				case 'history':
 					return('История')
-				case '/information':
+				case 'information':
 					return('Информатика')
 			}
 			return('Facexem');
@@ -79,11 +109,12 @@ render(){
 			top: '18px',
 			right: '20px'
 		}
-
-	var title = this.getTitle(window.location.pathname)
+	var data_header = this.getUrlhData()
+	var title = this.getTitle(data_header)
 	document.title = (title!='Facexem')? title+' | Facexem': title
 	var color_achiev = 'rgb(33, 150, 243)'
 	var color_sett = '#7bc6cc'
+	var icon_right =(data_header.type == 'randomtask' || data_header.type=="singletask")? <IconButton onClick={()=>this.handllink(data_header.subject)} tooltip="Вернуться"><ContentReply/></IconButton>: <div/>
 	return( <div> 
 				<AppBar
 				    title={title}
@@ -92,6 +123,8 @@ render(){
 				    zDepth={2}
 				    iconElementLeft={   <IconButton style={{margin: 0}} 
 				    onClick={()=>this.menu_open()}><Menu /></IconButton>}
+				    iconElementRight={icon_right}
+				    iconStyleRight={{float: 'right'}}
 			  	/>
 			  	<Drawer
 		          docked={false}
@@ -143,4 +176,9 @@ render(){
 
 
 
+}
+
+
+Header.contextTypes	=	{		
+	router:	PropTypes.object.isRequired 
 }

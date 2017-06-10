@@ -10,7 +10,7 @@ export default class Statistics extends Component{
 		var color;
 		var styleFill={transform: "rotate(180deg)"};
 		var styleSlice={};
-		var rating = 56;
+		var rating = this.props.data;
 		if(rating<45){
 			color="red"
 		}else if(rating<75){
@@ -32,7 +32,7 @@ export default class Statistics extends Component{
 		var classNaming = 'progressBarYet  c100 p'+rating+' '+color+' big center'
 		return(	<div className="col-xs-12 col-sm-4 paper variants">
 				<Paper className="preferencepaper variants" >
-					<div className="Up">Статистика</div>
+					<div className="Up">Оценка</div>
 					<hr/>
 					<div className={classNaming}>
 						  <span>{rating}</span>

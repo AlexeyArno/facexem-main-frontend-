@@ -62,7 +62,8 @@ render(){
 			right: '20px'
 		}
 
-	var last = 10
+	var last = this.props.data.best_task_random
+	var hardest = this.props.data.task_table[0].num
 	return(<div>
 				<ReactCSSTransitionGroup
 				 transitionName="example"
@@ -77,7 +78,7 @@ render(){
 							</div>
 						<hr style={hr}/>
 					
-						<SmallInfoGrafic/>
+						<SmallInfoGrafic mid_time={this.props.data.mid_time} hardest={hardest}/>
 						<hr style={hr}/>
 
 						<RaisedButton

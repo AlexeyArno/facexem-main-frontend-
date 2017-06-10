@@ -16,17 +16,16 @@ constructor(props) {
 			var styleFill={transform: "rotate(180deg)"};
 			var styleSlice={};
 			var middle_rezult = 120 
-			var rating = 132
+			var rating = this.props.mid_time
 			var procent =  Math.floor(100*rating/middle_rezult)
 			var view = (procent>100)? 100:procent
 			if(view==100){
 				color="red"
 			} else if(view<100){
-				color="yellow"
-			}else if(view<79){
+				color="yellow"}
+			if(view<79){
 				color="green"
 			}
-			console.log(view, color)
 
 			var mystyle={
 				transform: 'rotate('+ view *3.6+'deg)'
@@ -58,7 +57,7 @@ constructor(props) {
 
 render(){
 	var spin1 = this.getTimeSpin()
-	var mytop = 19
+	var mytop = this.props.hardest
 	return(<div>
 		{spin1}
 		<div style={{display: 'inline-block',  margin: '0px 10px'}}>

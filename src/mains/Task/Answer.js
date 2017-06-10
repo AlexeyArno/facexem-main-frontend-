@@ -15,6 +15,7 @@ constructor(props) {
 		    	position: false,
 		    	description: [],
 		    	answer: 0,
+		    	maxHeight: 0
 		    };
 		  }
 
@@ -58,13 +59,28 @@ constructor(props) {
 			controlDescription=()=>{
 				if(this.state.description.length == 0){
 					var data = this.getDescription()
+					
 					this.setState({
 						description: data,
-						position: !this.state.position
+						position: !this.state.position,
 					})
 				}else{
+					console.log(this.state.maxHeight)
+					
 					this.setState({
-						position: !this.state.position
+						position: !this.state.position,
+					})
+				}
+				if(this.state.position){
+					document.getElementById('wrapper_task').style.maxHeight = this.state.maxHeight+'px'
+					this.setState({
+						maxHeight: 0,
+					})
+				}else{
+					var height = document.getElementById('wrapper_task').offsetHeight
+					document.getElementById('wrapper_task').style.maxHeight = '580px'
+					this.setState({
+						maxHeight: height,
 					})
 				}
 			}
@@ -92,11 +108,11 @@ render(){
 
 	var data = this.props.data
 	var height = document.getElementById('mainTaskWindow').offsetHeight
-	document.getElementById('mainTaskWindow').style.minHeight = '580px'
+	// document.getElementById('mainTaskWindow').style.minHeight = '580px'
 	var style1={
-		maxHeight: height,
+		maxHeight: 180,
 		position: 'relative',
-		bottom: 120,
+		// bottom: 65,
 		overflow: 'hidden',
 		minHeight: 120,
 		width: '100%',
@@ -106,7 +122,7 @@ render(){
 	var style2={
 		maxHeight: height,
 		position: 'relative',
-		bottom: height - 120,
+		bottom: height - 65,
 		minHeight: 540,
 		overflow: 'hidden',
 		width: '100%',

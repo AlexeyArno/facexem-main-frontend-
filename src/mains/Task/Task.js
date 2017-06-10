@@ -13,6 +13,7 @@ constructor(props) {
 		    this.state = {
 		    	answer: [],
 		    	type: 0,
+		    	answer_input: 0
 		    };
 		  }
 
@@ -28,7 +29,7 @@ constructor(props) {
 				this.context.router.push({
 					  pathname: '/'+this.props.subject
 					});
-	}
+		}
 
 
 		  componentWillMount=()=>{
@@ -42,7 +43,7 @@ constructor(props) {
 		  	var answer = this.state.answer
 		  	answer[index] = data
 		  	this.setState({
-		  		answer
+		  		answer, answer_input: 1
 		  	})
 		  }
 
@@ -55,7 +56,8 @@ constructor(props) {
 		  	this.setState({
 		  		type: 0,
 		  		answer: [],
-		  		timer: date
+		  		timer: date,
+		  		answer_input: 0
 
 		  	})
 		  	this.props.next()
@@ -112,11 +114,14 @@ render(){
 		element = <Answer data={answer} token={this.props.token} next={this.next} id={this.props.data.id}/>
 		cowntentMaxHeight = 580
 	}
-
-	var style=(this.state.type)?{maxHeight: 655, overflow: 'hidden'} : {}
-	return(<div style={style}>
+	var style={}
+	if(this.state.type){
+		var height = document.getElementById('mainTaskWindow').offsetHeight
+		style = {maxHeight: height+165, overflow: 'hidden'}
+	}
+	return(<div style={style} id='wrapper_task'>
 				<ContentTask data={this.props.data} answer={this.answer}   sendAnswer={()=>this.setState({type: 1})} 
-					maxHeight={cowntentMaxHeight} nowAnswer={this.state.answer} type={this.state.type} />
+					maxHeight={cowntentMaxHeight} nowAnswer={this.state.answer_input} type={this.state.type} />
 			
 				{element}
 		

@@ -9,7 +9,6 @@ import Chart from 'chart.js';
   
 export default class StatiscGraph extends Component{
 	componentDidMount(){
-        console.log(this.props.data.dates)
 var data = {
     labels:this.props.data.dates,
     datasets: [

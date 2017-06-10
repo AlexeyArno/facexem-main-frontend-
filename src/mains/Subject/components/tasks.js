@@ -44,12 +44,12 @@ export default class Tasks extends Component{
 	  }
 
 	render(){
-		var last=this.props.data
+		var last=this.props.data.best_task_random
 
 
 
-		var random  = <Random color={this.props.color}/>
-		var staticElement = <Onetask color={this.props.color}/>
+		var random  = <Random color={this.props.color} data={this.props.data}/>
+		var staticElement = <Onetask color={this.props.color} data={this.props.data}/>
 
 
 		var element = random

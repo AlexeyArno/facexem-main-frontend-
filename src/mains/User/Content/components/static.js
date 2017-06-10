@@ -81,7 +81,8 @@ export default class Statisc extends Component{
 			width: 'auto',
 			maxWidth: 733,
 			position: 'absolute',
-			bottom: 0
+			bottom: 0,
+			height: 350
 		}
 		return(
 			<div className="col-xs-12 col-sm-8 paper activity">

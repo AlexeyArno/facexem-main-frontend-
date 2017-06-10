@@ -14,11 +14,12 @@ constructor(props) {
 
 
 	clickOnRow=(n)=>{
-		this.props.chooseNumberClick(n+1)
+		var number =  this.props.data[n].num
+		this.props.chooseNumberClick(number)
 
 	}
 
-	getCountsTasks=(number)=>{
+	getCountsTasks=()=>{
 		var style ={
 			display: 'inline-block',
 			color: '#fff',
@@ -34,25 +35,26 @@ constructor(props) {
 			margin: 'auto',
 			color: 'rgb(33, 150, 243)'
 		}
-		var tasks = new Array
-		for (var n=1; n<=number; n++){
-			var max = 4
-			var min = 1
-			var point =  Math.floor(Math.random() * (max - min)) + min;
-			tasks.push({number: n, theme: 'Тут типо тема огромная тема, что не должна помещаться тут во всю ширину', points: point })
-		}
+		var tasks = this.props.data
 		var selectnumber = this.props.number
 		var final = tasks.map(function(item, index){
-			var id = item.number+'dialogTaskTab'
+			var id = item.num+'dialogTaskTab'
 			var select= false
-			if (selectnumber-1 == index){
+			if (selectnumber == item.num){
 				select = true
 			}
+			var color = 'rgba(255, 244, 104,0.35)'
+			var name = 'rowCkickTable'
+			if(item.color=='green'){
+				color = 'rgba(204, 247, 126,0.35)'
+			}else if(item.color== 'red'){
+				color = 'rgba(252, 163, 85,0.35)'
+			}
 			return(
-				<TableRow id={id} selected={select} style={{cursor: 'pointer', textAlign: 'center'}}>
-			        <TableRowColumn>{item.number}</TableRowColumn>
-			        <TableRowColumn>{item.theme}</TableRowColumn>
-			        <TableRowColumn>{item.points}</TableRowColumn>
+				<TableRow id={id} key={index} selected={select} className={name} displayBorder={false} 
+						style={{cursor: 'pointer', textAlign: 'center', background: color}}>
+			        <TableRowColumn >{item.num}</TableRowColumn>
+			        <TableRowColumn >{item.theme}</TableRowColumn>
 			      </TableRow>
 				)
 		}.bind(this))
@@ -62,21 +64,22 @@ constructor(props) {
 
 render(){
 
-	var content = this.getCountsTasks(19)
+	var content = this.getCountsTasks()
 	
 	return(
-
-		<Table style={{padding: 0}} onCellClick={(rowNumber )=>this.clickOnRow(rowNumber)}>
+		
+		<Table style={{padding: 0}} 
+		 onCellClick={(rowNumber )=>this.clickOnRow(rowNumber)}>
+		
     <TableHeader displaySelectAll={false}
 				            adjustForCheckbox={false}
 				            enableSelectAll={false}>
       <TableRow>
         <TableHeaderColumn>Номер</TableHeaderColumn>
         <TableHeaderColumn>Тема</TableHeaderColumn>
-        <TableHeaderColumn>Баллы</TableHeaderColumn>
       </TableRow>
     </TableHeader>
-    <TableBody  showRowHover={true}>
+    <TableBody  showRowHover={false} displayRowCheckbox={false}>
     {content}
     </TableBody>
     </Table>

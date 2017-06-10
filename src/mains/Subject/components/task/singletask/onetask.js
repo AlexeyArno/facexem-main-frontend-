@@ -15,7 +15,7 @@ constructor(props) {
 		    super(props);
 		    this.state = {
 		    	openchange: false,
-		    	number: 19,
+		    	number: this.props.data.task_table[0].num,
 		    	opentask: false 
 		    };
 		  }
@@ -103,9 +103,10 @@ render(){
 				          labelColor={this.props.color}
 				          style={{ margin: 10 }}
 					        />
-					        </ReactCSSTransitionGroup>
+					       </ReactCSSTransitionGroup>
 					       <Dialog
 				          title="Случайные задания"
+				          titleStyle={{color: 'rgb(33, 150, 243)'}}
 				          modal={false}
 				          open={this.state.opentask}
 				          autoScrollBodyContent={true}
@@ -122,6 +123,7 @@ render(){
 				       <Dialog
 				          title="Случайные задания"
 				          modal={false}
+				          titleStyle={{color: 'rgb(33, 150, 243)'}}
 				          open={this.state.openchange}
 				          autoScrollBodyContent={true}
 				          bodyClassName = 'dialogBodyTable'
@@ -131,8 +133,11 @@ render(){
 				          style ={{maxHeight: 500}}
 				        >	
 				        <IconButton onClick={this.openChange} style={closeStyle}><Close color='rgb(33, 150, 243)'/></IconButton>
-				         <DialogContent style={{marginTop: 5, padding: 0}} id='myTableDialog' number={this.state.number} chooseNumberClick={this.chooseNumberClick}/>
+				         <DialogContent style={{marginTop: 5, padding: 0}} id='myTableDialog'
+				          number={this.state.number} data={this.props.data.task_table}
+				          chooseNumberClick={this.chooseNumberClick}/>
 				        </Dialog>
+				         
 		</div>
 
 		

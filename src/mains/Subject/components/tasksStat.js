@@ -16,19 +16,16 @@ export default class TasksStat extends Component{
 
 	render(){
 
-		var tasks = []
-		for(var i=1;i<=32;i++){
-			var rand = Math.floor(Math.random() * (100 - 0 + 1)) + 0;
-			tasks.push({num: i, count: rand})
-		}
+		var tasks = this.props.data.task_table
 		var smth1 = (tasks.length/7)-((tasks.length/7) % 1)
 		if(((tasks.length/7) % 1)>0){
 			smth1++
 		}
 
 		tasks = tasks.map(function(item, index){
-			var numeric = item.count
+			var numeric = item.procent*100
 			if (numeric<15){numeric = 15}
+			if (numeric>100){numeric=100}
 			var procent = numeric+'%'
 			var background=''
 			if(33>=numeric){

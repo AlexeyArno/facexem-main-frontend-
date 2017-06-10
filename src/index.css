@@ -360,7 +360,8 @@ opacity: 0;
 	max-height: 360px;
 }
 #myChart2{
-	max-height: 300px;
+	max-height: 320px;
+	
 }
 .notifications{
 	position: absolute;
@@ -1076,7 +1077,7 @@ a{
 		width: 100%;
 	}
 	#myChart2{
-		margin-top: 50px;
+		
 	}
 	.infoStyle{
 		margin-left: 5px;
@@ -1136,4 +1137,21 @@ a{
     color:rgb(81, 232, 93);
     margin-left: 25px;
     float: left;
+}
+.rowCkickTable{
+	transition:  opacity 0.2s ease-in-out
+}
+.rowCkickTable:hover{
+	opacity: 0.5 !important
+	/*filter: blur(1px) !important;*/
+
+}
+.rowClickTableRed:hover{
+	background-color: rgba(252, 163, 85,0.35) !important;
+}
+.rowClickTableYellow:hover{
+	background-color: rgba(255, 244, 104,0.35) !important;
+}
+.rowClickTableGreen:hover{
+	background-color: rgba(204, 247, 126,0.35) !important;
 }

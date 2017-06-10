@@ -49,9 +49,9 @@ constructor(props) {
 
 		  }
 
-		  getInputs=(data)=>{
+		  getInputs=(data, spec_id)=>{
 		  	return(data.content.map(function(item, index){
-		  		return <MainDecodeWorkDisplay key={index} item={item} answer={this.answer} index={index}/>
+		  		return <MainDecodeWorkDisplay key={index} item={item} answer={this.answer} index={spec_id}/>
 		  	}.bind(this)))
 		  }
 
@@ -72,8 +72,12 @@ constructor(props) {
 render(){
 	var content =<div/>
 	var inputs = <div/>
+	var count_inputs = 0
 	this.props.data.content.map(function(item, index){
-		item.type == "mainquest" ? content = this.getContent(item) : inputs = this.getInputs(item)
+		item.type == "mainquest" ? content = this.getContent(item) : inputs = this.getInputs(item, count_inputs)
+		if(item.type != 'mainquest'){
+			count_inputs++
+		}
 	}.bind(this))
 
 
@@ -116,8 +120,9 @@ render(){
 
 	var button  = (this.props.nowAnswer) ?  buttonElement :  <div/>
 
-	var opacity = (this.props.type)? 0.3 : 1
-	var style = {opacity: opacity, transition: 'opacity .2s ease-in', padding: '10px 0px'} 
+	// var opacity = (this.props.type)? 0.3 : 1
+	var blur =  (this.props.type)? 2 : 0
+	var style = {transition: 'opacity .2s ease-in', padding: '10px 0px', filter: 'blur('+blur+'px)'} 
 	if(this.props.maxHeight){
 		style.maxHeight = this.props.maxHeight
 	}
@@ -127,6 +132,7 @@ render(){
 		height: "100%",
 		position: 'absolute',
 		opacity: 0.6,
+		filter: 'blur(1px)',
 		zIndex: 220
 	}
 

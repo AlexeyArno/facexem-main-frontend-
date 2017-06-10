@@ -10,7 +10,8 @@ import { connect } from 'react-redux'
 class SubjectPage extends Component{
 		 constructor(props) {
 			    super(props);
-			    this.state = {subject: window.location.pathname,
+			    this.state = {
+			    	subject: window.location.pathname,
 			    	data: 0};
 
 			  }	
@@ -30,13 +31,12 @@ class SubjectPage extends Component{
 			var subject = window.location.pathname
 			var xmlhttp = new XMLHttpRequest()
 			var body =  JSON.stringify({token: token, subject: subject.slice(1)})  
-			xmlhttp.open('POST', 'http://127.0.0.1:9999/api/user/get_activity_subject', false);
+			xmlhttp.open('POST', 'http://127.0.0.1:9999/api/user/get_my_subject', false);
 			xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
 			xmlhttp.send(body);  
 			if(xmlhttp.status == 200) {
 			var data = JSON.parse(xmlhttp.responseText)
 			if (data.result != 'Error' ){
-				console.log(data)
 				this.setState({data: data})
 				// return(request)
 			}
@@ -101,11 +101,11 @@ class SubjectPage extends Component{
 		var info=[name]
 		return(	<div style={{marginTop: 60}}>
 		 	<MuiThemeProvider>
-		 		 <SubjectRow data={this.state.data}/>
+		 		 <SubjectRow data={this.state.data.activity}/>
 		 	</MuiThemeProvider>
 		  <MuiThemeProvider>
 
-		  	<SubjectContent subject={this.state.subject}  reset={() => this.forceUpdate()} key={Math.random()}/>
+		  	<SubjectContent subject={this.state.subject} data={this.state.data} reset={() => this.forceUpdate()} key={Math.random()}/>
 		  	</MuiThemeProvider>
 	</div>)
 

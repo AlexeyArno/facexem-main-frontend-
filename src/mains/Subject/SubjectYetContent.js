@@ -4,17 +4,20 @@ import Statistics from './components/static.js'
 import Challenge from './components/challenge.js'
 import Tasks from './components/tasks.js'
 import TasksStat from './components/tasksStat.js'
+import Theme from './components/themes.js'
 
 export default class SubjectYetContent extends Component{
 	
 
 
 	render(){
+		var data = this.props.data
+		console.log(data)
 		return(	<div id='YetChoose'>
-					<Tasks color={this.props.data} closeColor={this.props.close} data={10}/>
-					<Variants color={this.props.data} closeColor={this.props.close}/>
-					<TasksStat />
-					<Statistics/>
+					<Tasks color={this.props.color} closeColor={this.props.close} data={data.task_info}/>
+					<Variants color={this.props.color} closeColor={this.props.close} data={data.task_info}/>
+					<Theme data={data}/>
+					<Statistics data={data.task_info.test_points}/>
 					<Challenge/>
 				</div>)
 
