@@ -28,8 +28,8 @@ export default class AdminMenu extends Component{
 	render(){
 
 		return(	<div>
-						<MenuItem onClick={()=>this.click('admin')} primaryText="Панель управления" leftIcon={<ActionBuild />}/>
-						<MenuItem onClick={()=>this.click('author')} primaryText="Редактор" leftIcon={<EditorBorderColor />}/>
+						<MenuItem onClick={()=>this.click('admin')} primaryText="Панель управления" leftIcon={<ActionBuild color={this.props.color}/>}/>
+						<MenuItem onClick={()=>this.click('author')} primaryText="Редактор" leftIcon={<EditorBorderColor color={this.props.color}/>}/>
 			          			          
 	</div>)
 

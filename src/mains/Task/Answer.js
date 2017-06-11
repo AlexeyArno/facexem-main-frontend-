@@ -112,7 +112,7 @@ render(){
 	var style1={
 		maxHeight: 180,
 		position: 'relative',
-		// bottom: 65,
+		bottom: 0,
 		overflow: 'hidden',
 		minHeight: 120,
 		width: '100%',

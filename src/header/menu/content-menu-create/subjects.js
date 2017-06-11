@@ -29,31 +29,31 @@ render(){
 			var icon = <LibraryBooks/>
 			switch(item.link){
 				case 'chemistry':
-					icon =<Share/>
+					icon =<Share color={this.props.color}/>
 					break;
 				case 'english':
-					icon = <ActionTranslate/>
+					icon = <ActionTranslate  color={this.props.color}/>
 					break;
 				case 'math-pro':
-					icon = <EditorFunctions/>
+					icon = <EditorFunctions  color={this.props.color}/>
 					break;
 				case 'math':
-					icon = <EditorFunctions/>
+					icon = <EditorFunctions  color={this.props.color}/>
 					break;
 				case 'russian':
-					icon = <ContentFontDownload/>
+					icon = <ContentFontDownload  color={this.props.color}/>
 					break;
 				case 'history':
-					icon = <ActionAccountBalance/>
+					icon = <ActionAccountBalance  color={this.props.color}/>
 					break;
 				case 'computer-science':
-					icon = <ActionMemory/>
+					icon = <ActionMemory  color={this.props.color}/>
 					break;
 				case 'physics':
-					icon = <ImageFlashOn/>
+					icon = <ImageFlashOn  color={this.props.color}/>
 					break;
 				case 'biology':
-					icon = <MapsLocalFlorist/>
+					icon = <MapsLocalFlorist  color={this.props.color}/>
 					break;
 			}
 			return(

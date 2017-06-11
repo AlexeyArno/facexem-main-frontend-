@@ -55,7 +55,7 @@ render(){
 				</div>)
 	}
 	return(<div>
-				<Main person={this.state.persondata} achievs={this.state.achievs}/>
+				<Main person={this.state.persondata} color={this.props.color} achievs={this.state.achievs}/>
 			</div>
 
 		

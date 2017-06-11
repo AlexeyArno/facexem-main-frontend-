@@ -16,7 +16,6 @@ export default class Experience extends Component{
 
 		return(
 			<div className="lineExp">
-				<div className="streack" data-for="exper" data-tip="День">{streack}</div>
 				<div className="experience" data-for="exper" data-tip="Ваш опыт">
 				{exp}</div>
 					<Badges info={badges}/>

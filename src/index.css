@@ -62,7 +62,7 @@ body {
 .Overlay{
 	width: 100%;
 	height: 30px;
-	background: rgba(0,0,0,0.5);
+	/*background: rgba(0,0,0,0.5);*/
 	float: right;
 	margin-top: 15px;
 }
@@ -221,8 +221,8 @@ hr{
 }
 
 #myChart{
-	max-width: 390px;
-	max-height: 400px;
+	max-width: 300px;
+	max-height: 310px;
 	margin: 0 auto;
 }
 .subjectLine{
@@ -946,7 +946,8 @@ a{
 }
 .globalStaticPaper{
 	min-height: 106.6px;
-	min-width: 100%
+	min-width: 100%;
+	box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
 }
 .dialogBodyTable{
 	padding: 0 !important
@@ -971,8 +972,8 @@ a{
 #myChart3{
 	max-height: 180px !important
 }
-.Purple{
-	color: rgb(178, 118, 178) !important;
+
+.controlSubjectPage{
 }
 
 
@@ -981,6 +982,13 @@ a{
 }
 .deployDescription:hover{
 	opacity: .9
+}
+
+.buttonMenuUser{
+	transition: transform 1s ease-in-out
+}
+.buttonMenuUser:hover{
+	transform: rotate(360deg)
 }
 
 
@@ -1012,7 +1020,9 @@ a{
 
 /**/
 /*Animations of Height*/
-
+.blue{
+	color: rgb(33, 150, 243) !important;
+}
 .height-appear {
   height: 0px;
 }

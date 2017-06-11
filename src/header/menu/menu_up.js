@@ -24,18 +24,24 @@ render(){
       height: 60,
       margin: 15,
       marginTop: 0,
-      marginRigth: 160,
-      backgroundSize: '100%'     
+      backgroundSize: '100%'  ,
+      display: 'inline-block'   
     }
       const styleBg = {
       backgroundImage: 'url(' + bg + ')',
+      // background: 'black',
+
       width: '100%',
-      height: 150,
+      height: 100,
       paddingTop: 20,
     }
     const styleName={
       color: '#fff',
+      display: 'inline-block',
       fontWeight: '400',
+      position: 'absolute',
+      top: 30,
+      left: 70,
       paddingLeft: 15,
       fontSize: 18,
     }
@@ -43,8 +49,11 @@ render(){
       color: '#fff',
       fontWeight: '300',
       fontSize: 15,
+      display: 'inline-block',
       paddingLeft: 15,
-      float: 'left',      
+      position: 'absolute',
+      top: 50,
+      left: 70,
       width: '150px'      
     }
     const styleExp={
@@ -63,7 +72,6 @@ render(){
         <Paper style={stylePhoto} zDepth={3} circle={true}></Paper>
         <div style={styleName}>{name}</div>
         <div style={styleCity}>{city}</div>
-        <div style={styleExp}>{exp}</div>
       </div>
 
 		

@@ -19,22 +19,22 @@ export default class DynamicMenu extends Component{
 		 switch (roots){
 		 	case 'admin': 
 		 		return(<div>
-		 					<MenuItem onClick={()=>this.click('top')} primaryText="Рейтинг" leftIcon={<AvEqualizer />}/>
-		 					<AdminMenu clickOnItem={this.click}/>
+		 					<MenuItem onClick={()=>this.click('top')} primaryText="Рейтинг" leftIcon={<AvEqualizer color={this.props.color}/>}/>
+		 					<AdminMenu clickOnItem={this.click} color={this.props.color}/>
 		 					<Divider className="DividerMenu"/>
 		 				</div> )
 		 		break; 
 		 	case 'premium': 
 		 		return(<div> 
-		 					<MenuItem onClick={()=>this.click('top')} primaryText="Рейтинг" leftIcon={<AvEqualizer />}/>
-				 			<PremiumMenu clickOnItem={this.click}/>
+		 					<MenuItem onClick={()=>this.click('top')} primaryText="Рейтинг" leftIcon={<AvEqualizer  color={this.props.color}/>}/>
+				 			<PremiumMenu clickOnItem={this.click} color={this.props.color}/>
 				 			<Divider className="DividerMenu"/>
 				 		</div> )
 		 		break; 
 		 	case 'author': 
 		 		return(<div> 
-		 					<MenuItem onClick={()=>this.click('top')} primaryText="Рейтинг" leftIcon={<AvEqualizer />}/>
-				 			<WriterMenu clickOnItem={this.click}/>
+		 					<MenuItem onClick={()=>this.click('top')} primaryText="Рейтинг" leftIcon={<AvEqualizer color={this.props.color}/>}/>
+				 			<WriterMenu clickOnItem={this.click} color={this.props.color}/>
 				 			<Divider className="DividerMenu"/>
 				 		</div> )
 		 		break;

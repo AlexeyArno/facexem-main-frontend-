@@ -22,12 +22,22 @@ constructor(props) {
 
 
 			open1=()=>{
+			if(!this.state.window1){
+				document.getElementById('root').style.filter = 'blur(2px)'
+			}else{
+				document.getElementById('root').style.filter = 'blur(0px)'
+			}
 			this.setState({
 					window1: !this.state.window1
 				})	
 			}
 
 			open2=()=>{
+			if(!this.state.window2){
+				document.getElementById('root').style.filter = 'blur(2px)'
+			}else{
+				document.getElementById('root').style.filter = 'blur(0px)'
+			}
 			this.setState({
 					window2: !this.state.window2
 				})	

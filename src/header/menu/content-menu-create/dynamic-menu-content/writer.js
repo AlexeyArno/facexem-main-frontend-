@@ -27,7 +27,7 @@ export default class WriterMenu extends Component{
 	render(){
 
 		return(	<div>
-						<MenuItem onClick={()=>this.click('author')} primaryText="Редактор" leftIcon={<EditorBorderColor />}/>
+						<MenuItem onClick={()=>this.click('author')} primaryText="Редактор" leftIcon={<EditorBorderColor color={this.props.color}/>}/>
 		          			          
 	</div>)
 

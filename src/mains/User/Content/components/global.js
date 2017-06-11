@@ -16,13 +16,13 @@ export default class GlobalStatic extends Component{
 
 
  		var PaperStyle = {
- 			background: '#3fbf69'
+ 			background: 'linear-gradient(to right, #457fca, #5691c8)'
  		}
  		var PaperStyle2 = {
  			background: '#fff'
  		}
  		var PaperStyle3 = {
- 			background: '#498cdd'
+ 			background: 'linear-gradient(to right, #457fca, #5691c8)'
  		}
  		var iconStyle={
  			width: 40,
@@ -59,7 +59,7 @@ export default class GlobalStatic extends Component{
 
  		}
  		var divider2={
- 			background: 'rgb(178, 118, 178)',
+ 			background: 'rgb(33, 150, 243)',
  		}
  		var middle = this.props.data.middle
  		var tasks = this.props.data.tasks
@@ -67,34 +67,34 @@ export default class GlobalStatic extends Component{
  	return(
  		<div>
 	 		<div className="col-xs-12 col-sm-4 paper">
-					<Paper style={PaperStyle} className='globalStaticPaper'>
+					<div style={PaperStyle} className='globalStaticPaper'>
 						<div>
 							<div style={iconShell}><ActionDescription style={iconStyle} color='#fff'/></div>
 							<hr style={divider} className="dividerInGlobalStat"/>
 							<div style={count}>{middle}</div>
 							<div  style={label}>Общий бал</div>
 						</div>
-					</Paper>
+					</div>
 			</div>
 			<div className='col-xs-12 col-sm-4 paper'>		
-					<Paper style={PaperStyle2} className='globalStaticPaper'>
+					<div style={PaperStyle2} className='globalStaticPaper'>
 						<div>
-							<div style={iconShell}><ActionExtension style={iconStyle} color='rgb(178, 118, 178)'/></div>
+							<div style={iconShell}><ActionExtension style={iconStyle} color='rgb(33, 150, 243)'/></div>
 							<hr style={divider2} className='dividerInGlobalStat'/>
-							<div style={count} className='Purple'>{tasks}</div>
-							<div style={label} className='Purple'>заданий</div>
+							<div style={count} className='blue'>{tasks}</div>
+							<div style={label} className='blue'>Заданий</div>
 						</div>
-					</Paper>
+					</div>
 			</div>
 			<div className='col-xs-12 col-sm-4 paper'>
-					<Paper style={PaperStyle3} className='globalStaticPaper'>
+					<div style={PaperStyle3} className='globalStaticPaper'>
 						<div>
 							<div style={iconShell}><EditorFormatListBulleted style={iconStyle} color='#fff'/></div>
 							<hr style={divider} className="dividerInGlobalStat"/>
 							<div style={count}>{tests}</div>
-							<div  style={label}>тестов</div>
+							<div  style={label}>Тестов</div>
 						</div>
-					</Paper>
+					</div>
 			</div>
 		</div>
 

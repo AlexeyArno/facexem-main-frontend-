@@ -34,12 +34,12 @@ render(){
 	var achievs = this.props.achievs
 	const styles = {
 				  underlineStyle: {
-				    borderColor: green500,
+				    borderColor: this.props.color,
 				    opacity: 0.5
 				  },
 				  floatingLabelFocusStyle: {
-				    color: green500,
-				  },
+				    color: this.props.color,
+				  }
 				};
 	return(<div>
 				<TextField
@@ -50,11 +50,11 @@ render(){
 			        underlineFocusStyle={styles.underlineStyle}
 			        onChange={(event: object, newValue: string)=>
 			        	this.chnageCount('name', newValue)}
-			        maxLength="50"
+			        maxLength="30"
 			        fullWidth={true}
 			    /><br />
 			    <div className="characterCounter">
-			    	<div id='countElem'>{this.state.name.length}</div>/50</div>
+			    	<div id='countElem'>{this.state.name.length}</div>/30</div>
 			    <br />
 			    <TextField
 			    	id='cityContent'
@@ -65,10 +65,10 @@ render(){
 			        onChange={(event: object, newValue: string)=>
 			        	this.chnageCount('city', newValue)}
 			        fullWidth={true}
-			        maxLength="50"
+			        maxLength="30"
 		    	/><br />
 		    	<div className="characterCounter">
-		    		<div id='countElem'>{this.state.city.length}</div>/50</div>
+		    		<div id='countElem'>{this.state.city.length}</div>/30</div>
 		    	<br />
 		    	<TextField
 			    	defaultValue= {this.state.about}

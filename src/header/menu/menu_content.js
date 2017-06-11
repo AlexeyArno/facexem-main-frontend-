@@ -43,12 +43,14 @@ export default class MenuContent extends Component{
 
 	getAdditionalItems = ()=>{
 		var rights = this.props.data[0].roots
-		return(<DynamicMenu roots={rights} clickOnItem={this.clickOnItem}/>)
+		var color = '#b7b7b7'
+		return(<DynamicMenu roots={rights} clickOnItem={this.clickOnItem} color={color}/>)
 
 	}
 
 	getSubjects = ()=>{
-		return(<Subjects subjects={this.props.subjects} clickOnItem={this.clickOnItem}/>)
+		var color = '#b7b7b7'
+		return(<Subjects subjects={this.props.subjects} clickOnItem={this.clickOnItem} color ={color}/>)
 	}
 
 
@@ -57,18 +59,20 @@ export default class MenuContent extends Component{
 render(){
 	var addItems = this.getAdditionalItems()
 	var subjects = this.getSubjects()
-			
+	const icon_style={
+	}
+	var color = '#b7b7b7'
 	return(<div>
-			<MenuItem primaryText="Моя Страница" onClick={()=>this.clickOnItem('mypage')} leftIcon={<ActionHome />}/>
-			<MenuItem onClick={()=>this.openachievs()} primaryText="Достижения" leftIcon={<ActionStars/>}/>
-			<MenuItem onClick={()=>this.settings()} primaryText="Настройки" leftIcon={<ActionSettings/>}/>
+			<MenuItem primaryText="Моя Страница" onClick={()=>this.clickOnItem('mypage')} leftIcon={<ActionHome style={icon_style} color={color}/>}/>
+			<MenuItem onClick={()=>this.openachievs()} primaryText="Достижения" leftIcon={<ActionStars style={icon_style} color={color}/>}/>
+			<MenuItem onClick={()=>this.settings()} primaryText="Настройки" leftIcon={<ActionSettings style={icon_style} color={color}/>}/>
 			{addItems}
 			{subjects}
 			<Divider className="DividerMenu" />
-			<MenuItem onClick={()=>this.clickOnItem('mypage')} primaryText="Помощь" leftIcon={<Help />}/>
-			<MenuItem onClick={()=>this.clickOnItem('mypage')} primaryText="Сообщество" leftIcon={<ActionQuestionAnswer />}/>
-			<MenuItem onClick={()=>this.clickOnItem('mypage')} primaryText="О нас" leftIcon={<Streetview />}/>
-			<MenuItem onClick={()=>this.clickOnItem('mypage')} primaryText="Ошибка?" leftIcon={<Whatshot />}/>
+			<MenuItem onClick={()=>this.clickOnItem('mypage')} primaryText="Помощь" leftIcon={<Help style={icon_style} color={color}/>}/>
+			<MenuItem onClick={()=>this.clickOnItem('mypage')} primaryText="Сообщество" leftIcon={<ActionQuestionAnswer style={icon_style} color={color}/>}/>
+			<MenuItem onClick={()=>this.clickOnItem('mypage')} primaryText="О нас" leftIcon={<Streetview style={icon_style} color={color}/>}/>
+			<MenuItem onClick={()=>this.clickOnItem('mypage')} primaryText="Ошибка?" leftIcon={<Whatshot style={icon_style} color={color}/>}/>
 		</div>
 
 		

@@ -12,6 +12,11 @@ import Change from './change.js';
 import {fullWhite} from 'material-ui/styles/colors';
 import Dialog from 'material-ui/Dialog';
 // import MiniMenu from './mini-menu.js';
+import RaisedButton from 'material-ui/RaisedButton';
+
+
+
+import ActionSettings from 'material-ui/svg-icons/action/settings'
 
 export default class UserRow extends Component{
 			constructor(props) {
@@ -98,12 +103,6 @@ export default class UserRow extends Component{
 			backgroundColor: 'rgba(0,0,0,0)'
 		}
 		const styleButton = {
-			float: "right",
-			position: 'relative',
-			marginLeft: '90%',
-			border: '0.5px solid #9CCC65',
-			top: 5,
-			right: 5,
 			lineHeight: 1.3
 		}
 		const styleButtonLabel={
@@ -114,7 +113,9 @@ export default class UserRow extends Component{
 		}
 		const style={
 			backgroundImage: 'url(' + background + ')',
-			color: "white"
+			color: "white",
+			boxShadow: 'rgba(50, 50, 50, 0.507843) 0px -48px 49px -26px inset, rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px',
+			paddingTop: 30
 		}
 		const labelStyle={
 			color: 'white'
@@ -132,20 +133,22 @@ export default class UserRow extends Component{
 
 
 		 const actions = [
-		 <FlatButton style={{float: "left"}} label="подписка" primary={true} onClick={this.closeBest}/>,
-		 <FlatButton label="сохранить" labelStyle={labelStyle}  backgroundColor="rgb(150, 198, 95)" hoverColor="#8AA62F" onClick={this.save}/>
+		 <FlatButton style={{float: "left"}} label="подписка" labelStyle={{color: 'rgb(33, 150, 243)'}} onClick={this.closeBest}/>,
+		 <RaisedButton label="сохранить" labelStyle={labelStyle}  backgroundColor="rgb(33, 150, 243)" onClick={this.save}/>
 		 ]
 		return(
 				<div>
 					<Paper className="UserRow" style={style}>
-						<FlatButton style={styleButton} label="Изменить" primary={true} labelStyle={styleButtonLabel} onClick={this.someFuncBest} />
-						<Paper style={stylePhoto} zDepth={3} circle={true} />
-						<UserInfo  data={this.state.data}/>
-						<div className="Overlay">
-							
-
-
-						 <Experience data={this.state.data} />
+						<div >
+							<Paper style={stylePhoto} zDepth={3} circle={true} />
+							<UserInfo  data={this.state.data}/>
+							<div className="Overlay">
+								
+							<IconButton onClick={this.someFuncBest} style={{position: 'relative', bottom: 5}} className="buttonMenuUser">
+								<ActionSettings color="#e5e5e5"/>
+							</IconButton>
+							 <Experience data={this.state.data} />
+							</div>
 						</div>
 					</Paper>
 					<ReactCSSTransitionGroup
@@ -155,15 +158,16 @@ export default class UserRow extends Component{
 					<Dialog
 					  open={this.state.modalIsOpenBest}
 					   title="Изменить"
+					  modal={true}
 					  actions={actions}
-					  contentStyle={{padding: 0, maxWidth: 900, width: "90%"}}
+					  contentStyle={{padding: 0, maxWidth: 500, width: "90%"}}
 					  onRequestClose={this.closeBest}
 					  contentLabel="Modal"
-					  titleStyle={{color:'rgb(150, 198, 95)'}}
+					  titleStyle={{color:'rgb(33, 150, 243)'}}
 					  autoScrollBodyContent={true}
 					>	
-					<IconButton onClick={this.closeBest} style={closeStyle}><Close color='rgb(150, 198, 95)'/></IconButton>
-					<Change data={this.state.data} token={this.state.token}/>
+					<IconButton onClick={this.closeBest} style={closeStyle}><Close color='rgb(33, 150, 243)'/></IconButton>
+						<Change data={this.state.data} color='rgb(33, 150, 243)' token={this.state.token}/>
 					</Dialog>
 
 					</ReactCSSTransitionGroup>
@@ -173,3 +177,4 @@ export default class UserRow extends Component{
 }
 
 
+							// <FlatButton style={styleButton} label="Изменить" primary={true} labelStyle={styleButtonLabel} onClick={this.someFuncBest} />
