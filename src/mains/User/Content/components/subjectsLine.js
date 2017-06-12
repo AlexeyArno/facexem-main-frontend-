@@ -39,8 +39,8 @@ export default class SubjectsLine extends Component{
 					<div className='subjectLine'>
 					<ReactCSSTransitionGroup
 					transitionName="example"
-               transitionAppear = {true} transitionAppearTimeout = {2000}
-               transitionEnter = {false} transitionLeave = {false}>
+		               transitionAppear={true} transitionAppearTimeout={2000}
+		               transitionEnter={false} transitionLeave={false}>
 					{subjects}
 					</ReactCSSTransitionGroup>
 					</div>

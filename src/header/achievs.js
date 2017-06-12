@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import Paper from 'material-ui/Paper';
 import CircularProgress from 'material-ui/CircularProgress';
 
@@ -10,15 +9,15 @@ export default class Achievs extends Component{
 	constructor (props) {
 			  	super(props);
 			    this.state = {
-			      choosenAchivs: 0,
-			      fulldata: 0,
-			      token: this.props.token,
-			      achiev: 0
+			      choosenAchivs:0,
+			      fulldata:0,
+			      token:this.props.token,
+			      achiev:0
 			    };
 			  }
 
 	componentDidMount=()=>{
-		if(this.state.achiev == 0){
+		if(this.state.achiev === 0){
 			this.loadAchieve();
 		}
 
@@ -29,12 +28,12 @@ export default class Achievs extends Component{
 	loadAchieve=()=>{
 		var body =  JSON.stringify({token: this.state.token})  
 			var xhr  = new XMLHttpRequest();   
-			xhr .open('POST', 'http://127.0.0.1:9999/api/user/get_achievements', true);
+			xhr.open('POST', 'http://127.0.0.1:9999/api/user/get_achievements', true);
 			xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");  
-			xhr .send([body]);
+			xhr.send([body]);
 			xhr.onreadystatechange =  function() {
-				if (xhr.readyState == 4){
-				    if (xhr.status != 200) {
+				if (xhr.readyState === 4){
+				    if (xhr.status !== 200) {
 				      this.setState({error: 1}); 
 				    } else {
 				      this.setState({fulldata:  JSON.parse(xhr.responseText),
@@ -47,7 +46,7 @@ export default class Achievs extends Component{
 
 	getAchievs=()=>{
 		var achivs = this.state.fulldata
-		if (achivs.length == 0){
+		if (achivs.length === 0){
 			return(<div style={{textAlign: 'center', width: '100%'
 				, height: 250, verticalAlign: 'middle', padding: "25%"}}>
 				К сожалению, здесь пусто </div>)

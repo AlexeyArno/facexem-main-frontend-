@@ -1,20 +1,8 @@
 import React, { Component } from 'react';
 import Paper from 'material-ui/Paper';
-import RaisedButton from 'material-ui/RaisedButton';
-import AvPlayArrow from 'material-ui/svg-icons/av/play-arrow'
-import Slider from 'material-ui/Slider';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-// import Modal from 'react-modal';
+import Dialog from 'material-ui/Dialog';
 import IconButton from 'material-ui/IconButton';
 import Close from 'material-ui/svg-icons/navigation/close';
-import FlatButton from 'material-ui/FlatButton';
-import TextField from 'material-ui/TextField';
-import {orange500, blue500} from 'material-ui/styles/colors';
-import Dialog from 'material-ui/Dialog';
-import DropDownMenu from 'material-ui/DropDownMenu';
-import MenuItem from 'material-ui/MenuItem';
 import NavigationMoreHoriz from 'material-ui/svg-icons/navigation/more-horiz'
 
 
@@ -52,14 +40,14 @@ export default class Tasks extends Component{
 		 			padding: 2
 		 		}
 
-		 	if(this.state.value == 2){
+		 	if(this.state.value === 2){
 		 		var st1 = style_active
 		 		var st2 = style_us
 
 		 		
 		 	}else{
-		 		var st1 = style_us
-		 		var st2 = style_active	 		
+		 		st1 = style_us
+		 		st2 = style_active	 		
 		 	}
 		 	st1.borderRadius = '3px 0px 0px 3px'
 		 	st2.borderRadius = '0px 3px 3px 0px'
@@ -88,7 +76,6 @@ export default class Tasks extends Component{
 	  }
 
 	render(){
-		var last=this.props.data.best_task_random
 
 
 
@@ -98,7 +85,7 @@ export default class Tasks extends Component{
 
 		var element = random
 		//LOOK HERE
-		if(this.state.value == 2){
+		if(this.state.value === 2){
 			element = staticElement
 		}
 		var menu = this.getMenu()
@@ -128,11 +115,11 @@ export default class Tasks extends Component{
 				          titleStyle={{color: 'rgb(33, 150, 243)'}}
 				          open={this.state.dialog}
 				          autoScrollBodyContent={true}
-				          bodyClassName = 'dialogBodyTable'
+				          bodyClassName='dialogBodyTable'
 				          onRequestClose={this.dialog}
 				          contentStyle={{padding: 0,  maxWidth: 400, width: "90%"}}
 				          autoDetectWindowHeight={false}
-				          style ={{maxHeight: 500}}
+				          style={{maxHeight: 500}}
 				        >	
 				        <IconButton onClick={this.dialog} style={closeStyle}><Close color='rgb(33, 150, 243)'/></IconButton>
 				        	<div style={{height: 300}}></div>

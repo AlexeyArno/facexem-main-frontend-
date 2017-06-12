@@ -26,14 +26,13 @@ constructor(props) {
 
 		  getSessionTasks=(subject)=>{
 		  	const {token} = this.props.user
-		  	var data = this.getSearchData()
 		  	var xmlhttp = new XMLHttpRequest()
 		  	var body=  JSON.stringify({token, subject})
 			xmlhttp.open('POST', 'http://127.0.0.1:9999/api/user/session_start', false);
 			xmlhttp.send(body);  
-			if(xmlhttp.status == 200) {
+			if(xmlhttp.status === 200) {
 			var request = JSON.parse(xmlhttp.responseText)
-			if (request.result!='Error'){
+			if (request.result!=='Error'){
 					// return(request)
 					this.setState({
 						session_key: request
@@ -52,15 +51,15 @@ constructor(props) {
 		  	var number = []
 		  	var count = 0
 		  	for(var i=0; i<workbody.length;i++){
-		  		count =(workbody[i] == '/')? count+1:count
-		  		if(count==1){
-		  			if (workbody[i]=='/') continue;
+		  		count =(workbody[i] === '/')? count+1:count
+		  		if(count===1){
+		  			if (workbody[i]==='/') continue;
 		  			subject[subject.length] = workbody[i] 
-		  		}else if(count == 2){
-		  			if (workbody[i]=='/') continue;
+		  		}else if(count === 2){
+		  			if (workbody[i] ==='/') continue;
 		  			type[type.length] = workbody[i]
-		  		}else if(count == 3){
-		  			if (workbody[i]=='/') continue;
+		  		}else if(count === 3){
+		  			if (workbody[i] ==='/') continue;
 		  			number[number.length] = workbody[i]
 		  		}
 		  		
@@ -85,10 +84,10 @@ constructor(props) {
 			xmlhttp.open('POST', 'http://127.0.0.1:9999/api/user/get_task', true);
 			xmlhttp.send(body); 
 			xmlhttp.onload  = function(e){
-				if(xmlhttp.status == 200) {
+				if(xmlhttp.status === 200) {
 
 					var request = JSON.parse(xmlhttp.responseText)
-					if (request.result != 'Error' || !request.result ){
+					if (request.result !== 'Error' || !request.result ){
 							this.setState({
 								pos: 1,
 								data: request
@@ -105,11 +104,11 @@ constructor(props) {
 
 
 render(){
-	if(this.state.pos == 0){
+	if(this.state.pos === 0){
 		return <ReactCSSTransitionGroup
 								 transitionName="opacity"
-					               transitionAppear = {true} transitionAppearTimeout = {800}
-					               transitionEnter = {false} transitionLeave = {false}>
+					               transitionAppear={true} transitionAppearTimeout={800}
+					               transitionEnter={false} transitionLeave={false}>
 				<div className="contentRow">
 					
 						<Paper style={{padding: '5px', maxWidth: 700, margin: 'auto', marginTop: 80, transform: "rotate(1deg)"}}>
@@ -133,8 +132,8 @@ render(){
     // var data = (this.state.type) ? this.state.data : this.getTask()
 	return(<ReactCSSTransitionGroup
 								 transitionName="opacity"
-					               transitionAppear = {true} transitionAppearTimeout = {800}
-					               transitionEnter = {false} transitionLeave = {false}>
+					               transitionAppear={true} transitionAppearTimeout={800}
+					               transitionEnter={false} transitionLeave={false}>
 				<div className="contentRow" id='nowpage'>
 					
 						<Paper style={{padding: '5px', maxWidth: 700, margin: 'auto', marginTop: 80, transform: "rotate(1deg)"}}>

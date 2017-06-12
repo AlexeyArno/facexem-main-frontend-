@@ -1,5 +1,4 @@
 import React, {Component , PropTypes} from 'react';
-import Paper from 'material-ui/Paper';
 import RaisedButton from 'material-ui/RaisedButton';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import Dialog from 'material-ui/Dialog';
@@ -7,7 +6,6 @@ import DialogContent from './contentDialog.js'
 import IconButton from 'material-ui/IconButton';
 import Close from 'material-ui/svg-icons/navigation/close';
 import FlatButton from 'material-ui/FlatButton';
-import ContentTask from '../randomtask/contentTaskModal.js'
 
 export default class Onetask extends Component{
 
@@ -53,19 +51,6 @@ constructor(props) {
 		 }
 
 render(){
-	var styleBad={
-			backgroundColor: 'rgb(247, 89, 89)',
-			width: 100,
-			height: 40,
-			borderRadius: 20,
-			color: '#fff',
-			fontSize: 22,
-			lineHeight: 2,
-			margin: "auto",
-			marginTop: 15,
-			marginBottom: 15
-		}
-
 	var hr ={
 		margin: "10px 40px",
 		opacity: 0.1,
@@ -80,8 +65,8 @@ render(){
 		<div>
 		<ReactCSSTransitionGroup
 				 transitionName="example"
-	               transitionAppear = {true} transitionAppearTimeout = {2000}
-	               transitionEnter = {false} transitionLeave = {false}>
+	               transitionAppear={true} transitionAppearTimeout={2000}
+	               transitionEnter={false} transitionLeave={false}>
 
 	
 	               		<div className="lastResult" style={{cursor: 'pointer'}} onClick={this.openChange} >
@@ -93,7 +78,7 @@ render(){
 						<hr style={hr}/>
 
 						<RaisedButton
-				          backgroundColor= {this.props.color}
+				          backgroundColor={this.props.color}
 				          label='начать'
 				          disableTouchRipple={true}
 				          disableFocusRipple={true}
@@ -115,11 +100,11 @@ render(){
 				          titleStyle={{color: 'rgb(33, 150, 243)'}}
 				          open={this.state.openchange}
 				          autoScrollBodyContent={true}
-				          bodyClassName = 'dialogBodyTable'
+				          bodyClassName='dialogBodyTable'
 				          onRequestClose={this.openChange}
 				          contentStyle={{padding: 0,  maxWidth: 400, width: "90%"}}
 				          autoDetectWindowHeight={false}
-				          style ={{maxHeight: 500}}
+				          style={{maxHeight: 500}}
 				        >	
 				        <IconButton onClick={this.openChange} style={closeStyle}><Close color='rgb(33, 150, 243)'/></IconButton>
 				         <DialogContent style={{marginTop: 5, padding: 0}} id='myTableDialog'
@@ -144,19 +129,3 @@ Onetask.contextTypes	=	{
 	router:	PropTypes.object.isRequired 
 }
 
-
-       // <Dialog
-				   //        title="Выбор задания"
-				   //        titleStyle={{color: 'rgb(33, 150, 243)'}}
-				   //        modal={false}
-				   //        open={this.state.opentask}
-				   //        autoScrollBodyContent={true}
-				   //        onRequestClose={this.openTasks}
-				   //         contentStyle={{padding: 0,  maxWidth: 900, width: "90%"}}
-				   //         autoDetectWindowHeight={true}
-				   //         task={true}
-				   //         style ={{maxHeight: 500}}
-				   //      >	
-					  //       <IconButton onClick={this.openTasks} style={closeStyle}><Close color='rgb(33, 150, 243)'/></IconButton>
-					  //        <ContentTask/>
-				   //      </Dialog>

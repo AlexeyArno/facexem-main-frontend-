@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Paper from 'material-ui/Paper';
-import {List, ListItem} from 'material-ui/List';
+import {ListItem} from 'material-ui/List';
 import HardwareKeyboardArrowDown from 'material-ui/svg-icons/hardware/keyboard-arrow-down'
 import HardwareKeyboardArrowUp from 'material-ui/svg-icons/hardware/keyboard-arrow-up'
 import ContentRemove from 'material-ui/svg-icons/content/remove'
@@ -26,7 +26,7 @@ constructor(props) {
 		  	var color = (change<=0)?'#E74D49':'#89D8C2'
 		  	var icon = (change<=0)?<HardwareKeyboardArrowDown style={icon_style} color={color}/>:<HardwareKeyboardArrowUp style={icon_style} color={color}/>
 		  	var title =(change<0)?change+' %':'+'+change+'%'
-		  	if(change==0){
+		  	if(change===0){
 		  		
 		  		title = change+' %'
 		  		color = 'rgba(0,0,0,0.5)'
@@ -51,14 +51,10 @@ constructor(props) {
 		  	var end = (tasks.length>=4)? 4: tasks.length-1
 		  	tasks =  tasks.slice(0, end)
 		  	return tasks.map(function (item, index) {
-		  		var size = 20
 		  		var color = '#F29F05'
-		  		var main_color = 'rgb(115, 135, 156)'
-		  		if(item.color == 'red'){
-		  			size = 24
+		  		if(item.color === 'red'){
 		  			color = '#E74D49'
-		  		}else if(item.color == 'green'){
-		  			size = 16
+		  		}else if(item.color === 'green'){
 		  			color = '#89D8C2'
 		  		}
 		  		var last_num = last_task[item.num]
@@ -114,11 +110,11 @@ render(){
 				          titleStyle={{color: 'rgb(33, 150, 243)'}}
 				          open={this.state.statistic}
 				          autoScrollBodyContent={true}
-				          bodyClassName = 'dialogBodyTable'
+				          bodyClassName='dialogBodyTable'
 				          onRequestClose={this.statistic}
 				          contentStyle={{padding: 0,  maxWidth: 400, width: "90%"}}
 				          autoDetectWindowHeight={false}
-				          style ={{maxHeight: 500}}
+				          style={{maxHeight: 500}}
 				        >	
 				        <IconButton onClick={this.statistic} style={closeStyle}><Close color='rgb(33, 150, 243)'/></IconButton>
 				        	<div style={{height: 300}}></div>

@@ -1,14 +1,12 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 // import Header from './Header.js';
 import  Header from './header/header.js'
-import { Route, IndexRedirect, browserHistory, Router, IndexRoute } from 'react-router';
+import { Route, IndexRedirect, browserHistory, Router } from 'react-router';
 import UserPage from './mains/Shells/UserPage.js';
 import TestPage from './mains/Shells/TestPage.js';
 import SubjectPage from './mains/Shells/SubjectPage.js';
 import NotFound from './mains/Shells/NotFound.jsx';
-import LectionPage from './mains/Shells/LectionPage.js';
 import PageWithTest from './mains/Shells/PageWithTests.js';
-// import AuthorPage from './mains/Shells/AuthorPage.js'
 import TaskPage from './mains/Shells/TaskPage.js'
 import { Provider } from 'react-redux';
 import { connect } from 'react-redux'

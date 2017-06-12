@@ -16,18 +16,6 @@ export default class SubjectYetContent extends Component{
 		 }
 
 
-		 componentDidMount=()=>{
-		 // 	window.mySwipe = new Swipe(document.getElementById('slider'), {
-			//   startSlide: 2,
-			//   speed: 400,
-			//   auto: 3000,
-			//   continuous: true,
-			//   disableScroll: false,
-			//   stopPropagation: false,
-			//   callback: function(index, elem) {},
-			//   transitionEnd: function(index, elem) {}
-			// });
-		 }
 		getMenu=()=>{
 		 	var style_active={
 		 			background: 'rgb(33, 150, 243)',
@@ -56,8 +44,8 @@ export default class SubjectYetContent extends Component{
 
 		 		
 		 	}else{
-		 		var st1 = style_us
-		 		var st2 = style_active	 		
+		 		st1 = style_us
+		 		st2 = style_active	 		
 		 	}
 		 	st1.borderRadius = '3px 0px 0px 3px'
 		 	st2.borderRadius = '0px 3px 3px 0px'

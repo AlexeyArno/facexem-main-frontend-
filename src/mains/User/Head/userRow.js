@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import Paper from 'material-ui/Paper';
 import FlatButton from 'material-ui/FlatButton';
-import Avatar from 'material-ui/Avatar';
 import Experience from './exp.js';
 import UserInfo from './info.js';
 // import Modal from 'react-modal';
@@ -9,7 +8,6 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import IconButton from 'material-ui/IconButton';
 import Close from 'material-ui/svg-icons/navigation/close';
 import Change from './change.js';
-import {fullWhite} from 'material-ui/styles/colors';
 import Dialog from 'material-ui/Dialog';
 // import MiniMenu from './mini-menu.js';
 import RaisedButton from 'material-ui/RaisedButton';
@@ -21,21 +19,22 @@ import ActionSettings from 'material-ui/svg-icons/action/settings'
 export default class UserRow extends Component{
 			constructor(props) {
 			    super(props);
-			    this.state = {open: false,
-			    	token: this.props.token,
-			    	notif: false,
+			    this.state = {
+			    	open:false,
+			    	token:this.props.token,
+			    	notif:false,
 			    	modalIsOpenMessages:false,
-			    	data: this.props.data,
-
-			    	modalIsOpenBest:false};
+			    	data:this.props.data,
+			    	modalIsOpenBest:false
+			    };
 			  }
 
-			  closeBest = () => {
+			  closeBest=()=>{
 			  	this.setState({modalIsOpenBest: false});
 		  			document.getElementById('root').style.filter = 'blur(0px)'
 				}
 				
-			  someFuncBest = () => {
+			  someFuncBest=()=>{
 		  		document.getElementById('root').style.filter = 'blur(2px)'
 			  	this.setState({open: false});
 			  	this.setState({modalIsOpenBest: true});
@@ -45,7 +44,6 @@ export default class UserRow extends Component{
 
 			  // THIS ELEMENTS IS IN CONTENTCHANGE, OK?
 			  save=()=>{
-			  	
 			  	var name = this.doc('nameContent').value
 			  	var city = this.doc('cityContent').value
 			  	var history = this.doc('bioInput').value
@@ -55,8 +53,8 @@ export default class UserRow extends Component{
 				xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");  
 				xhr .send([body]);
 				xhr.onreadystatechange =  function() {
-					if (xhr.readyState == 4){
-					    if (xhr.status != 200) {
+					if (xhr.readyState === 4){
+					    if (xhr.status !== 200) {
 					      console.log('Error')
 					    } else {
 					      this.closeBest()
@@ -83,7 +81,6 @@ export default class UserRow extends Component{
 
 		var background = this.state.data.background;
 		var photo = this.state.data.photo;
-		var badges = this.state.data.badges;
 
 
 
@@ -101,15 +98,6 @@ export default class UserRow extends Component{
 			float: 'left',
 			marginLeft: 10,
 			backgroundColor: 'rgba(0,0,0,0)'
-		}
-		const styleButton = {
-			lineHeight: 1.3
-		}
-		const styleButtonLabel={
-			color: '#9CCC65',
-			opacity: 0.9,
-			lineHeight: 1.6
-
 		}
 		const style={
 			backgroundImage: 'url(' + background + ')',
@@ -153,8 +141,8 @@ export default class UserRow extends Component{
 					</Paper>
 					<ReactCSSTransitionGroup
 							transitionName="example"
-				               transitionAppear = {true} transitionAppearTimeout = {2000}
-				               transitionEnter = {false} transitionLeave = {false}>
+				               transitionAppear={true} transitionAppearTimeout={2000}
+				               transitionEnter={false} transitionLeave={false}>
 					<Dialog
 					  open={this.state.modalIsOpenBest}
 					   title="Изменить"

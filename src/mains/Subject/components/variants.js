@@ -1,6 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import Paper from 'material-ui/Paper';
-import TextField from 'material-ui/TextField';
 import Dialog from 'material-ui/Dialog';
 import IconButton from 'material-ui/IconButton';
 import Close from 'material-ui/svg-icons/navigation/close';
@@ -31,7 +30,7 @@ export default class Variants extends Component{
 	 }
 
 	 componentWillMount=()=>{
-	 	var stories = []
+	 	var stories=[]
 	 	for (var i=0;i<this.props.data.task_table.length;i++){
 	 		stories.push(1)
 	 	}
@@ -39,7 +38,7 @@ export default class Variants extends Component{
 	 }
 
 	 open=(index)=>{
-	 	document.getElementById('root').style.filter = 'blur(2px)'
+	 	document.getElementById('root').style.filter='blur(2px)'
 	 	this.setState({
 	 		open: true, index, value: this.state.stories[index]
 	 	})
@@ -53,15 +52,15 @@ export default class Variants extends Component{
 	 	this.setState({
 	 		open: false
 	 	})
-	 	document.getElementById('root').style.filter = 'blur(0px)'
+	 	document.getElementById('root').style.filter='blur(0px)'
 	 }
 
 
 	 	 statistic=()=>{
 		 	if(this.state.statistic){
-		 		document.getElementById('root').style.filter = 'blur(0px)'
+		 		document.getElementById('root').style.filter='blur(0px)'
 		 	}else{
-		 		document.getElementById('root').style.filter = 'blur(2px)'
+		 		document.getElementById('root').style.filter='blur(2px)'
 		 	}
 		 	this.setState({
 		 		statistic: !this.state.statistic
@@ -72,8 +71,8 @@ export default class Variants extends Component{
 
 
 	 changeButton=(type)=>{
-	 	var value = this.state.value
-	 	if(type== 'add'){	
+	 	var value=this.state.value
+	 	if(type==='add'){	
 	 		if(value<5){
 	 			value++
 	 		}
@@ -88,8 +87,8 @@ export default class Variants extends Component{
 	 }
 
 	 shutdown=(n)=>{
-	 	var stories = this.state.stories
-	 	stories = stories.map(function(item){
+	 	var stories=this.state.stories
+	 	stories=stories.map(function(item){
 	 		return n
 	 	})
 	 	this.setState({stories})
@@ -97,15 +96,15 @@ export default class Variants extends Component{
 
 
 	 acceptCount=()=>{
-	 	var stories = this.state.stories
-	 	stories[this.state.index] = this.state.value
+	 	var stories=this.state.stories
+	 	stories[this.state.index]=this.state.value
 	 	this.setState({stories, index: -1,  open: false})
 	 	this.Modal()
 	 }
 	 
 
 	getCountsTasks=()=>{
-		var style ={
+		var style={
 			display: 'inline-block',
 			color: '#fff',
 			fontSize: '20px',
@@ -120,7 +119,7 @@ export default class Variants extends Component{
 			margin: 'auto',
 			color: 'rgb(33, 150, 243)'
 		}
-		var final = this.state.stories.map(function(item, index){
+		var final=this.state.stories.map(function(item, index){
 			return(
 				<FlatButton
 				style={{height: 80, margin: 5, minWidth: 60}} key={index} onClick={()=>this.open(index)}>
@@ -139,7 +138,7 @@ export default class Variants extends Component{
 	}
 
 	render(){
-		const muiTheme = getMuiTheme({
+		const muiTheme=getMuiTheme({
 		  slider: {
 		      handleSize: 15,
 		      handleSizeDisabled: 10,
@@ -154,10 +153,7 @@ export default class Variants extends Component{
 			top: '18px',
 			right: '20px'
 		}
-		var number = this.state.count
-		// var elPerRow = Math.ceil(number/3)*90
-		// if(elPerRow<700){elPerRow=700}
-		var elements = this.getCountsTasks()
+		var elements=this.getCountsTasks()
 		return(	<div className="col-xs-12 col-sm-4 paper variants">
 				<Paper className="preferencepaper variants" >
 					<div className="Up">
@@ -193,11 +189,11 @@ export default class Variants extends Component{
 				          titleStyle={{color: 'rgb(33, 150, 243)'}}
 				          open={this.state.statistic}
 				          autoScrollBodyContent={true}
-				          bodyClassName = 'dialogBodyTable'
+				          bodyClassName='dialogBodyTable'
 				          onRequestClose={this.statistic}
 				          contentStyle={{padding: 0,  maxWidth: 400, width: "90%"}}
 				          autoDetectWindowHeight={false}
-				          style ={{maxHeight: 500}}
+				          style={{maxHeight: 500}}
 				        >	
 				        <IconButton onClick={this.statistic} style={closeStyle}><Close color='rgb(33, 150, 243)'/></IconButton>
 				        	<div style={{height: 300}}></div>

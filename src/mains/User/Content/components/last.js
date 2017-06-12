@@ -1,9 +1,6 @@
 import React, { Component, 	PropTypes } from 'react';
 import Paper from 'material-ui/Paper';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group' // ES6
-import	{Link}from 'react-router';
-import browserHistory from 'react-router';
-import {Router, Route} from 'react-router'
 
 export default class Last extends Component{
 
@@ -23,7 +20,7 @@ render(){
 			</div>
 
 			)
-	}.bind(this))
+	})
 	return(
 
 		<div className="col-xs-12 col-sm-4 paper">
@@ -32,8 +29,8 @@ render(){
 					<hr/>
 				<ReactCSSTransitionGroup
 					transitionName="example"
-		               transitionAppear = {true} transitionAppearTimeout = {2000}
-		               transitionEnter = {false} transitionLeave = {false}>
+		               transitionAppear={true} transitionAppearTimeout={2000}
+		               transitionEnter={false} transitionLeave={false}>
 					<div className="lastchange">
 
 						{lasts}

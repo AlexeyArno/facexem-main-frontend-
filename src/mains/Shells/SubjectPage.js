@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import SubjectRow from '../Subject/subjectRow.js';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import SubjectContent from '../Subject/SubjectContent.js'
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import CircularProgress from 'material-ui/CircularProgress';
 
 import { connect } from 'react-redux'
@@ -19,7 +18,7 @@ class SubjectPage extends Component{
 
 	componentDidMount=()=>{
 		const {token} = this.props.user
-		if(this.state.data == 0){
+		if(this.state.data === 0){
 			this.LoadData(token)
 		}
 	}
@@ -27,7 +26,7 @@ class SubjectPage extends Component{
 
 
 	LoadData=(token)=>{
-		if (this.state.data == 0){
+		if (this.state.data === 0){
 			var subject = window.location.pathname
 			var xmlhttp = new XMLHttpRequest()
 			var body =  JSON.stringify({token: token, subject: subject.slice(1)})  
@@ -36,9 +35,8 @@ class SubjectPage extends Component{
 			xmlhttp.send(body);  
 			if(xmlhttp.status == 200) {
 			var data = JSON.parse(xmlhttp.responseText)
-			if (data.result != 'Error' ){
+			if (data.result !== 'Error' ){
 				this.setState({data: data})
-				// return(request)
 			}
 			}
 			
@@ -46,7 +44,7 @@ class SubjectPage extends Component{
 	}
 
 	render(){
-		if (this.state.data == 0){
+		if (this.state.data === 0){
 			const style = {
 			margin: "auto",
 			maxWidth: '50px',
@@ -70,7 +68,6 @@ class SubjectPage extends Component{
 
 		var pathname=window.location.pathname;
 		var name;
-		var color;
 		switch(pathname){
 			case '/chemistry':
 				name = 'Химия';
@@ -93,12 +90,13 @@ class SubjectPage extends Component{
 			case '/information':
 				name = 'Информатика';
 				break;
+			default:
+				name = 'Неизвестный'
 		}
 		// <MuiThemeProvider>
 			// <SubjectRow data={info} subject={this.state.subject} reset={() => this.forceUpdate()} key={Math.random()}/>
 		  // </MuiThemeProvider>
 
-		var info=[name]
 		return(	<div style={{marginTop: 60}} id='nowpage'>
 		 	<MuiThemeProvider>
 		 		 <SubjectRow data={this.state.data.activity}/>

@@ -1,10 +1,7 @@
 import React, {Component} from 'react';
-import Paper from 'material-ui/Paper';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import ActionDescription from 'material-ui/svg-icons/action/description'
 import ActionExtension from 'material-ui/svg-icons/action/extension'
 import EditorFormatListBulleted from 'material-ui/svg-icons/editor/format-list-bulleted'
-import Divider from 'material-ui/Divider';
 
 
 export default class GlobalStatic extends Component{

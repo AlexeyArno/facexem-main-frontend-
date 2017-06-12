@@ -1,18 +1,11 @@
-import React, { Component, PropTypes} from 'react';
-import { Route, IndexRedirect, browserHistory, Router, IndexRoute } from 'react-router';
-import UserPage from './mains/Shells/UserPage.js';
-import TestPage from './mains/Shells/TestPage.js';
-import SubjectPage from './mains/Shells/SubjectPage.js';
+import React, { Component} from 'react';
 import NotFound from './mains/Shells/NotFound.jsx';
-import LectionPage from './mains/Shells/LectionPage.js';
-import PageWithTest from './mains/Shells/PageWithTests.js';
 // import AuthorPage from './mains/Shells/AuthorPage.js'
 import CircularProgress from 'material-ui/CircularProgress';
 
 import RoutersApp from './Routers.js'
 
 
-import { Provider } from 'react-redux';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
@@ -33,11 +26,8 @@ class Application extends Component{
 
 	constructor(props) {
 		    super(props);
-
-		     // var token = '63cbbf85f586822fdb1858c7a2b605e5c29b3449'
 		    this.state = {
 		    	open: false,
-		    	// token: token,
 		    	error: 0,
 		    	fulldata: 0
 		    };
@@ -64,9 +54,9 @@ class Application extends Component{
 			var xmlhttp = new XMLHttpRequest()
 			xmlhttp.open('POST', 'http://127.0.0.1:9999/api/user/get_token', false);
 			xmlhttp.send(null);  
-			if(xmlhttp.status == 200) {
+			if(xmlhttp.status === 200) {
 			var request = JSON.parse(xmlhttp.responseText)
-			var request ='2fed86b70dfec7fb46a32468223dd91a782e8093'
+			request ='2fed86b70dfec7fb46a32468223dd91a782e8093'
 				if (!request.result){
 					this.setTokenInRedux(request)
 					return(request)
@@ -82,9 +72,9 @@ class Application extends Component{
 			xmlhttp.open('POST', 'http://127.0.0.1:9999/api/user/get_mypage', false);
 			xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
 			xmlhttp.send(body);  
-			if(xmlhttp.status == 200) {
+			if(xmlhttp.status === 200) {
 			var data = JSON.parse(xmlhttp.responseText)
-			if (data.result != 'Error' ){
+			if (data.result !== 'Error' ){
 				this.setDataInRedux(data)
 				this.setState({fulldata: data})
 				// return(request)
@@ -103,18 +93,17 @@ class Application extends Component{
 			marginTop: (screen.height-100)/2
 		}
 
-		if (this.state.error == 1 ){
+		if (this.state.error === 1 ){
 			return(<div><NotFound/></div>)
 		}
 
-		if (this.state.fulldata == 0) {
+		if (this.state.fulldata === 0) {
 			return(<div style={style} >
 
 					<CircularProgress size={40} thickness={5} mode={'indeterminate'}/>
 				</div>
 				)
 		}else{
-			const {token, data} = this.props.user
 		return(<div>
 					<RoutersApp store={this.props.store} setDataInRedux={this.setDataInRedux}/>
 				</div>)

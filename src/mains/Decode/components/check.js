@@ -1,15 +1,8 @@
 import React, { Component } from 'react';
 import Checkbox from 'material-ui/Checkbox';
 import ToggleCheckBox from 'material-ui/svg-icons/toggle/check-box'
-import IconMenu from 'material-ui/IconMenu';
-import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
-import MenuItem from 'material-ui/MenuItem';
-import IconButton from 'material-ui/IconButton';
-import Dialog from 'material-ui/Dialog';
-import Close from 'material-ui/svg-icons/navigation/close';
-import ArrowDropRight from 'material-ui/svg-icons/navigation-arrow-drop-right';
 
-import ChooseModal from './redactor-instruments/choose-modal.js'
+// import ChooseModal from './redactor-instruments/choose-modal.js'
 
 export default class Check extends Component{
 
@@ -45,7 +38,7 @@ constructor(props) {
 
 render(){
 	var name = 'col-md-12'
-		if(this.props.data.size == 'half'){
+		if(this.props.data.size === 'half'){
 			name = 'col-md-6'
 		}
 

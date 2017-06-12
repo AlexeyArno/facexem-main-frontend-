@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
 import TextField from 'material-ui/TextField';
-import {green500, red500} from 'material-ui/styles/colors';
-import Paper from 'material-ui/Paper';
-import CircularProgress from 'material-ui/CircularProgress';
 
 
 
@@ -44,7 +41,7 @@ render(){
 	return(<div>
 				<TextField
 					id='nameContent'
-			        defaultValue= {this.state.name}
+			        defaultValue={this.state.name}
 			        floatingLabelText="Ваше Имя"
 			        floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
 			        underlineFocusStyle={styles.underlineStyle}
@@ -58,7 +55,7 @@ render(){
 			    <br />
 			    <TextField
 			    	id='cityContent'
-			        defaultValue= {this.state.city}
+			        defaultValue={this.state.city}
 			        floatingLabelText="Ваш Город"
 			        floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
 			        underlineFocusStyle={styles.underlineStyle}
@@ -71,7 +68,7 @@ render(){
 		    		<div id='countElem'>{this.state.city.length}</div>/30</div>
 		    	<br />
 		    	<TextField
-			    	defaultValue= {this.state.about}
+			    	defaultValue={this.state.about}
 			      	floatingLabelText="Ваша История"
 			      	floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
 			      	underlineFocusStyle={styles.underlineStyle}
@@ -80,7 +77,7 @@ render(){
 			      	onChange={(event: object, newValue: string)=>
 			      		this.chnageCount('about', newValue)}
 			      	id="bioInput"
-			      	rowsMax = {4}
+			      	rowsMax={4}
 			      	multiLine={true}
 			    />
 			    <div className="characterCounter">

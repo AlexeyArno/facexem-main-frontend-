@@ -15,7 +15,6 @@ export default class DynamicMenu extends Component{
 
 	render(){
 		var roots = String(this.props.roots);
-		let Menu
 		 switch (roots){
 		 	case 'admin': 
 		 		return(<div>

@@ -25,7 +25,7 @@ export default class Preference extends Component{
 			return (item)? item: 1
 		})
 		var ctx = document.getElementById("myChart");
-		var myChart = new Chart(ctx, {
+		new Chart(ctx, {
 		    type: 'doughnut',
 			options: {
 				cutoutPercentage: 70,

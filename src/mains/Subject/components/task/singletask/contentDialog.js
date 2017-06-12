@@ -20,34 +20,20 @@ constructor(props) {
 	}
 
 	getCountsTasks=()=>{
-		var style ={
-			display: 'inline-block',
-			color: '#fff',
-			fontSize: '20px',
-			width: 50,
-			cursor: 'pointer',
-			textAlign: 'center'
-		}
-		var count={
-			width: 45,
-			background: '#fff',
-			borderRadius: 5,
-			margin: 'auto',
-			color: 'rgb(33, 150, 243)'
-		}
+
 		var tasks = this.props.data
 		var selectnumber = this.props.number
 		var final = tasks.map(function(item, index){
 			var id = item.num+'dialogTaskTab'
 			var select= false
-			if (selectnumber == item.num){
+			if (selectnumber === item.num){
 				select = true
 			}
 			var color = 'rgba(255, 244, 104,0.35)'
 			var name = 'rowCkickTable'
-			if(item.color=='green'){
+			if(item.color==='green'){
 				color = 'rgba(204, 247, 126,0.35)'
-			}else if(item.color== 'red'){
+			}else if(item.color=== 'red'){
 				color = 'rgba(252, 163, 85,0.35)'
 			}
 			return(
@@ -57,7 +43,7 @@ constructor(props) {
 			        <TableRowColumn >{item.theme}</TableRowColumn>
 			      </TableRow>
 				)
-		}.bind(this))
+		})
 
 		return final		
 	}

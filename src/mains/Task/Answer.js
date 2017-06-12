@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
 import Paper from 'material-ui/Paper';
-import {Motion, spring} from 'react-motion';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'; // ES6
 import MainDecodeWorkDisplay from '../Decode/mainDecode.js'
-import IconButton from 'material-ui/IconButton';
 import ControlPanel from './ControlPanel.js'
 
 export default class Answer extends Component{
@@ -31,7 +29,7 @@ constructor(props) {
 			  	var body=  JSON.stringify({token: this.props.token, id: this.props.id})
 				xmlhttp.open('POST', 'http://127.0.0.1:9999/api/user/get_description', false);
 				xmlhttp.send(body);  
-				if(xmlhttp.status == 200) {
+				if(xmlhttp.status === 200) {
 					var request = JSON.parse(xmlhttp.responseText)
 					if (!request.result){
 						return request
@@ -40,7 +38,7 @@ constructor(props) {
 			  }
 
 			processDescription=(data)=>{
-				if(data.length==0){
+				if(data.length===0){
 					return <div/>
 				}
 				var final =  data.map(function (item, index) {
@@ -50,14 +48,14 @@ constructor(props) {
 
 				return(<ReactCSSTransitionGroup
 						 transitionName="example"
-			               transitionAppear = {true} transitionAppearTimeout = {3000}
-			               transitionEnter = {false} transitionLeave = {false}>
+			               transitionAppear={true} transitionAppearTimeout={3000}
+			               transitionEnter={false} transitionLeave={false}>
 					               {final}
 					        </ReactCSSTransitionGroup>)
 			}
 
 			controlDescription=()=>{
-				if(this.state.description.length == 0){
+				if(this.state.description.length === 0){
 					var data = this.getDescription()
 					
 					this.setState({

@@ -1,14 +1,5 @@
 import React, { Component } from 'react';
 import TextField from 'material-ui/TextField';
-import {green500, red500} from 'material-ui/styles/colors';
-import IconMenu from 'material-ui/IconMenu';
-import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
-import MenuItem from 'material-ui/MenuItem';
-import IconButton from 'material-ui/IconButton';
-import Dialog from 'material-ui/Dialog';
-import Close from 'material-ui/svg-icons/navigation/close';
-import TextFieldModal from './redactor-instruments/text-filed-redactor.js'
-import ArrowDropRight from 'material-ui/svg-icons/navigation-arrow-drop-right';
 
 export default class TextFieldAnswer extends Component{
 
@@ -31,7 +22,7 @@ constructor(props) {
 
 render(){
 		var name = 'col-md-12'
-		if(this.props.data.size == 'half'){
+		if(this.props.data.size === 'half'){
 			name = 'col-md-6'
 		}
 	const styles = {
@@ -52,7 +43,7 @@ render(){
 			<TextField
 				name={this.props.data.id+'TextField'}
 				style={{display: 'inline-block', maxWidth: 200}}
-				underlineStyle ={styles.underlineStyle}
+				underlineStyle={styles.underlineStyle}
 				underlineFocusStyle={styles.underlineStyle}
 				onChange={(e, v)=>this.onChange(v)}
 				 />

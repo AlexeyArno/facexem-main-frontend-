@@ -1,7 +1,6 @@
 import React, { Component, 	PropTypes } from 'react';
 import DynamicMenu from './content-menu-create/dynamic-menu.js'
 import Divider from 'material-ui/Divider';
-import {Router, Route} from 'react-router';
 
 // SELF MODULES
 import Subjects from './content-menu-create/subjects.js'

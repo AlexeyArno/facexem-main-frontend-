@@ -31,8 +31,8 @@ constructor(props) {
 
 		  	return 	<ReactCSSTransitionGroup
 							 transitionName="example"
-				               transitionAppear = {true} transitionAppearTimeout = {2000}
-				               transitionEnter = {false} transitionLeave = {false}>
+				               transitionAppear={true} transitionAppearTimeout={2000}
+				               transitionEnter={false} transitionLeave={false}>
 		  			<div id='mobile-answer'>
 						<FloatingActionButton style={style} backgroundColor='rgb(66, 133, 244)' 
 												onClick={this.props.sendAnswer} zDepth={3}>
@@ -90,8 +90,8 @@ render(){
 
 	var buttonElement =   <ReactCSSTransitionGroup
 							 transitionName="opacity"
-				               transitionAppear = {true} transitionAppearTimeout = {800}
-				               transitionEnter = {false} transitionLeave = {false}>
+				               transitionAppear={true} transitionAppearTimeout= {800}
+				               transitionEnter={false} transitionLeave={false}>
 				               <div id='answer'>
 				               	<div style={{textAlign: 'right'}} > 
 									<RaisedButton label='Ответить'  style={{ margin: 10}} 

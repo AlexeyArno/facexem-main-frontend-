@@ -10,7 +10,6 @@ export default class FormulWorkWindow extends Component{
 	}
 render(){
 	var text = this.props.data
-	var index = this.props.index
 	return(<div >
 				<MathJax.Context>
 					<MathJax.Node>

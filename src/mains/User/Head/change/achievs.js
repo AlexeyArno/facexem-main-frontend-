@@ -14,7 +14,7 @@ constructor(props) {
 	getAchievements=()=>{
 		var final = []
 		this.state.achievs.map(function(item, index){
-			if(item.max == item.now){
+			if(item.max === item.now){
 				final.push(item)
 			}
 		})

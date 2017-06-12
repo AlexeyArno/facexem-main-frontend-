@@ -52,12 +52,12 @@ render(){
 			          title="Объяснение"
 			          open={this.state.window1}
 			          autoScrollBodyContent={true}
-			          bodyClassName = 'dialogBodyTable'
+			          bodyClassName='dialogBodyTable'
 			          onRequestClose={this.open1}
 			          contentStyle={{padding: 0,  maxWidth: 900, width: "90%"}}
 			          autoDetectWindowHeight={false}
 			          titleStyle={{color: 'rgb(33, 150, 243)'}}
-			          style ={{maxHeight: 500}}
+			          style={{maxHeight: 500}}
 			        >	
 				        <IconButton onClick={this.open1} style={closeStyle}><Close color='rgb(33, 150, 243)'/></IconButton>
 				        {this.props.description}
@@ -72,7 +72,7 @@ render(){
 			          contentStyle={{width: 400}}
 			          autoDetectWindowHeight={false}
 			          titleStyle={{color: 'rgb(33, 150, 243)'}}
-			          style ={{maxHeight: 200}}
+			          style={{maxHeight: 200}}
 			        >	
 				        <IconButton onClick={this.open2} style={closeStyle}><Close color='rgb(33, 150, 243)'/></IconButton>
 				       	<Issue id={this.props.id}  token={this.props.token} close={this.open2}/>

@@ -18,10 +18,7 @@ render(){
 		height: 100
 
 	}
-	const content_style= {
-		position: 'absolute',
-		top: 0
-	}
+
 	return(<div >
 				<div className="col-xs-12 col-sm-4 paper variants">
 					<Paper style={paper_style}> 

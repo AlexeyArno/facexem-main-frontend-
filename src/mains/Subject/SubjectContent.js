@@ -16,23 +16,8 @@ export default class SubjectContent extends Component{
 
 
 	render(){
-		var path = window.location.pathname;
-		var name;
 		var color = '#2196F3';
-		var closeColor;
 
-		var content;
-		var style={
-			color: color
-		}
-		const styles = {
-			slide:{
-				height: '100%'
-			},
-			slide1:{
-				maxHeight: 1750,
-			}
-		}
 
 				
 		return(	<div>

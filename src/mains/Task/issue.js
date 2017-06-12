@@ -31,7 +31,7 @@ constructor(props) {
 			xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
 			xmlhttp.send(body);  
 			xmlhttp.onreadystatechange = function() { // (3)
-				  if (xmlhttp.status != 200) {
+				  if (xmlhttp.status !== 200) {
 				    this.setState({type: 3})
 				  } else {
 					this.setState({type: 2})
@@ -87,7 +87,7 @@ render(){
 		    	hintText="Описание ошибки"
 		    	multiLine={true}
 		    	value={this.state.data}
-		    	underlineStyle ={styles.underlineStyle}
+		    	underlineStyle={styles.underlineStyle}
 				underlineFocusStyle={styles.underlineStyle}
 				fullWidth={true}
 				style={{overflow: 'hidden'}}
