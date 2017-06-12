@@ -4,13 +4,17 @@ import {List, ListItem} from 'material-ui/List';
 import HardwareKeyboardArrowDown from 'material-ui/svg-icons/hardware/keyboard-arrow-down'
 import HardwareKeyboardArrowUp from 'material-ui/svg-icons/hardware/keyboard-arrow-up'
 import ContentRemove from 'material-ui/svg-icons/content/remove'
+import NavigationMoreHoriz from 'material-ui/svg-icons/navigation/more-horiz'
+import Close from 'material-ui/svg-icons/navigation/close';
+import Dialog from 'material-ui/Dialog';
+import IconButton from 'material-ui/IconButton';
 
 export default class Theme extends Component{
 
 constructor(props) {
 		    super(props);
 		    this.state = {
-		    	
+		    	statistic: false	
 		    };
 		  }
 
@@ -74,18 +78,51 @@ constructor(props) {
 		  	}.bind(this))
 		  }
 
+		 statistic=()=>{
+		 	if(this.state.statistic){
+		 		document.getElementById('root').style.filter = 'blur(0px)'
+		 	}else{
+		 		document.getElementById('root').style.filter = 'blur(2px)'
+		 	}
+		 	this.setState({
+		 		statistic: !this.state.statistic
+		 	})
+		 }
+
 render(){
 	var tasks = this.getTasks()
-	
+	const closeStyle={
+			position: 'absolute',
+			top: '18px',
+			right: '20px'
+		}
 	return(<div className="col-xs-12 col-sm-4 paper variants">
 				<Paper className="preferencepaper variants">
-					<div className="Up">Статистика тем</div>
+					<div className="Up">
+						Статистика тем
+						<NavigationMoreHoriz color="rgb(115, 135, 156)" className="buttonMoreInUp" onClick={this.statistic}/>
+						</div>
 					<hr/>
 					<div >
 						{tasks}
 					</div>
 					 
 				</Paper>
+				 <Dialog
+				          title="Статистика"
+				          modal={false}
+				          titleStyle={{color: 'rgb(33, 150, 243)'}}
+				          open={this.state.statistic}
+				          autoScrollBodyContent={true}
+				          bodyClassName = 'dialogBodyTable'
+				          onRequestClose={this.statistic}
+				          contentStyle={{padding: 0,  maxWidth: 400, width: "90%"}}
+				          autoDetectWindowHeight={false}
+				          style ={{maxHeight: 500}}
+				        >	
+				        <IconButton onClick={this.statistic} style={closeStyle}><Close color='rgb(33, 150, 243)'/></IconButton>
+				        	<div style={{height: 300}}></div>
+				        </Dialog>
 			</div>)
 
 }

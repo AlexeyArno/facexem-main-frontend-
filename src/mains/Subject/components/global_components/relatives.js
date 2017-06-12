@@ -13,8 +13,8 @@ constructor(props) {
 		  }
 
 render(){
-	var solve = 5
-	var unsolve = 70
+	var solve = this.props.solve
+	var unsolve = this.props.unsolve
 	var corner = solve/(solve+unsolve)*180+180
 	return(<div style={{padding: 15}}>
 				<div>

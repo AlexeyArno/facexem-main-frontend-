@@ -117,7 +117,7 @@ render(){
 				          autoScrollBodyContent={true}
 				          bodyClassName = 'dialogBodyTable'
 				          onRequestClose={this.openChange}
-				          contentStyle={{padding: 0,  maxWidth: 900, width: "90%"}}
+				          contentStyle={{padding: 0,  maxWidth: 400, width: "90%"}}
 				          autoDetectWindowHeight={false}
 				          style ={{maxHeight: 500}}
 				        >	

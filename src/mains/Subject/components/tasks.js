@@ -15,16 +15,20 @@ import {orange500, blue500} from 'material-ui/styles/colors';
 import Dialog from 'material-ui/Dialog';
 import DropDownMenu from 'material-ui/DropDownMenu';
 import MenuItem from 'material-ui/MenuItem';
+import NavigationMoreHoriz from 'material-ui/svg-icons/navigation/more-horiz'
 
 
 import Random from './task/randomtask/randomTasks.js'
 import Onetask from './task/singletask/onetask.js'
 
+
 export default class Tasks extends Component{
 	  constructor(props){
 				  super(props);
-				  this.state = {modalIsOpenBest: false,
-				  value: 1}
+				  this.state = {
+				  	dialog: false,
+				  	value: 1
+				  }
 		 }
 
 
@@ -65,14 +69,16 @@ export default class Tasks extends Component{
 		 			</div>
 		 }
 
-	 openTasks=()=>{
-		 	this.setState({modalIsOpenBest: true})
+	 dialog=()=>{
+	 	if(this.state.dialog){
+		 		document.getElementById('root').style.filter = 'blur(0px)'
+		 	}else{
+		 		document.getElementById('root').style.filter = 'blur(2px)'
+		 	}
+		 	this.setState({dialog: !this.state.dialog})
 		 }
 
 
-	  closeTasks=()=>{
-		  	this.setState({modalIsOpenBest: false})
-		  }
 
 	  handleChange = (event, index, value) => this.setState({value});
 
@@ -96,11 +102,19 @@ export default class Tasks extends Component{
 			element = staticElement
 		}
 		var menu = this.getMenu()
+		const closeStyle={
+			position: 'absolute',
+			top: '18px',
+			right: '20px'
+		}
 		return(	
 		<div className="col-xs-12 col-sm-4 paper">
+
 				<Paper className="preferencepaper">
 					<div className="Up">
 						Задания
+
+						<NavigationMoreHoriz color="rgb(115, 135, 156)" className="buttonMoreInUp" onClick={this.dialog}/>
 					</div>
 					<hr/>
 					<div style={{padding: 10}}>
@@ -108,7 +122,21 @@ export default class Tasks extends Component{
 					</div>
 						{element}
 				</Paper>
-
+				 <Dialog
+				          title="Статистика"
+				          modal={false}
+				          titleStyle={{color: 'rgb(33, 150, 243)'}}
+				          open={this.state.dialog}
+				          autoScrollBodyContent={true}
+				          bodyClassName = 'dialogBodyTable'
+				          onRequestClose={this.dialog}
+				          contentStyle={{padding: 0,  maxWidth: 400, width: "90%"}}
+				          autoDetectWindowHeight={false}
+				          style ={{maxHeight: 500}}
+				        >	
+				        <IconButton onClick={this.dialog} style={closeStyle}><Close color='rgb(33, 150, 243)'/></IconButton>
+				        	<div style={{height: 300}}></div>
+				        </Dialog>
 			</div>
 
 )

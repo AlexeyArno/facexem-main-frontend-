@@ -14,7 +14,7 @@ constructor(props) {
 		  	var color;
 		var styleFill={transform: "rotate(180deg)"};
 		var styleSlice={};
-		var rating = 25;
+		var rating = this.props.data.test_points;
 		if(rating<45){
 			color="red"
 		}else if(rating<75){
@@ -52,7 +52,7 @@ render(){
 	return(<div style={{padding: 15, paddingTop: 10}}>
 			<div style={{float: 'left', paddingTop: 10}}>
 				<div style={{fontSize: 21}}>Ваш бал равен</div>
-				<div style={{fontSize: 12, color: 'rgb(115, 135, 156)', paddingLeft: 1}}>На основе последних 7 тестов</div>
+				<div style={{fontSize: 12, color: 'rgb(115, 135, 156)', paddingLeft: 1}}>На основе последних {this.props.data.count_tests} тестов</div>
 			</div>
 			{spin}
 			</div>

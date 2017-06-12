@@ -89,7 +89,7 @@ export default class SubjectYetContent extends Component{
 			  					swipeOptions={{continuous: false, startSlide: this.state.value,
 			  					speed: 600, callback: this.startTrans, transitionEnd: this.endTrans}}>
 			  				<div>
-								<GlobalStaticLine/>
+								<GlobalStaticLine data={data.task_info}/>
 								<Tasks color={this.props.color} closeColor={this.props.close} data={data.task_info}/>
 								<Variants color={this.props.color} closeColor={this.props.close} data={data.task_info}/>
 								<Theme data={data}/>

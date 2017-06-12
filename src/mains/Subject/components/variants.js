@@ -14,6 +14,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import ContentRemove from 'material-ui/svg-icons/content/remove'
 import ContentAdd from 'material-ui/svg-icons/content/add'
+import NavigationMoreHoriz from 'material-ui/svg-icons/navigation/more-horiz'
 
 
 export default class Variants extends Component{
@@ -24,7 +25,8 @@ export default class Variants extends Component{
 			    count: this.props.data.task_table.length,
 			    open: false,
 			    index: -1,
-			    value: 0
+			    value: 0,
+			    statistic: false
 			};
 	 }
 
@@ -53,6 +55,19 @@ export default class Variants extends Component{
 	 	})
 	 	document.getElementById('root').style.filter = 'blur(0px)'
 	 }
+
+
+	 	 statistic=()=>{
+		 	if(this.state.statistic){
+		 		document.getElementById('root').style.filter = 'blur(0px)'
+		 	}else{
+		 		document.getElementById('root').style.filter = 'blur(2px)'
+		 	}
+		 	this.setState({
+		 		statistic: !this.state.statistic
+		 	})
+		 }
+
 
 
 
@@ -145,7 +160,10 @@ export default class Variants extends Component{
 		var elements = this.getCountsTasks()
 		return(	<div className="col-xs-12 col-sm-4 paper variants">
 				<Paper className="preferencepaper variants" >
-					<div className="Up">Тест</div>
+					<div className="Up">
+						Тест
+						<NavigationMoreHoriz color="rgb(115, 135, 156)" className="buttonMoreInUp" onClick={this.statistic}/>
+					</div>
 					<hr/>
 					<div className="testContent">
 						<div >
@@ -166,6 +184,27 @@ export default class Variants extends Component{
 
 
 				</Paper>
+
+
+
+				<Dialog
+				          title="Статистика"
+				          modal={false}
+				          titleStyle={{color: 'rgb(33, 150, 243)'}}
+				          open={this.state.statistic}
+				          autoScrollBodyContent={true}
+				          bodyClassName = 'dialogBodyTable'
+				          onRequestClose={this.statistic}
+				          contentStyle={{padding: 0,  maxWidth: 400, width: "90%"}}
+				          autoDetectWindowHeight={false}
+				          style ={{maxHeight: 500}}
+				        >	
+				        <IconButton onClick={this.statistic} style={closeStyle}><Close color='rgb(33, 150, 243)'/></IconButton>
+				        	<div style={{height: 300}}></div>
+				 </Dialog>
+
+
+
 				<Dialog
 		          title="Количество"
 		          open={this.state.open}

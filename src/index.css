@@ -189,6 +189,19 @@ body {
 	line-height: 1.6;
 	max-height: 27px;
 }
+.buttonMoreInUp{
+	position: absolute ;
+	right: 20px ;
+	cursor: pointer;
+}
+.buttonMoreInUp:hover{
+	/*box-shadow: 4px 4px 20px 0px rgba(50, 50, 50, 0.75);*/
+	opacity: 0.6;
+}
+.buttonMoreInUp:active{
+	/*box-shadow: 4px 4px 20px 0px rgba(50, 50, 50, 0.75);*/
+	opacity: 0.3;
+}
 hr{
 	opacity: 0.1;
 	margin: 0px 0px;

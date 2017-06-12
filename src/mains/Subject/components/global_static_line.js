@@ -25,19 +25,19 @@ render(){
 	return(<div >
 				<div className="col-xs-12 col-sm-4 paper variants">
 					<Paper style={paper_style}> 
-							<Points/>
+							<Points data={this.props.data}/>
 					</Paper>
 
 				</div>
 				<div className="col-xs-12 col-sm-4 paper variants" >
 					<Paper style={paper_style}>
-						<Tasks/>
+						<Tasks data={this.props.data.solve_tasks}/>
 					</Paper>
 
 				</div>
 				<div className="col-xs-12 col-sm-4 paper variants" >
 					<Paper style={paper_style}>
-						<Relatives/>
+						<Relatives solve={this.props.data.solve_tasks} unsolve={this.props.data.unsolve_tasks}/>
 					</Paper>
 
 				</div>
