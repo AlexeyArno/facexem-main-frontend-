@@ -63,7 +63,6 @@ constructor(props) {
 						position: !this.state.position,
 					})
 				}else{
-					console.log(this.state.maxHeight)
 					
 					this.setState({
 						position: !this.state.position,

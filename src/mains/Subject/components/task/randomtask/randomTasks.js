@@ -41,8 +41,8 @@ render(){
 	return(<div>
 				<ReactCSSTransitionGroup
 				 transitionName="example"
-	               transitionAppear={true} transitionAppearTimeout={2000}
-	               transitionEnter={true} transitionLeave={true}>
+	               transitionAppear={true} 
+	              >
 
 						<div className="lastResult">
 								{last}
@@ -61,7 +61,8 @@ render(){
 				          labelColor='#fff'
 				          style={{ marginBottom: 10 }}
 					        />
-					        </ReactCSSTransitionGroup>
+					
+					</ReactCSSTransitionGroup>
 				
 
 

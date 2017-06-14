@@ -12,7 +12,7 @@ constructor(props) {
 
 		  onChange=(value)=>{
 		  
-		  	this.props.answer(value, this.props.index)
+		  	this.props.answer('text', value, this.props.index)
 		  }
 
 

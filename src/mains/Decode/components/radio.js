@@ -14,7 +14,7 @@ constructor(props) {
 		  }
 
 		  answer=(value)=>{
-		  	this.props.answer(value)
+		  	this.props.answer('radio', value, this.props.index)
 		  }
 
 
@@ -45,10 +45,11 @@ constructor(props) {
 
 
 render(){
-	var name = 'col-md-12'
+	var name = 'col-md-12 col-xs-12 col-sm-12 col-lg-12'
 		if(this.props.data.size === 'half'){
-			name = 'col-md-6'
+			name = 'col-md-6 col-xs-12 	col-sm-6 col-lg-6'
 		}
+
 
 
 
@@ -56,7 +57,7 @@ render(){
 
 	return(<div className={name}>
 				 <RadioButtonGroup name={String(this.props.data.id)} defaultSelected="nothing" 
-				 			onChange={(event: object, value: undefined)=>this.answer(value+1)}>
+				 			onChange={(e, v)=>this.answer(v+1)}>
 					{checks}
 				</RadioButtonGroup>
 			</div>)

@@ -18,9 +18,8 @@ export default class MainDecodeWorkDisplay extends Component{
 		    };
 		  }
 
-	answer=(data, index)=>{
-		
-		this.props.answer(data, index)
+	answer=(type, data, index)=>{
+		this.props.answer(type, data, index)
 		// console.log(data)
 	}
 
@@ -31,17 +30,17 @@ render(){
 			case "paragraph":
 				return(<ParagraphWorkWindow  data={item} />)
 			case 'img':
-				return(<ImageWorkWindow  data={item}/>)
+				return(<ImageWorkWindow  data={item} />)
 			case 'code':
 				return(<CodeWorkWindow  data={item} />)
 			case 'list':
 				return(<ListWorkWindow  data={item} />)
 			case 'check':
-				return(<Check  data={item} answer={this.answer} index={this.props.index}/>)
+				return(<Check  data={item} answer={this.answer} index={this.props.index} />)
 			case 'radio':
-				return(<Radio  data={item} answer={this.answer} index={this.props.index}/>)
+				return(<Radio  data={item} answer={this.answer} index={this.props.index} />)
 			case 'field':
-				return(<TextFieldAnswer  data={item} answer={this.answer} index={this.props.index}/>)
+				return(<TextFieldAnswer  data={item} answer={this.answer} index={this.props.index} />)
 			default:
 				return <div>Some failed!!!</div>
 		}

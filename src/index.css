@@ -223,7 +223,7 @@ hr{
 	cursor: pointer;
 }
 .subject-on-user-page:hover{
-		box-shadow:         0px 0px 35px 0px rgba(50, 50, 50, 0.20);
+		box-shadow:  0px 0px 45px 0px rgba(50, 50, 50, 0.20);
 }
 .subject-on-user-page{
 	transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms
@@ -255,8 +255,8 @@ hr{
 .DownCountSubject{
 	color: #fff;
 	margin-top: 100px;
-	background: rgba(0, 0, 0, 0.6);
 	padding-left: 10px; 
+
 }
 .progressLine{
 	padding: 10px;
@@ -997,13 +997,13 @@ a{
 	opacity: .9
 }
 
-.buttonMenuUser{
+/*.buttonMenuUser{
 	transition: transform 1s ease-in-out
 }
 .buttonMenuUser:hover{
 	transform: rotate(360deg)
 }
-
+*/
 
 
 /*Animations of Task Page*/
@@ -1178,4 +1178,12 @@ a{
 }
 .rowClickTableGreen:hover{
 	background-color: rgba(204, 247, 126,0.35) !important;
+}
+
+
+.button-change-pos{
+	transition: all 0.2s ease-in 
+}
+.subject-tab-in-user{
+	box-shadow: rgba(50, 50, 50, 109804) 0px -48px 49px -26px inset, rgba(0, 0, 0, 0.3) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px !important;
 }

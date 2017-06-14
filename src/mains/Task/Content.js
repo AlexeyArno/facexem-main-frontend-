@@ -4,6 +4,7 @@ import MainDecodeWorkDisplay from '../Decode/mainDecode.js'
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ActionDone from 'material-ui/svg-icons/action/done'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'; // ES6
+import ReactSwipe from 'react-swipe';
 
 
 export default class ContentTask extends Component{
@@ -11,7 +12,7 @@ export default class ContentTask extends Component{
 constructor(props) {
 		    super(props);
 		    this.state = {
-		    
+		    	slide: 0
 		    };
 		  }
 
@@ -43,21 +44,23 @@ constructor(props) {
 		  }
 
 
-		  answer=(data, index)=>{
-		  	
-		  	this.props.answer(data, index)
+		  answer=(type, data, index)=>{
+		  	this.props.answer(type, data, index)
 
 		  }
 
 		  getInputs=(data, spec_id)=>{
-		  	return(data.content.map(function(item, index){
-		  		return <MainDecodeWorkDisplay key={index} item={item} answer={this.answer} index={spec_id}/>
-		  	}.bind(this)))
+		  	var input = data.content.map(function(item, index){
+		  		return <MainDecodeWorkDisplay key={index} item={item} answer={this.answer}
+		  				 index={spec_id} />
+		  	}.bind(this))
+		  	return <div>{input}</div>
 		  }
 
 		  getContent=(data)=>{
 		  	return(data.content.map(function(item, index){
-		  		return <MainDecodeWorkDisplay key={index} item={item} answer={this.answer} index={index}/>
+		  		return <MainDecodeWorkDisplay key={index} item={item} answer={this.answer}
+		  				 index={index} />
 		  	}.bind(this)))
 		  }
 
@@ -67,21 +70,31 @@ constructor(props) {
 		  	this.props.sendAnswer()
 		  }
 
+		   next=()=>{
+			   this.setState({
+			   		slide: this.state.slide+1
+			   })
+			    this.refs.reactSwipe.next();
+			  }
+
 
 
 render(){
 	var content =<div/>
-	var inputs = <div/>
+	var inputs= []
 	var count_inputs = 0
 	this.props.data.content.map(function(item, index){
-		item.type == "mainquest" ? content = this.getContent(item) : inputs = this.getInputs(item, count_inputs)
-		if(item.type != 'mainquest'){
-			count_inputs++
+		switch(item.type){
+			case 'mainquest':
+				content=this.getContent(item)
+				break;
+			default:
+				var input = this.getInputs(item, count_inputs)
+				inputs.push(<div>{input}</div>)
+				count_inputs++
+				break;
 		}
 	}.bind(this))
-
-
-
 
 
 
@@ -99,7 +112,19 @@ render(){
 									</div>
 								</div>
 						</ReactCSSTransitionGroup>
-			       			 	
+	if(count_inputs>this.state.slide+1){
+		buttonElement = <ReactCSSTransitionGroup
+							 transitionName="opacity"
+				               transitionAppear={true} transitionAppearTimeout= {800}
+				               transitionEnter={false} transitionLeave={false}>
+				               <div id='answer'>
+				               	<div style={{textAlign: 'right'}} > 
+									<RaisedButton label='Дальше'  style={{ margin: 10}} 
+										onClick={this.next} /> 
+									</div>
+								</div>
+						</ReactCSSTransitionGroup>
+	}		       			 	
 
 
 
@@ -143,8 +168,12 @@ render(){
 					{content}
 				</div>
 				<hr  />
-				<div style={{display:'inline-block'}}>
-					{inputs}
+				<div style={{display:'inline-block', width: "100%"}} id='inputs_task'>
+					<ReactSwipe id='carousel' ref="reactSwipe" 
+				  					swipeOptions={{continuous: false, startSlide: this.state.slide,
+				  					speed: 600}}>
+						{inputs}
+					</ReactSwipe>
 				</div>
 				<hr/>
 				{button}			

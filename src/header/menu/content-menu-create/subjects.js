@@ -26,7 +26,7 @@ export default class Subjects extends Component{
 
 render(){
 	var subjects  = this.props.subjects.map(function(item, index){
-			var icon = <LibraryBooks/>
+			var icon = <LibraryBooks color={this.props.color}/>
 			switch(item.link){
 				case 'chemistry':
 					icon =<Share color={this.props.color}/>

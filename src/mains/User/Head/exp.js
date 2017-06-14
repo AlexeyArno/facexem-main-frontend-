@@ -11,7 +11,7 @@ export default class Experience extends Component{
 
 		return(
 			<div className="lineExp">
-				<div className="experience" data-for="exper" data-tip="Ваш опыт">
+				<div className="experience" data-for="exper" data-tip="Ваш рейтинг">
 				{exp}</div>
 					<Badges info={badges}/>
 				<ReactTooltip place="top" type="dark" effect="solid" id="exper"/>

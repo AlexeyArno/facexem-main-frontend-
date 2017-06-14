@@ -50,19 +50,23 @@ export default class SubjectYetContent extends Component{
 		 	st1.borderRadius = '3px 0px 0px 3px'
 		 	st2.borderRadius = '0px 3px 3px 0px'
 		 	return <div style={{border: '2px solid rgb(33, 150, 243)', borderRadius: 5,  width: 290, marginLeft: 15}} className='controlSubjectPage'>
-		 				<div style={st1} onClick={()=>this.smth(0)}>Основные</div>
-		 				<div style={st2} onClick={()=>this.smth(1)}>Дополнительне</div>
+		 				<div style={st1} onClick={()=>this.smth(0)} className="button-change-pos">Основные</div>
+		 				<div style={st2} onClick={()=>this.smth(1)} className="button-change-pos">Дополнительне</div>
 		 			</div>
 		 }
 
 		 startTrans=()=>{
+		 	if(this.state.value == 0){
+		 		this.setState({value: 1})
+		 	}else{
+		 		this.setState({value: 0})
+		 	}
 		 	document.getElementById('bodySubjectContents').style.filter = "blur(2px)"
 		 }
 		 endTrans=()=>{
 		 	document.getElementById('bodySubjectContents').style.filter = "blur(0px)"
 		 }
 		 smth=(i)=>{
-		  	this.setState({value: i});
 		  	this.refs.reactSwipe.slide(i);
 		  }
 

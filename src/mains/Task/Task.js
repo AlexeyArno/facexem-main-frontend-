@@ -39,11 +39,31 @@ constructor(props) {
 
 
 
-		  answer=(data, index)=>{
+		  answer=(type, data, index)=>{
 		  	var answer = this.state.answer
-		  	answer[index] = data
+		  	console.log(type, data, index)
+		  	switch(type){
+		  		case 'text':
+		  			answer[index] = data
+		  			break;
+		  		case 'check':
+		  			answer[index][data.index] = data.value
+		  			break;
+		  		case 'radio':
+		  			answer[index] = data
+		  			break;
+		  		case 'check_create':
+		  			if(!answer[index]){
+		  				answer[index] = new Array
+		  			}
+		  			answer[index].push(data.value)
+		  			this.setState({answer})
+		  			return 0;
+		  			break;
+		  	}
+		  	console.log(answer)
 		  	this.setState({
-		  		answer, answer_input: 1
+		  		answer, answer_input: this.state.answer_input+1
 		  	})
 		  }
 
@@ -121,7 +141,7 @@ render(){
 	}
 	return(<div style={style} id='wrapper_task'>
 				<ContentTask data={this.props.data} answer={this.answer}   sendAnswer={()=>this.setState({type: 1})} 
-					maxHeight={cowntentMaxHeight} nowAnswer={this.state.answer_input} type={this.state.type} />
+					maxHeight={cowntentMaxHeight} nowAnswer={this.state.answer_input} type={this.state.type} users_answers={this.state.answer}/>
 			
 				{element}
 		

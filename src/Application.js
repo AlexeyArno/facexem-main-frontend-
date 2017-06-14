@@ -56,7 +56,7 @@ class Application extends Component{
 			xmlhttp.send(null);  
 			if(xmlhttp.status === 200) {
 			var request = JSON.parse(xmlhttp.responseText)
-			request ='2fed86b70dfec7fb46a32468223dd91a782e8093'
+			request ='008563de2cb6501eb368eaca711589a1c1f71b7f'
 				if (!request.result){
 					this.setTokenInRedux(request)
 					return(request)
@@ -100,7 +100,7 @@ class Application extends Component{
 		if (this.state.fulldata === 0) {
 			return(<div style={style} >
 
-					<CircularProgress size={40} thickness={5} mode={'indeterminate'}/>
+					<CircularProgress size={40} thickness={5} mode={'indeterminate'} color='#2196F3'/>
 				</div>
 				)
 		}else{

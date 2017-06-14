@@ -11,7 +11,7 @@ import Change from './change.js';
 import Dialog from 'material-ui/Dialog';
 // import MiniMenu from './mini-menu.js';
 import RaisedButton from 'material-ui/RaisedButton';
-
+import FloatingActionButton from 'material-ui/FloatingActionButton';
 
 
 import ActionSettings from 'material-ui/svg-icons/action/settings'
@@ -130,11 +130,13 @@ export default class UserRow extends Component{
 						<div >
 							<Paper style={stylePhoto} zDepth={3} circle={true} />
 							<UserInfo  data={this.state.data}/>
+							<FloatingActionButton onClick={this.someFuncBest} style={{float: "right", marginRight: 16, marginTop: -16}}
+												 backgroundColor="rgb(33, 150, 243)" className="buttonMenuUser" mini={true}>
+								<ActionSettings />
+							</FloatingActionButton>
+
+
 							<div className="Overlay">
-								
-							<IconButton onClick={this.someFuncBest} style={{position: 'relative', bottom: 5}} className="buttonMenuUser">
-								<ActionSettings color="#e5e5e5"/>
-							</IconButton>
 							 <Experience data={this.state.data} />
 							</div>
 						</div>
