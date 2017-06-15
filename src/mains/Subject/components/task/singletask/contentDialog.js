@@ -13,6 +13,7 @@ constructor(props) {
 		  }
 
 
+
 	clickOnRow=(n)=>{
 		var number =  this.props.data[n].num
 		this.props.chooseNumberClick(number)
@@ -29,16 +30,26 @@ constructor(props) {
 			if (selectnumber === item.num){
 				select = true
 			}
-			var color = 'rgba(255, 244, 104,0.35)'
+			// var color = 'rgba(255, 244, 104,0.35)'
 			var name = 'rowCkickTable'
-			if(item.color==='green'){
-				color = 'rgba(204, 247, 126,0.35)'
-			}else if(item.color=== 'red'){
-				color = 'rgba(252, 163, 85,0.35)'
-			}
+			// if(item.color==='green'){
+			// 	color = 'rgba(204, 247, 126,0.35)'
+			// }else if(item.color=== 'red'){
+			// 	color = 'rgba(252, 163, 85,0.35)'
+			// }
+			var color = '#F29F05'
+	  		if(item.color === 'red'){
+	  			color = '#E74D49'
+	  		}else if(item.color === 'green'){
+	  			color = '#89D8C2'
+	  		}
+
 			return(
-				<TableRow id={id} key={index} selected={select} className={name} displayBorder={false} 
-						style={{cursor: 'pointer', textAlign: 'center', background: color}}>
+				<TableRow id={id} key={index} selected={select}  displayBorder={false} 
+						style={{cursor: 'pointer', textAlign: 'center'}}>
+					<TableRowColumn style={{width: 20}}>
+			                	<div style={{width: 10, height: 10, background: color, filter: 'blur(1px)', borderRadius: 5}}/>
+			        </TableRowColumn>
 			        <TableRowColumn >{item.num}</TableRowColumn>
 			        <TableRowColumn >{item.theme}</TableRowColumn>
 			      </TableRow>
@@ -61,11 +72,12 @@ render(){
 				            adjustForCheckbox={false}
 				            enableSelectAll={false}>
       <TableRow>
+      <TableHeaderColumn style={{display: 'none'}}></TableHeaderColumn>
         <TableHeaderColumn>Номер</TableHeaderColumn>
-        <TableHeaderColumn>Тема</TableHeaderColumn>
+        <TableHeaderColumn style={{paddingLeft: 20}}>Основная тема</TableHeaderColumn>
       </TableRow>
     </TableHeader>
-    <TableBody  showRowHover={false} displayRowCheckbox={false}>
+    <TableBody  showRowHover={true} displayRowCheckbox={false}>
     {content}
     </TableBody>
     </Table>

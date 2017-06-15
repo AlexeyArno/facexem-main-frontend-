@@ -103,7 +103,9 @@ class SubjectPage extends Component{
 		 	</MuiThemeProvider>
 		  <MuiThemeProvider>
 
-		  	<SubjectContent subject={this.state.subject} data={this.state.data} reset={() => this.forceUpdate()} key={Math.random()}/>
+		  	<SubjectContent subject={this.state.subject} data={this.state.data}
+		  					 reset={() => this.forceUpdate()} key={Math.random()}
+		  					  setTestDataInRedux={this.props.setTestDataInRedux}/>
 		  	</MuiThemeProvider>
 	</div>)
 

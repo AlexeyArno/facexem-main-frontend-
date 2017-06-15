@@ -43,6 +43,11 @@ class Application extends Component{
 		setToken(token)
 	}
 
+	setTestDataInRedux=(data)=>{
+		const {setTestDate} = this.props.userActions
+		setTestDate(data)
+	}
+
 
 
 	componentWillMount=()=>{
@@ -105,7 +110,7 @@ class Application extends Component{
 				)
 		}else{
 		return(<div>
-					<RoutersApp store={this.props.store} setDataInRedux={this.setDataInRedux}/>
+					<RoutersApp store={this.props.store} setDataInRedux={this.setDataInRedux} setTestDataInRedux={this.setTestDataInRedux}/>
 				</div>)
 		}
 		

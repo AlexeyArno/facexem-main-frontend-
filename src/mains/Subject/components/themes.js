@@ -8,6 +8,7 @@ import NavigationMoreHoriz from 'material-ui/svg-icons/navigation/more-horiz'
 import Close from 'material-ui/svg-icons/navigation/close';
 import Dialog from 'material-ui/Dialog';
 import IconButton from 'material-ui/IconButton';
+import ThemesStatic from './statistics/themes.js'
 
 export default class Theme extends Component{
 
@@ -107,19 +108,20 @@ render(){
 					 
 				</Paper>
 				 <Dialog
-				          title="Статистика"
+				          title="Статистика тем"
 				          modal={false}
+				          task={true}
 				          titleStyle={{color: 'rgb(33, 150, 243)'}}
 				          open={this.state.statistic}
 				          autoScrollBodyContent={true}
 				          bodyClassName='dialogBodyTable'
 				          onRequestClose={this.statistic}
-				          contentStyle={{padding: 0,  maxWidth: 400, width: "90%"}}
+				          contentStyle={{padding: 0,  maxWidth: 600, width: "90%"}}
 				          autoDetectWindowHeight={false}
 				          style={{maxHeight: 500}}
 				        >	
 				        <IconButton onClick={this.statistic} style={closeStyle}><Close color='rgb(33, 150, 243)'/></IconButton>
-				        	<div style={{height: 300}}></div>
+				        	<ThemesStatic last_task_procents={this.props.data.task_info.last_task_procents} task_table={this.props.data.task_info.task_table}/>
 				        </Dialog>
 			</div>)
 

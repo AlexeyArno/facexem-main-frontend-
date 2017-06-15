@@ -12,3 +12,11 @@ export function setData(data){
     payload: data
 	}
 }
+
+export function setTestDate(data){
+	console.log('YEAH')
+	return{
+	type: 'SET_TEST_DATA',
+    payload: data
+	}
+}

@@ -37,12 +37,21 @@ constructor(props) {
 		  getStatTable=(data)=>{
 		  	var data = this.processArray(data)
 		  	return data.map(function(item, index){
+		  		var count_tasks = (item.solve+item.unsolve !== 0 )? item.solve+item.unsolve: 1
+		  		var time = Math.floor(item.all_time /count_tasks)
+		  		var color = '#F29F05'
+		  		if(item.color === 'red'){
+		  			color = '#E74D49'
+		  		}else if(item.color === 'green'){
+		  			color = '#89D8C2'
+		  		}
 		  		return <TableRow key={index} >
 			                <TableRowColumn style={{width: 20}}>
-			                	<div style={{width: 10, height: 10, background: item.color, filter: 'blur(1px)', borderRadius: 5}}/>
+			                	<div style={{width: 10, height: 10, background: color, filter: 'blur(1px)', borderRadius: 5}}/>
 			                </TableRowColumn>
 			                <TableRowColumn>{item.num}</TableRowColumn>
 			                <TableRowColumn>{item.theme}</TableRowColumn>
+			                <TableRowColumn>{time+' сек.'}</TableRowColumn>
 			                <TableRowColumn>{Math.floor(item.procent*100)+'%'}</TableRowColumn>
 			              </TableRow>
 		  	})
@@ -113,14 +122,15 @@ render(){
 				            enableSelectAll={false}
 				          >
 				            <TableRow>
-				              <TableHeaderColumn colSpan="3"  style={{ textAlign: 'center'}}>
+				              <TableHeaderColumn colSpan="4"  style={{ textAlign: 'center'}}>
 				                Статистика ваших решенных заданий 
 				              </TableHeaderColumn>
 				            </TableRow>
 				            <TableRow>
 				              <TableHeaderColumn style={{ display:"none"}} ></TableHeaderColumn>
 				              <TableHeaderColumn  style={{ marginLeft: 20}} >Номер</TableHeaderColumn>
-				              <TableHeaderColumn tooltip="Основная тема используемая в этом задании" >Тема</TableHeaderColumn>
+				              <TableHeaderColumn tooltip="Основная тема используемая в этом задании" style={{ paddingLeft: 45}}>Тема</TableHeaderColumn>
+				              <TableHeaderColumn tooltip="Среднее время на задание" style={{ paddingLeft: 45}} >Время</TableHeaderColumn>
 				              <TableHeaderColumn >Прогресс</TableHeaderColumn>
 				            </TableRow>
 				          </TableHeader>
@@ -139,9 +149,7 @@ render(){
 
 		
 
-		   )
-
-}
+		   )}
 
 
 

@@ -128,7 +128,10 @@ render(){
 	document.title = (title!=='Facexem')? title+' | Facexem': title
 	var color_achiev = 'rgb(33, 150, 243)'
 	var color_sett = '#7bc6cc'
-	var icon_right =(data_header.type === 'randomtask' || data_header.type === "singletask")? <IconButton onClick={()=>this.handllink(data_header.subject)} tooltip="Вернуться"><ContentReply/></IconButton>: <div/>
+	var icon_right = <div/>
+	if(data_header.type === 'randomtask' || data_header.type === "singletask" || data_header.type === 'test'){
+		icon_right = <IconButton onClick={()=>this.handllink(data_header.subject)} tooltip="Вернуться"><ContentReply/></IconButton>
+	}
 	return( <div> 
 				<AppBar
 				    title={title}

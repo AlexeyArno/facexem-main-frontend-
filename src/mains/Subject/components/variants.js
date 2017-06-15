@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component , PropTypes} from 'react';
 import Paper from 'material-ui/Paper';
 import Dialog from 'material-ui/Dialog';
 import IconButton from 'material-ui/IconButton';
@@ -29,7 +29,41 @@ export default class Variants extends Component{
 			};
 	 }
 
+
+	  getSubjectName=()=>{
+		var name = window.location.pathname
+		name = Array.from(name)
+		var subject = []
+		var point= 0
+		for (var i =0; i<name.length;i++){
+			if(name[i]=='/' ){
+				point++
+			}
+			if(i==0){continue}
+			if(point==1){
+				subject.push(name[i])
+			}
+		}
+		return subject.join('')
+
+	}
+
+
+
+
+
+
+
+
+	 setTestData=()=>{
+	 	this.props.setTestDataInRedux(this.state.stories)
+	 		var subject = this.getSubjectName()
+			this.context.router.push({
+				 pathname: '/'+subject+'/test'
+		})
+	 }
 	 componentWillMount=()=>{
+
 	 	var stories=[]
 	 	for (var i=0;i<this.props.data.task_table.length;i++){
 	 		stories.push(1)
@@ -176,7 +210,8 @@ export default class Variants extends Component{
 				      <MenuItem primaryText="Обычный" onClick={()=>this.shutdown(1)}/>
 				      <MenuItem primaryText="Сбросить" onClick={()=>this.shutdown(0)}/>
 				    </IconMenu>
-					<RaisedButton  label="Вперед!" labelColor="#fff" style={{marginTop: 5, float:'right', marginRight: 20}} backgroundColor="rgb(33, 150, 243)"/>
+					<RaisedButton  label="Вперед!" labelColor="#fff" style={{marginTop: 5, float:'right', marginRight: 20}}
+								   backgroundColor="rgb(33, 150, 243)" onClick={this.setTestData}/>
 
 
 				</Paper>
@@ -243,7 +278,7 @@ export default class Variants extends Component{
 	}
 }
 Variants.contextTypes	=	{		
+	router:	PropTypes.object.isRequired 
 }
-
 					// <FlatButton label="Обычный" style={{color:"rgb(33, 150, 243)", marginTop: 5, float: 'right', marginRight: 20}}  onClick={()=>this.shutdown(1)}/>
 					// <FlatButton label="Сбросить" style={{color:"rgb(247, 89, 89)", marginTop: 5, float: 'right', marginRight: 20}} onClick={()=>this.shutdown(0)} />

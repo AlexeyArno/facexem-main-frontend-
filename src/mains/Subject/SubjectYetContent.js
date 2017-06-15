@@ -84,7 +84,7 @@ export default class SubjectYetContent extends Component{
 			  				<div>
 								<GlobalStaticLine data={data.task_info}/>
 								<Tasks color={this.props.color} closeColor={this.props.close} data={data.task_info}/>
-								<Variants color={this.props.color} closeColor={this.props.close} data={data.task_info}/>
+								<Variants color={this.props.color} closeColor={this.props.close} data={data.task_info} setTestDataInRedux={this.props.setTestDataInRedux}/>
 								<Theme data={data}/>
 							</div>
 							<div style={{textAlign: 'center', paddingTop: 100}}>

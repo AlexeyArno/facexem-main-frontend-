@@ -19,25 +19,24 @@ class RoutersApp extends Component{
 		const {token, data} = this.props.user
 			var store = this.props.store
 			var subjects=data.subjects.map(function (item, index) {
-				var testsLink = item.link+'/test'
-				var testLink = testsLink+'/:test'
+				var testLink = item.link+'/test'
 				var SinglTaskLink = item.link+'/singletask/:task'
 				var RandomTaskLink = item.link +'/randomtask'
-				var mysubject = (props) => <Provider store={store}><SubjectPage/></Provider>
+				var mysubject = (props) => <Provider store={store}><SubjectPage setTestDataInRedux={this.props.setTestDataInRedux}/></Provider>
 				var singletask = (props) => <Provider store={store}><TaskPage/></Provider>
 				var randomtask = (props) => <Provider store={store}><TaskPage/></Provider>
+				var testpage = (props) => <Provider store={store}><TestPage/></Provider>
 				return(
 						<div key={index}>
 								<Route path={item.link} component={mysubject}/>
-								<Route path={testsLink} component={PageWithTest}/>
-								<Route path={testLink} component={TestPage}/>
+								<Route path={testLink} component={testpage}/>
 								<Route path={SinglTaskLink} component={singletask}/>
 								<Route path={RandomTaskLink} component={randomtask}/>
 						  </div>
 
 
 					)
-				})	
+				}.bind(this))	
 
 
 			 
