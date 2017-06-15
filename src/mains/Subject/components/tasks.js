@@ -10,6 +10,8 @@ import Random from './task/randomtask/randomTasks.js'
 import Onetask from './task/singletask/onetask.js'
 
 
+import StaticTasks from './statistics/task.js'
+
 export default class Tasks extends Component{
 	  constructor(props){
 				  super(props);
@@ -52,8 +54,8 @@ export default class Tasks extends Component{
 		 	st1.borderRadius = '3px 0px 0px 3px'
 		 	st2.borderRadius = '0px 3px 3px 0px'
 		 	return <div style={{border: '2px solid rgb(33, 150, 243)', margin: '0px 40px', borderRadius: 5}}>
-		 				<div style={st1} onClick={()=>this.smth(2)}>Одиночные</div>
-		 				<div style={st2} onClick={()=>this.smth(1)}>Случайные</div>
+		 				<div style={st1} onClick={()=>this.smth(2)} className="button-change-pos">Одиночные</div>
+		 				<div style={st2} onClick={()=>this.smth(1)} className="button-change-pos">Случайные</div>
 		 			</div>
 		 }
 
@@ -112,17 +114,18 @@ export default class Tasks extends Component{
 				 <Dialog
 				          title="Статистика"
 				          modal={false}
+				          task={true}
 				          titleStyle={{color: 'rgb(33, 150, 243)'}}
 				          open={this.state.dialog}
 				          autoScrollBodyContent={true}
 				          bodyClassName='dialogBodyTable'
 				          onRequestClose={this.dialog}
-				          contentStyle={{padding: 0,  maxWidth: 400, width: "90%"}}
+				          contentStyle={{padding: 0,  maxWidth: 700, width: "90%"}}
 				          autoDetectWindowHeight={false}
 				          style={{maxHeight: 500}}
 				        >	
 				        <IconButton onClick={this.dialog} style={closeStyle}><Close color='rgb(33, 150, 243)'/></IconButton>
-				        	<div style={{height: 300}}></div>
+				        	<StaticTasks data={this.props.data}/>
 				        </Dialog>
 			</div>
 

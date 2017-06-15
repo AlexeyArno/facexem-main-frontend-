@@ -74,6 +74,7 @@ export default class SubjectYetContent extends Component{
 	render(){
 		var data = this.props.data
 		var menu = this.getMenu()
+		console.log(data)
 		return(	<div id='YetChoose'>
 					{menu}
 					<div id='bodySubjectContents'>

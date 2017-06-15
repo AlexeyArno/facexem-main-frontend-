@@ -760,8 +760,7 @@ width: 0;
 }
 .testContent{
 	height: 285px;
-	overflow-x: auto;
-	overflow-y: hidden;
+	overflow-y: auto;
 }
 .contentModalCountVariants{
 	padding-bottom: 0 !important;

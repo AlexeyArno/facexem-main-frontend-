@@ -19,6 +19,8 @@ constructor(props) {
 		  }
 
 		  getRightIcon=(now, last)=>{
+		  	if(!now){now = 0}
+		  	if(!last){last = 0}
 		  	var change = Math.floor(now-last)
 		  	const icon_style={
 		  		width: 30
