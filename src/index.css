@@ -1186,3 +1186,15 @@ a{
 .subject-tab-in-user{
 	box-shadow: rgba(50, 50, 50, 109804) 0px -48px 49px -26px inset, rgba(0, 0, 0, 0.3) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px !important;
 }
+
+.test-appear {
+  opacity: 0.01;
+}
+
+.test-appear.test-appear-active {
+  opacity: 1;
+  transition: opacity .5s ease-in;
+}
+#carousel{
+	transition: opacity 20ms cubic-bezier(0.23, 1, 0.32, 1) 0ms
+}

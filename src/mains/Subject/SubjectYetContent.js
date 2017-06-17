@@ -74,7 +74,6 @@ export default class SubjectYetContent extends Component{
 	render(){
 		var data = this.props.data
 		var menu = this.getMenu()
-		console.log(data)
 		return(	<div id='YetChoose'>
 					{menu}
 					<div id='bodySubjectContents'>
@@ -99,5 +98,3 @@ export default class SubjectYetContent extends Component{
 	}
 }
 
-					// <Statistics data={data.task_info.test_points}/>
-					// <Challenge/>

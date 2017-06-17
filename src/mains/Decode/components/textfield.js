@@ -41,8 +41,9 @@ render(){
 	
 			<div style={{marginRight: 10, display: 'inline-block'}}>Ответ:</div>
 			<TextField
+				value={this.props.value}
 				name={this.props.data.id+'TextField'}
-				style={{display: 'inline-block', maxWidth: 200}}
+				style={{display: 'inline-block', maxWidth: 120}}
 				underlineStyle={styles.underlineStyle}
 				underlineFocusStyle={styles.underlineStyle}
 				onChange={(e, v)=>this.onChange(v)}
