@@ -9,20 +9,29 @@ export default class Check extends Component{
 constructor(props) {
 		    super(props);
 		    this.state = {
-		    	open: false
+		    	open: false,
+		    	answer: []
 		    };
 		  }
 
 		  componentWillMount=()=>{
+		  	if(!this.props.value){
 		  	this.props.data.content.map(function(item, index){
-		  			console.log(index)
 		  			var data ={
 				  		value: false,
 				  		index: index
 					  	}
+					 var answer = this.state.answer
+					 answer[index] = false
+					this.setState({
+						answer
+					})
 				  	this.props.answer('check_create', data, this.props.index)
 		 		 }.bind(this)
 		  	)
+			  }else{
+			  	this.setState({answer:this.props.value})
+			  }
 		  }
 
 
@@ -34,15 +43,15 @@ constructor(props) {
 		  	}
 		  	this.props.answer('check', data, this.props.index)
 		  }
-
 		  getBoxes=(content)=>{
 		  	return(
 		  		content.map(function(item, index){
 		  			return(
 
 		  				   <Checkbox
-		  				   onCheck={(e, d)=>this.answer(d, index)}
+		  				   	onCheck={(e, d)=>this.answer(d, index)}
 		  				   	key={index}
+		  				   	defaultChecked={this.state.answer[index]}
 						    label={item.content}
 						    checkedIcon={<ToggleCheckBox/>}
 						    iconStyle={{fill: '#4285f4'}}

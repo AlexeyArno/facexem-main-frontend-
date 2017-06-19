@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Whallpaper from '../User/whall.js';
 import { connect } from 'react-redux'
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group'; // ES6
+
 
 
 
@@ -28,12 +30,18 @@ class UserPage extends Component{
 
 	render(){
 		const {data, token} = this.props.user
- 		return(	<div id='nowpage'>
-		  <MuiThemeProvider>
-		      <Whallpaper user={data.info} subjects={data.subjects} last={data.actions} token={token}
-		       static={data.activity} preference={data.preference} globalstatic={data.global_activ}/>
-		   </MuiThemeProvider>
-  </div>)
+ 		return(	
+ 				<ReactCSSTransitionGroup
+								 transitionName="opacity"
+					               transitionAppear={true} transitionAppearTimeout={800}
+					               transitionEnter={false} transitionLeave={false}>
+				 <div id='nowpage'>
+						  <MuiThemeProvider>
+						      <Whallpaper user={data.info} subjects={data.subjects} last={data.actions} token={token}
+						       static={data.activity} preference={data.preference} globalstatic={data.global_activ}/>
+						   </MuiThemeProvider>
+				  </div>
+				  </ReactCSSTransitionGroup>)
 
 	}
 }

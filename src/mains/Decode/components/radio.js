@@ -54,9 +54,9 @@ render(){
 
 
 	var checks = this.getBoxes(this.props.data.content)
-
+	var defaultCh=(this.props.value)? this.props.value-1: ''
 	return(<div className={name}>
-				 <RadioButtonGroup name={String(this.props.data.id)} defaultSelected="nothing" 
+				 <RadioButtonGroup name={String(this.props.data.id)} defaultSelected={defaultCh} 
 				 			onChange={(e, v)=>this.answer(v+1)}>
 					{checks}
 				</RadioButtonGroup>

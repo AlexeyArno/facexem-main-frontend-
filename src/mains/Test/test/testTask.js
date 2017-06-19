@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
-import MainDecodeWorkDisplay from '../Decode/mainDecode.js'
+
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ActionDone from 'material-ui/svg-icons/action/done'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'; // ES6
@@ -13,6 +13,9 @@ import Close from 'material-ui/svg-icons/navigation/close';
 import TaskDialog from './taskDialog.js'
 
 
+import MainDecodeWorkDisplay from '../modules.js'
+
+
 export default class TestTask extends Component{
 
 constructor(props) {
@@ -20,7 +23,8 @@ constructor(props) {
 		    this.state = {
 		    	slide: 0,
 		    	answer: [],
-		    	launch: false
+		    	launch: false,
+		    	input_key: Math.random()
 		    	   };
 		  }
 
@@ -93,9 +97,14 @@ launch=()=>{
 		 	}else{
 		 		document.getElementById('root').style.filter = 'blur(2px)'
 		 	}
+	var key_inputs = this.state.key_inputs
+	if(this.state.launch){
+		key_inputs= Math.random()
+	}
 	this.setState({
-		launch: !this.state.launch
+		launch: !this.state.launch,key_inputs
 	})
+
 }
 
 
@@ -140,7 +149,7 @@ render(){
 				          style={{maxHeight: 500}}
 				        >	
 						        <IconButton onClick={this.launch} style={closeStyle}><Close color='rgb(33, 150, 243)'/></IconButton>
-								<TaskDialog content={content} inputs={inputs} close={this.launch}/>		 	       	
+								<TaskDialog data={this.props.data} close={this.launch} value={this.props.value} answer={this.answer} now_answer={this.state.answer}/>		 	       	
 				        </Dialog>
 
 
@@ -165,7 +174,7 @@ render(){
 					{content}
 				</div>
 				<hr  />
-				<div style={{display:'inline-block', width: "100%"}} id='inputs_task'>
+				<div style={{display:'inline-block', width: "100%"}} id='inputs_task' key={this.state.key_inputs}>
 					<ReactSwipe 	ref={"reactSwipe"+this.props.index} 
 				  					swipeOptions={{continuous: false, startSlide: this.state.slide,
 				  					speed: 600}}>

@@ -3,6 +3,7 @@ import SubjectRow from '../Subject/subjectRow.js';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import SubjectContent from '../Subject/SubjectContent.js'
 import CircularProgress from 'material-ui/CircularProgress';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group'; // ES6
 
 import { connect } from 'react-redux'
 
@@ -97,17 +98,22 @@ class SubjectPage extends Component{
 			// <SubjectRow data={info} subject={this.state.subject} reset={() => this.forceUpdate()} key={Math.random()}/>
 		  // </MuiThemeProvider>
 
-		return(	<div style={{marginTop: 60}} id='nowpage'>
-		 	<MuiThemeProvider>
-		 		 <SubjectRow data={this.state.data.activity}/>
-		 	</MuiThemeProvider>
-		  <MuiThemeProvider>
+		return(	<ReactCSSTransitionGroup
+								 transitionName="opacity"
+					               transitionAppear={true} transitionAppearTimeout={800}
+					               transitionEnter={false} transitionLeave={false}>
+							<div style={{marginTop: 60}} id='nowpage'>
+					 	<MuiThemeProvider>
+					 		 <SubjectRow data={this.state.data.activity}/>
+					 	</MuiThemeProvider>
+					  <MuiThemeProvider>
 
-		  	<SubjectContent subject={this.state.subject} data={this.state.data}
-		  					 reset={() => this.forceUpdate()} key={Math.random()}
-		  					  setTestDataInRedux={this.props.setTestDataInRedux}/>
-		  	</MuiThemeProvider>
-	</div>)
+					  	<SubjectContent subject={this.state.subject} data={this.state.data}
+					  					 reset={() => this.forceUpdate()} key={Math.random()}
+					  					  setTestDataInRedux={this.props.setTestDataInRedux}/>
+					  	</MuiThemeProvider>
+				</div>
+			</ReactCSSTransitionGroup>)
 
 	}
 }

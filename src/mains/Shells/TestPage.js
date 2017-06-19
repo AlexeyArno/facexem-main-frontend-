@@ -2,7 +2,7 @@ import React, {Component , PropTypes} from 'react';
 import Paper from 'material-ui/Paper';
 import { connect } from 'react-redux'
 import CircularProgress from 'material-ui/CircularProgress';
-import TestBody from '../Test/TestBody.js'
+import TestBody from '../Test/test/TestBody.js'
 import RaisedButton from 'material-ui/RaisedButton';
 import NavigationArrowBack from 'material-ui/svg-icons/navigation/arrow-back'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'; // ES6
@@ -141,7 +141,10 @@ class TestPage extends Component{
 
 
 	}
-		return(<div id="nowpage" style={{marginTop: 50}}><TestBody data={this.state.data} color={color}/></div>	)
+		var {token} = this.props.user
+		return(<div id="nowpage" style={{marginTop: 50}}>
+					<TestBody data={this.state.data} color={color} token={token}/>
+				</div>	)
 		}
 			
 

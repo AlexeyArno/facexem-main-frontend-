@@ -6,12 +6,15 @@ export default class TextFieldAnswer extends Component{
 constructor(props) {
 		    super(props);
 		    this.state = {
-		    	open: false
+		    	open: false,
+		    	value: (this.props.value)?this.props.value: ''
 		    };
 		  }
 
 		  onChange=(value)=>{
-		  
+		  	this.setState({
+		  		value
+		  	})
 		  	this.props.answer('text', value, this.props.index)
 		  }
 
@@ -41,7 +44,7 @@ render(){
 	
 			<div style={{marginRight: 10, display: 'inline-block'}}>Ответ:</div>
 			<TextField
-				value={this.props.value}
+				value={this.state.value}
 				name={this.props.data.id+'TextField'}
 				style={{display: 'inline-block', maxWidth: 120}}
 				underlineStyle={styles.underlineStyle}

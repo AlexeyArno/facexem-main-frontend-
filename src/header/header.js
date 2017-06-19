@@ -6,6 +6,7 @@ import Drawer from 'material-ui/Drawer';
 import Dialog from 'material-ui/Dialog';
 import Close from 'material-ui/svg-icons/navigation/close';
 import ContentReply from 'material-ui/svg-icons/content/reply'
+import SocialPerson from 'material-ui/svg-icons/social/person'
 
 
 
@@ -131,6 +132,8 @@ render(){
 	var icon_right = <div/>
 	if(data_header.type === 'randomtask' || data_header.type === "singletask" || data_header.type === 'test'){
 		icon_right = <IconButton onClick={()=>this.handllink(data_header.subject)} tooltip="Вернуться"><ContentReply/></IconButton>
+	}else if(data_header.subject !== 'mypage'){
+		icon_right = <IconButton onClick={()=>this.handllink('mypage')} tooltip="Моя страница"><SocialPerson/></IconButton>
 	}
 	return( <div> 
 				<AppBar

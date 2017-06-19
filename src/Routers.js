@@ -8,6 +8,7 @@ import SubjectPage from './mains/Shells/SubjectPage.js';
 import NotFound from './mains/Shells/NotFound.jsx';
 import PageWithTest from './mains/Shells/PageWithTests.js';
 import TaskPage from './mains/Shells/TaskPage.js'
+import AnswerTest from './mains/Shells/AnswerTestPage.js'
 import { Provider } from 'react-redux';
 import { connect } from 'react-redux'
 
@@ -20,16 +21,19 @@ class RoutersApp extends Component{
 			var store = this.props.store
 			var subjects=data.subjects.map(function (item, index) {
 				var testLink = item.link+'/test'
+				var testAnswer = item.link + '/mytest/:test'
 				var SinglTaskLink = item.link+'/singletask/:task'
 				var RandomTaskLink = item.link +'/randomtask'
 				var mysubject = (props) => <Provider store={store}><SubjectPage setTestDataInRedux={this.props.setTestDataInRedux}/></Provider>
 				var singletask = (props) => <Provider store={store}><TaskPage/></Provider>
 				var randomtask = (props) => <Provider store={store}><TaskPage/></Provider>
 				var testpage = (props) => <Provider store={store}><TestPage/></Provider>
+				var answertest = (props)=> <Provider store={store}><AnswerTest/></Provider>
 				return(
 						<div key={index}>
 								<Route path={item.link} component={mysubject}/>
 								<Route path={testLink} component={testpage}/>
+								<Route path={testAnswer} component={answertest}/>
 								<Route path={SinglTaskLink} component={singletask}/>
 								<Route path={RandomTaskLink} component={randomtask}/>
 						  </div>
