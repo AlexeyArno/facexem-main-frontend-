@@ -15,6 +15,7 @@ constructor(props) {
 		  }
 
 		  componentWillMount=()=>{
+
 		  	if(!this.props.value){
 		  	this.props.data.content.map(function(item, index){
 		  			var data ={
@@ -26,7 +27,9 @@ constructor(props) {
 					this.setState({
 						answer
 					})
-				  	this.props.answer('check_create', data, this.props.index)
+					if(!this.props.unchangeble){
+				  		this.props.answer('check_create', data, this.props.index)
+					 }
 		 		 }.bind(this)
 		  	)
 			  }else{
@@ -46,6 +49,17 @@ constructor(props) {
 		  getBoxes=(content)=>{
 		  	return(
 		  		content.map(function(item, index){
+		  			if(this.props.unchangeble){
+		  				return (
+		  					 <Checkbox
+		  				   	key={index}
+		  				   	checked={this.state.answer[index]}
+						    label={item.content}
+						    checkedIcon={<ToggleCheckBox/>}
+						    iconStyle={{fill: '#4285f4'}}
+						    style={{ padding: 16, paddingLeft: 0}}
+						    />)
+		  			}
 		  			return(
 
 		  				   <Checkbox
@@ -72,7 +86,6 @@ render(){
 		if(this.props.data.size === 'half'){
 			name = 'col-md-6 col-xs-12 	col-sm-6 col-lg-6'
 		}
-
 	var checks = this.getBoxes(this.props.data.content)
 	return(<div className={name}>
 				{checks}

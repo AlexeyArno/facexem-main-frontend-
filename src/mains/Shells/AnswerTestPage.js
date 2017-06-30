@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import AnswerMainPaper from '../AnswerTest/main.js'
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group'; // ES6
+
 class AnswerTest extends Component{
 
 constructor(props) {
@@ -59,9 +61,16 @@ render(){
 	if(this.state.data === 0){
 		return(<div>Загрузка...</div>)
 	}
-	return(<div style={{maxWidth: 700, margin: 'auto',marginTop: 60}} id="nowpage">
-				<AnswerMainPaper data={this.state.data} />
-			</div>
+	const {token} = this.props.user
+	return(
+			<ReactCSSTransitionGroup
+				 transitionName="opacity"
+	               transitionAppear={true} transitionAppearTimeout={800}
+	               transitionEnter={false} transitionLeave={false}>
+				<div style={{maxWidth: 700, margin: 'auto',marginTop: 60}} id="nowpage">
+					<AnswerMainPaper data={this.state.data} token={token}/>
+				</div>
+			</ReactCSSTransitionGroup>
 
 		
 

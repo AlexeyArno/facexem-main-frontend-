@@ -14,6 +14,7 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import ContentRemove from 'material-ui/svg-icons/content/remove'
 import ContentAdd from 'material-ui/svg-icons/content/add'
 import NavigationMoreHoriz from 'material-ui/svg-icons/navigation/more-horiz'
+import VariantStatistic from './statistics/variants.js'
 
 
 export default class Variants extends Component{
@@ -231,7 +232,7 @@ export default class Variants extends Component{
 				          style={{maxHeight: 500}}
 				        >	
 				        <IconButton onClick={this.statistic} style={closeStyle}><Close color='rgb(33, 150, 243)'/></IconButton>
-				        	<div style={{height: 300}}></div>
+				        	<VariantStatistic data={this.props.test_info}/>
 				 </Dialog>
 
 

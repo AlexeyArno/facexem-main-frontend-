@@ -13,7 +13,7 @@ export default class MenuUp extends Component{
 
 render(){
 	var data = this.props.data[0]
-	 var photo = data.photo
+    var photo = data.photo
     var bg = data.background
     var name = data.name
     var city = data.city
@@ -22,6 +22,7 @@ render(){
       backgroundImage: 'url(/avatars/' + photo + ')',
       width: 60,
       height: 60,
+      backgroundColor: 'rgba(0,0,0,0)',
       margin: 15,
       marginTop: 0,
       backgroundSize: '100%'  ,

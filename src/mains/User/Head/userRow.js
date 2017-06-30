@@ -15,6 +15,7 @@ import FloatingActionButton from 'material-ui/FloatingActionButton';
 
 
 import ActionSettings from 'material-ui/svg-icons/action/settings'
+import EditorModeEdit from 'material-ui/svg-icons/editor/mode-edit'
 
 export default class UserRow extends Component{
 			constructor(props) {
@@ -47,7 +48,7 @@ export default class UserRow extends Component{
 			  	var name = this.doc('nameContent').value
 			  	var city = this.doc('cityContent').value
 			  	var history = this.doc('bioInput').value
-			  	var body =  JSON.stringify({token: this.state.token, name: name, city: city, about: history})  
+			  	var body =  JSON.stringify({token: this.props.token, name: name, city: city, about: history})  
 				var xhr  = new XMLHttpRequest();   
 				xhr .open('POST', 'http://127.0.0.1:9999/api/user/set_page_info', true);
 				xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");  
@@ -132,7 +133,7 @@ export default class UserRow extends Component{
 							<UserInfo  data={this.state.data}/>
 							<FloatingActionButton onClick={this.someFuncBest} style={{float: "right", marginRight: 16, marginTop: -16}}
 												 backgroundColor="rgb(33, 150, 243)" className="buttonMenuUser" mini={true}>
-								<ActionSettings />
+								<EditorModeEdit />
 							</FloatingActionButton>
 
 
@@ -157,7 +158,7 @@ export default class UserRow extends Component{
 					  autoScrollBodyContent={true}
 					>	
 					<IconButton onClick={this.closeBest} style={closeStyle}><Close color='rgb(33, 150, 243)'/></IconButton>
-						<Change data={this.state.data} color='rgb(33, 150, 243)' token={this.state.token}/>
+						<Change data={this.state.data} color='rgb(33, 150, 243)' token={this.props.token}/>
 					</Dialog>
 
 					</ReactCSSTransitionGroup>

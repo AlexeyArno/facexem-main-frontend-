@@ -5,7 +5,7 @@ import TextField from 'material-ui/TextField';
 
 
 //SELF MADE MODULES
-import Achievs from './achievs.js'
+// import Achievs from './achievs.js'
 
 
 export default class Main extends Component{
@@ -42,7 +42,7 @@ render(){
 				<TextField
 					id='nameContent'
 			        defaultValue={this.state.name}
-			        floatingLabelText="Ваше Имя"
+			        floatingLabelText="Ваше Имя / Никнейм"
 			        floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
 			        underlineFocusStyle={styles.underlineStyle}
 			        onChange={(event: object, newValue: string)=>
@@ -83,7 +83,6 @@ render(){
 			    <div className="characterCounter">
 			    	<div id='countElem'>{this.state.about.length}</div>/256</div>
 			    <br />
-			    <Achievs achievements={achievs}/>
 			</div>
 
 		
@@ -95,3 +94,5 @@ render(){
 
 
 }
+
+			    // <Achievs achievements={achievs}/>

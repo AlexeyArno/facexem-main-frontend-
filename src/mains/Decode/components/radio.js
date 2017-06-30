@@ -14,6 +14,9 @@ constructor(props) {
 		  }
 
 		  answer=(value)=>{
+		  	if(this.props.unchangeble){
+		  		return 0
+		  	}
 		  	this.props.answer('radio', value, this.props.index)
 		  }
 
@@ -27,6 +30,7 @@ constructor(props) {
 
 		  				   <RadioButton
 		  				   	key={index}
+		  				   	disabled={this.props.unchangeble}
 						    label={item.content}
 						    checkedIcon={<ToggleRadioButtonChecked/>}
 						    iconStyle={{fill: '#4285f4'}}
@@ -36,7 +40,7 @@ constructor(props) {
 
 		  				)
 
-		  		})
+		  		}.bind(this))
 
 
 		  		)
@@ -57,7 +61,7 @@ render(){
 	var defaultCh=(this.props.value)? this.props.value-1: ''
 	return(<div className={name}>
 				 <RadioButtonGroup name={String(this.props.data.id)} defaultSelected={defaultCh} 
-				 			onChange={(e, v)=>this.answer(v+1)}>
+				 					onChange={(e, v)=>this.answer(v+1)}>
 					{checks}
 				</RadioButtonGroup>
 			</div>)

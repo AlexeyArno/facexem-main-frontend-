@@ -31,9 +31,9 @@ export default class MenuContent extends Component{
 					});
 	}
 
-	openachievs=()=>{
-		this.props.achievs()
-	}
+	// openachievs=()=>{
+	// 	this.props.achievs()
+	// }
 
 	settings=()=>{
 		this.props.settings()
@@ -63,7 +63,6 @@ render(){
 	var color = '#b7b7b7'
 	return(<div>
 			<MenuItem primaryText="Моя Страница" onClick={()=>this.clickOnItem('mypage')} leftIcon={<ActionHome style={icon_style} color={color}/>}/>
-			<MenuItem onClick={()=>this.openachievs()} primaryText="Достижения" leftIcon={<ActionStars style={icon_style} color={color}/>}/>
 			<MenuItem onClick={()=>this.settings()} primaryText="Настройки" leftIcon={<ActionSettings style={icon_style} color={color}/>}/>
 			{addItems}
 			{subjects}
@@ -88,3 +87,5 @@ render(){
 MenuContent.contextTypes	=	{		
 	router:	PropTypes.object.isRequired 
 }
+
+			// <MenuItem onClick={()=>this.openachievs()} primaryText="Достижения" leftIcon={<ActionStars style={icon_style} color={color}/>}/>

@@ -12,7 +12,7 @@ import SocialPerson from 'material-ui/svg-icons/social/person'
 
 // CUSTOM MODULES
 import UserMenu from './menu.js'
-import Achievs from './achievs.js'
+// import Achievs from './achievs.js'
 import Settings from './settings.js'
 
 export default class Header extends Component{
@@ -154,22 +154,9 @@ render(){
 		          onRequestChange={() => this.menu_close()}
 		        >
 		          <UserMenu data={this.props.usermenu} subjects={this.props.subjects} 
-		           achievs={this.achievs} close={this.menu_close} settings={this.settings}/>
+		            close={this.menu_close} settings={this.settings}/>
 		        </Drawer>
-		        <Dialog
-				 	open={this.state.achievs}
-		 			title="Достижения"
-				    contentStyle={{padding: 0}}
-					onRequestClose={this.achievs}
-				    contentLabel="Modal"
-				     task={true}
-				    contentStyle={{maxWidth: 900, width: "90%"}}
-				    autoScrollBodyContent={true}
-				  	titleStyle={{color: color_achiev}}
-					>
-					<IconButton onClick={this.achievs} style={closeStyle}><Close color={color_achiev}/></IconButton>
-					<Achievs token={this.props.token} color={color_sett}/>
-				</Dialog>
+		        
 				<Dialog
 				 	open={this.state.settings}
 		 			title="Настройки"
@@ -202,3 +189,19 @@ render(){
 Header.contextTypes	=	{		
 	router:	PropTypes.object.isRequired 
 }
+
+
+// <Dialog
+// 				 	open={this.state.achievs}
+// 		 			title="Достижения"
+// 				    contentStyle={{padding: 0}}
+// 					onRequestClose={this.achievs}
+// 				    contentLabel="Modal"
+// 				     task={true}
+// 				    contentStyle={{maxWidth: 900, width: "90%"}}
+// 				    autoScrollBodyContent={true}
+// 				  	titleStyle={{color: color_achiev}}
+// 					>
+// 					<IconButton onClick={this.achievs} style={closeStyle}><Close color={color_achiev}/></IconButton>
+// 					<Achievs token={this.props.token} color={color_sett}/>
+// 				</Dialog>

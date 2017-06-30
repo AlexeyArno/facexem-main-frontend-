@@ -14,7 +14,7 @@ constructor(props) {
 		  }
 
 		  getPoints=(count, need, h_count, h_need)=>{
-		  	var procent=Math.floor(count/need)
+		  	var procent=count/need
 		  	var color='#f27a74'
 		  	if(procent>=0.4 && procent<=0.7){
 		  		color = '#f1e773'
@@ -60,7 +60,9 @@ constructor(props) {
 
 		  getTime=(sec)=>{
 		  	var seconds = sec%60
+		  	seconds = (seconds<10)? '0'+seconds: seconds
 		  	var minutes = Math.floor(sec/60)
+		  	minutes = (minutes<10)? '0'+minutes: minutes
 		  	var hours = Math.floor(sec/3600)
 		  	return <div style={{display: "inline-block", textAlign: 'center', marginTop: 10}} className="col-xs-12 col-sm-6">
 		  				<div style={{fontSize: 30, color: 'rgb(115, 135, 156)'}}>{hours+':'+minutes+':'+seconds}</div>
@@ -70,19 +72,17 @@ constructor(props) {
 
 render(){
 	var data =this.props.data
+	console.log(data)
 	var points = this.getPoints(data.count, data.need_count, data.hundred_value, data.need_hundred_value)
 	var time = this.getTime(data.time)
 	var up = (data.solve)? {label: 'Зачет!','img':'/checked.svg'} : {label: 'Незачет!','img':'/cancel.svg'}
 	return(<div >
 				<div>
 					
-						<div style={{textAlign: 'center', minHeight: 60}}>
+						<div style={{textAlign: 'center', minHeight: 60, marginBottom: 10}}>
 							<img src={up.img} style={{width: 60}}/>
 						</div>
-						<div  style={{textAlign: 'center', color: "rgb(115, 135, 156)",
-										 fontSize: 18, margin: 10}} id='answerLabel'>
-							{up.label}
-						</div>
+			
 				</div>
 				<hr/>
 				{points}

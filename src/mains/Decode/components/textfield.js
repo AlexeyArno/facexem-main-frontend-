@@ -24,6 +24,9 @@ constructor(props) {
 
 
 render(){
+	if(this.props.unchangeble){
+		return <p>{this.props.value[this.props.index]}</p>
+	}
 		var name = 'col-md-12'
 		if(this.props.data.size === 'half'){
 			name = 'col-md-6'

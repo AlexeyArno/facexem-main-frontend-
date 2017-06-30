@@ -6,13 +6,22 @@ export default class Last extends Component{
 
 	 handllink=(name)=>{
 			this.context.router.push({
-			  pathname: '/'+name
+			  pathname: name
 			});
 					
 	 }
 
 render(){
 	var lasts = this.props.data.map(function(item, index){
+		if(item.link){
+			return(
+			<div key={index} className="lineChange" onClick={()=>this.handllink(item.link)}>
+				<img src={item.img} className='imgLast'/>
+				<div className='textLast'>{item.text}</div>
+			</div>
+
+			)
+		}
 		return(
 			<div key={index} className="lineChange" >
 				<img src={item.img} className='imgLast'/>
@@ -20,7 +29,7 @@ render(){
 			</div>
 
 			)
-	})
+	}.bind(this))
 	return(
 
 		<div className="col-xs-12 col-sm-4 paper">

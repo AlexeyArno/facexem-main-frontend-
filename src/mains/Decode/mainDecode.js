@@ -36,11 +36,11 @@ render(){
 			case 'list':
 				return(<ListWorkWindow  data={item} />)
 			case 'check':
-				return(<Check  data={item} answer={this.answer} index={this.props.index} value={this.props.value}/>)
+				return(<Check  data={item} answer={this.answer} index={this.props.index} value={this.props.value} unchangeble={this.props.unchangeble}/>)
 			case 'radio':
-				return(<Radio  data={item} answer={this.answer} index={this.props.index} value={this.props.value}/>)
+				return(<Radio  data={item} answer={this.answer} index={this.props.index} value={this.props.value} unchangeble={this.props.unchangeble}/>)
 			case 'field':
-				return(<TextFieldAnswer  data={item} answer={this.answer} index={this.props.index} value={this.props.value}/>)
+				return(<TextFieldAnswer  data={item} answer={this.answer} index={this.props.index} value={this.props.value} unchangeble={this.props.unchangeble}/>)
 			default:
 				return <div>Some failed!!!</div>
 		}

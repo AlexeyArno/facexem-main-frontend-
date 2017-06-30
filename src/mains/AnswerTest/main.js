@@ -12,12 +12,13 @@ constructor(props) {
 		    };
 		  }
 
+
 render(){
 	console.log(this.props.data)
-	return(<div style={{display: 'grid'}}>
+	return(<div >
 				<Paper style={{margin: 12, padding: 15}} zDepth={1} >
 					<UpPanel data={this.props.data.main}/>
-					<MainPanel data={this.props.data.detail}/>
+					<MainPanel data={this.props.data.detail} token={this.props.token}/>
 				</Paper>
 			</div>
 

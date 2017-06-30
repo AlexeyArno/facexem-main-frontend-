@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 // import ContentTask from '../Task/Content.js'
 import TestTask from './testTask.js'
 import Paper from 'material-ui/Paper';
@@ -40,8 +40,22 @@ export default class TestBody extends Component{
 	}
 
 
+	goToAnswer = (codename, number)=>{
+		this.context.router.push({
+				 pathname: '/'+codename+'/mytest/'+number
+			});
+	}
+
+
 	componentWillMount=()=>{
 		var answer = []
+		//gloabal answer has next struct [ - test level
+                // 							[ - number level
+                // 								[ - page user answers level
+                // 									0 | '' | false,true,false;
+                // 								]
+                // 							]
+                // 						]
 		var ids = this.props.data.map(function(item, index){
 			answer.push([])
 			return item.id
@@ -79,7 +93,7 @@ export default class TestBody extends Component{
 				var data = JSON.parse(xmlhttp.responseText)
 				if (data.result !== 'Error' ){
 						this.setState({type: 'answer'})
-						
+						this.goToAnswer(codename, data)
 					}
 			}
 		}.bind(this) 
@@ -122,4 +136,6 @@ export default class TestBody extends Component{
 	}
 }
 
-	
+TestBody.contextTypes	=	{
+	router:	PropTypes.object.isRequired
+}
