@@ -38,6 +38,10 @@ export default class MenuContent extends Component{
 	settings=()=>{
 		this.props.settings()
 	}
+	issue=()=>{
+		this.props.issue()
+	}
+
 
 
 	getAdditionalItems = ()=>{
@@ -70,7 +74,7 @@ render(){
 			<MenuItem onClick={()=>this.clickOnItem('mypage')} primaryText="Помощь" leftIcon={<Help style={icon_style} color={color}/>}/>
 			<MenuItem onClick={()=>this.clickOnItem('mypage')} primaryText="Сообщество" leftIcon={<ActionQuestionAnswer style={icon_style} color={color}/>}/>
 			<MenuItem onClick={()=>this.clickOnItem('mypage')} primaryText="О нас" leftIcon={<Streetview style={icon_style} color={color}/>}/>
-			<MenuItem onClick={()=>this.clickOnItem('mypage')} primaryText="Ошибка?" leftIcon={<Whatshot style={icon_style} color={color}/>}/>
+			<MenuItem onClick={()=>this.issue()} primaryText="Ошибка?" leftIcon={<Whatshot style={icon_style} color={color}/>}/>
 		</div>
 
 		

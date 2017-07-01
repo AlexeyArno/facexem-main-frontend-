@@ -23,6 +23,11 @@ export default class UserMenu extends Component{
 		  	this.props.settings()
 		  }
 
+		   issue = () =>{
+
+		  	this.props.issue()
+		  }
+
 
 render(){
 
@@ -32,7 +37,7 @@ render(){
 		<MenuUp data={this.props.data}/>
 		<Divider className="DividerMenu" />
 		<MenuContent data={this.props.data} subjects={this.props.subjects} achievs={this.achievs}
-		close={this.props.close} settings={this.settings}/>
+		close={this.props.close} settings={this.settings} issue={this.issue}/>
 
 	</div>
 

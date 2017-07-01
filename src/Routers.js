@@ -53,7 +53,8 @@ class RoutersApp extends Component{
 
 
 				const NewHeader = (props) => <div>
-						<Header usermenu={Data.usermenu} subjects={Data.subjects} token={token}/>
+						<Header usermenu={Data.usermenu} subjects={Data.subjects}
+						 token={token} reload={this.props.reload}/>
 						 	{props.children}
 						</div>;
 

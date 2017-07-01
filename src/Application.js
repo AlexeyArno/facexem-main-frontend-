@@ -2,6 +2,7 @@ import React, { Component} from 'react';
 import NotFound from './mains/Shells/NotFound.jsx';
 // import AuthorPage from './mains/Shells/AuthorPage.js'
 import CircularProgress from 'material-ui/CircularProgress';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group'; // ES6
 
 import RoutersApp from './Routers.js'
 
@@ -29,7 +30,8 @@ class Application extends Component{
 		    this.state = {
 		    	open: false,
 		    	error: 0,
-		    	fulldata: 0
+		    	fulldata: 0,
+		    	key: Math.random()
 		    };
 		  }
 
@@ -83,10 +85,18 @@ class Application extends Component{
 			if (data.result !== 'Error' ){
 				this.setDataInRedux(data)
 				this.setState({fulldata: data})
-				// return(request)
 			}
 			}
 			
+	}
+
+	reload=(data)=>{
+		var o_data = this.state.fulldata
+		o_data.info[0].name = data.name
+		this.setDataInRedux(o_data)
+		this.setState({
+			fulldata: o_data
+		})
 	}
 
 
@@ -110,9 +120,12 @@ class Application extends Component{
 				</div>
 				)
 		}else{
-		return(<div>
-					<RoutersApp store={this.props.store} setDataInRedux={this.setDataInRedux} setTestDataInRedux={this.setTestDataInRedux}/>
-				</div>)
+		return(
+					<div>
+						<RoutersApp store={this.props.store} setDataInRedux={this.setDataInRedux}
+						 setTestDataInRedux={this.setTestDataInRedux} reload={this.reload} key={this.state.key}/>
+					</div>
+				)
 		}
 		
 

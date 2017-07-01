@@ -45,10 +45,10 @@ export default class UserRow extends Component{
 
 			  // THIS ELEMENTS IS IN CONTENTCHANGE, OK?
 			  save=()=>{
-			  	var name = this.doc('nameContent').value
+			  	// var name = this.doc('nameContent').value
 			  	var city = this.doc('cityContent').value
 			  	var history = this.doc('bioInput').value
-			  	var body =  JSON.stringify({token: this.props.token, name: name, city: city, about: history})  
+			  	var body =  JSON.stringify({token: this.props.token, city: city, about: history})  
 				var xhr  = new XMLHttpRequest();   
 				xhr .open('POST', 'http://127.0.0.1:9999/api/user/set_page_info', true);
 				xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");  
@@ -60,7 +60,7 @@ export default class UserRow extends Component{
 					    } else {
 					      this.closeBest()
 					      var data = this.state.data
-					      data.name = name
+					      // data.name = name
 					      data.city = city
 					      data.about = history
 					      this.setState({

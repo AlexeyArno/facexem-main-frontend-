@@ -14,6 +14,7 @@ import SocialPerson from 'material-ui/svg-icons/social/person'
 import UserMenu from './menu.js'
 // import Achievs from './achievs.js'
 import Settings from './settings.js'
+import Issue from './issue.js'
 
 export default class Header extends Component{
 
@@ -22,7 +23,9 @@ constructor(props) {
 		    this.state = {
 		    	menu: false,
 		    	achievs: false,
-		    	settings: false
+		    	settings: false,
+		    	issue: false,
+		    	windows: {achievs: false, settings: false, issue: false}
 		    };
 		  }
 		   handllink=(name)=>{
@@ -43,6 +46,26 @@ constructor(props) {
 		  	this.setState({
 		  		menu: false
 		  	})
+		  }
+
+		  blurControll=(bool)=>{
+		  	if(bool){
+		  		document.getElementById('root').style.filter = 'blur(0px)'
+		  	}else{
+		  		document.getElementById('root').style.filter = 'blur(2px)'
+		  	}
+		  }
+
+		  windowController=(type)=>{
+		  	this.menu_close()
+		  	var data = this.state.windows
+		  	console.log(data)
+		  	this.blurControll(data[type])
+		  	data[type] = !data[type]
+		  	this.setState({
+		  		windows: data
+		  	})
+
 		  }
 
 
@@ -69,6 +92,8 @@ constructor(props) {
 		  		achievs: !this.state.achievs
 		  	})
 		  }
+
+
 		  getUrlhData = ()=>{
 		  	// function that decode "/math/singletask/4" to "math", "singletask", "4"
 		  	var body = window.location.pathname
@@ -129,6 +154,7 @@ render(){
 	document.title = (title!=='Facexem')? title+' | Facexem': title
 	var color_achiev = 'rgb(33, 150, 243)'
 	var color_sett = '#7bc6cc'
+	var color_issue = '#ff9f89'
 	var icon_right = <div/>
 	if(data_header.type === 'randomtask' || data_header.type === "singletask" || data_header.type === 'test'){
 		icon_right = <IconButton onClick={()=>this.handllink(data_header.subject)} tooltip="Вернуться"><ContentReply/></IconButton>
@@ -154,21 +180,42 @@ render(){
 		          onRequestChange={() => this.menu_close()}
 		        >
 		          <UserMenu data={this.props.usermenu} subjects={this.props.subjects} 
-		            close={this.menu_close} settings={this.settings}/>
+		            close={this.menu_close} settings={()=>this.windowController('settings')}
+		            issue={()=>this.windowController('issue')}/>
 		        </Drawer>
 		        
 				<Dialog
-				 	open={this.state.settings}
+				 	open={this.state.windows.settings}
 		 			title="Настройки"
 				    contentStyle={{padding: 0}}
-					onRequestClose={this.settings}
+					onRequestClose={()=>this.windowController('settings')}
 				    contentLabel="Modal"
-				    contentStyle={{maxWidth:500}}
+				    contentStyle={{maxWidth:500, width: "90%"}}
 				    autoScrollBodyContent={true}
 				  	titleStyle={{color: color_sett}}
 					>
-					<IconButton onClick={this.settings} style={closeStyle}><Close color={color_sett}/></IconButton>
-					<Settings token={this.props.token} color={color_sett}/>
+					<IconButton onClick={()=>this.windowController('settings')} style={closeStyle}>
+						<Close color={color_sett}/>
+					</IconButton>
+					<Settings token={this.props.token} color={color_sett} 
+								close={()=>this.windowController('settings')} reload={this.props.reload}/>
+				</Dialog>
+				<Dialog
+				 	open={this.state.windows.issue}
+		 			title="Ошибка?"
+		 			modal={true}
+				    contentStyle={{padding: 0}}
+					onRequestClose={()=>this.windowController('issue')}
+				    contentLabel="Modal"
+				    contentStyle={{maxWidth:500, width: "90%"}}
+				    autoScrollBodyContent={true}
+				  	titleStyle={{color: color_issue}}
+					>
+					<IconButton onClick={()=>this.windowController('issue')} style={closeStyle}>
+						<Close color={color_issue}/>
+					</IconButton>
+					<Issue token={this.props.token} color={color_issue} 
+							close={()=>this.windowController('issue')}/>
 				</Dialog>
 
 

@@ -13,7 +13,6 @@ export default class Main extends Component{
 constructor(props) {
 		    super(props);
 		    this.state = {
-		    	name: this.props.person.name,
 		    	city: this.props.person.city,
 		    	about: this.props.person.about 
 		    };
@@ -39,20 +38,7 @@ render(){
 				  }
 				};
 	return(<div>
-				<TextField
-					id='nameContent'
-			        defaultValue={this.state.name}
-			        floatingLabelText="Ваше Имя / Никнейм"
-			        floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
-			        underlineFocusStyle={styles.underlineStyle}
-			        onChange={(event: object, newValue: string)=>
-			        	this.chnageCount('name', newValue)}
-			        maxLength="30"
-			        fullWidth={true}
-			    /><br />
-			    <div className="characterCounter">
-			    	<div id='countElem'>{this.state.name.length}</div>/30</div>
-			    <br />
+
 			    <TextField
 			    	id='cityContent'
 			        defaultValue={this.state.city}
