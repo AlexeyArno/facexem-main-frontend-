@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import HardwareKeyboardArrowLeft from 'material-ui/svg-icons/hardware/keyboard-arrow-left'
 import HardwareKeyboardArrowRight from 'material-ui/svg-icons/hardware/keyboard-arrow-right'
 import IconButton from 'material-ui/IconButton';
+import ActionDoneAll from 'material-ui/svg-icons/action/done-all' 
+import ActionThumbDown from 'material-ui/svg-icons/action/thumb-down'
 
 
 export default class UpPanel extends Component{
@@ -41,13 +43,13 @@ constructor(props) {
 			  					<div style={{width: 140, display: "inline-block", textAlign: 'center'}}>
 			  						<div style={{color, display: 'inline-block', fontSize: 30}}>{count}</div>
 			  						<div style={{display: 'inline-block', fontSize: 30, opacity: 0.4}}>/</div>
-			  						<div style={{color: '#33ce4a', display: 'inline-block', fontSize: 30}}>{need}</div>
+			  						<div style={{ color, display: 'inline-block', fontSize: 30}}>{need}</div>
 			  						<div style={{fontSize: 14, color: 'rgb(115, 135, 156)'}}>Первичные балы</div>
 			  					</div>
 			  					<div style={{width: 140, display: "inline-block", textAlign: 'center'}}>
 			  						<div style={{color, display: 'inline-block', fontSize: 30}}>{Math.floor(h_count)}</div>
 			  						<div style={{display: 'inline-block', fontSize: 30, opacity: 0.4}}>/</div>
-			  						<div style={{color: '#33ce4a', display: 'inline-block', fontSize: 30}}>{Math.floor(h_need)}</div>
+			  						<div style={{color, display: 'inline-block', fontSize: 30}}>{Math.floor(h_need)}</div>
 			  						<div style={{fontSize: 14, color: 'rgb(115, 135, 156)'}}>Вторичные балы</div>
 			  					</div>
 		  					</div>
@@ -72,15 +74,18 @@ constructor(props) {
 
 render(){
 	var data =this.props.data
-	console.log(data)
 	var points = this.getPoints(data.count, data.need_count, data.hundred_value, data.need_hundred_value)
 	var time = this.getTime(data.time)
-	var up = (data.solve)? {label: 'Зачет!','img':'/checked.svg'} : {label: 'Незачет!','img':'/cancel.svg'}
+	const style={
+		width: 60,
+		height: 60
+	}
+	var up = (data.solve)? <ActionDoneAll color='#33ce4a' style={style}/> :<ActionThumbDown color='#f27a74' style={style}/>
 	return(<div >
 				<div>
 					
 						<div style={{textAlign: 'center', minHeight: 60, marginBottom: 10}}>
-							<img src={up.img} style={{width: 60}}/>
+							{up}
 						</div>
 			
 				</div>

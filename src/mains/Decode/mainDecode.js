@@ -8,6 +8,8 @@ import ListWorkWindow from './components/list.js'
 import Check from './components/check.js'
 import Radio from './components/radio.js'
 import TextFieldAnswer from './components/textfield.js'
+import Table from './components/table.js'
+import FewFields from './components/few-fields.js'
 
 export default class MainDecodeWorkDisplay extends Component{
 
@@ -41,6 +43,10 @@ render(){
 				return(<Radio  data={item} answer={this.answer} index={this.props.index} value={this.props.value} unchangeble={this.props.unchangeble}/>)
 			case 'field':
 				return(<TextFieldAnswer  data={item} answer={this.answer} index={this.props.index} value={this.props.value} unchangeble={this.props.unchangeble}/>)
+			case 'table':
+				return(<Table  data={item} />)
+			case 'few-fields':
+				return(<FewFields data={item} answer={this.answer} index={this.props.index} value={this.props.value} unchangeble={this.props.unchangeble}/>)
 			default:
 				return <div>Some failed!!!</div>
 		}

@@ -63,8 +63,7 @@ class Application extends Component{
 			xmlhttp.send(null);  
 			if(xmlhttp.status === 200) {
 			var request = JSON.parse(xmlhttp.responseText)
-			request ="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJwdWJsaWMiOiI3NzM4MmMwMTBhZDlmMjZmNzhhMzQ5OTA4MTZjN2M2ZTE1M2E0ZDVlIiwiZXhwIjoxNTAxMTQ2ODY5fQ.jahLIuBWOFZxB9hHDCqmK5CcWEgHv161ERVnZJWJvC8"
-
+			request ="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJwdWJsaWMiOiIxZGU2NDA4N2E3ZWQ5ZWQxZmRhZmQ1ZDk1MGU0YTBlOWU5MTdmZjBmIiwiZXhwIjoxNTAyMDI2OTM5fQ.K2CUltNu9T4nXpsZZA5dtzY12Gj2AnMyALDZrgcJ__g"
 				if (!request.result){
 					this.setTokenInRedux(request)
 					return(request)
@@ -78,7 +77,6 @@ class Application extends Component{
 			var xmlhttp = new XMLHttpRequest()
 			var body =  JSON.stringify({token: token})  
 			xmlhttp.open('POST', 'http://127.0.0.1:9999/api/user/get_mypage', false);
-			xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
 			xmlhttp.send(body);  
 			if(xmlhttp.status === 200) {
 			var data = JSON.parse(xmlhttp.responseText)
@@ -116,7 +114,7 @@ class Application extends Component{
 		if (this.state.fulldata === 0) {
 			return(<div style={style} >
 
-					<CircularProgress size={40} thickness={5} mode={'indeterminate'} color='#2196F3'/>
+					<CircularProgress size={40} thickness={3} mode={'indeterminate'} color='#2196F3'/>
 				</div>
 				)
 		}else{

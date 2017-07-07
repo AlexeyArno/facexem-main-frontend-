@@ -60,11 +60,11 @@ export default class Tasks extends Component{
 		 }
 
 	 dialog=()=>{
-	 	if(this.state.dialog){
-		 		document.getElementById('root').style.filter = 'blur(0px)'
-		 	}else{
-		 		document.getElementById('root').style.filter = 'blur(2px)'
-		 	}
+	 	// if(this.state.dialog){
+		 // 		document.getElementById('root').style.filter = ''
+		 // 	}else{
+		 // 		document.getElementById('root').style.filter = 'blur(2px)'
+		 // 	}
 		 	this.setState({dialog: !this.state.dialog})
 		 }
 

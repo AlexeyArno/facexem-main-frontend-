@@ -56,6 +56,7 @@ constructor(props) {
 
 
 		  send=()=>{
+		  	if(this.state.content.length ===0){return}
 		  	this.setState({send: 1})
 		  	var xmlhttp = new XMLHttpRequest()
 		  	var page = window.location.pathname

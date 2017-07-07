@@ -48,7 +48,6 @@ constructor(props) {
 
 render(){
 	var spin = this.getTimeSpin()
-	console.log(this.props.data)
 	return(<div style={{padding: 15, paddingTop: 10}}>
 			<div style={{float: 'left', paddingTop: 10}}>
 				<div style={{fontSize: 21}}>Ваш бал равен</div>

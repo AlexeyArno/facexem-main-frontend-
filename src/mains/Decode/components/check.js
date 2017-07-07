@@ -15,7 +15,6 @@ constructor(props) {
 		  }
 
 		  componentWillMount=()=>{
-
 		  	if(!this.props.value){
 		  	this.props.data.content.map(function(item, index){
 		  			var data ={

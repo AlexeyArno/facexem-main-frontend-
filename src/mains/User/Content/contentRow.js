@@ -20,11 +20,11 @@ export default class Subjects extends Component{
 		 	}else{
 		 		this.setState({value: 0})
 		 	}
-		 	document.getElementById('userPagecomponents').style.filter = "blur(2px)"
+		 	// document.getElementById('userPagecomponents').style.filter = "blur(2px)"
 		 }
 		 endTrans=()=>{
 
-		 	document.getElementById('userPagecomponents').style.filter = "blur(0px)"
+		 	// document.getElementById('userPagecomponents').style.filter = "blur(0px)"
 		 }
 		 getMenu=()=>{
 		 	var style_active={
@@ -80,7 +80,7 @@ export default class Subjects extends Component{
 				  					swipeOptions={{continuous: false, startSlide: this.state.value,
 				  					speed: 600, callback: this.startTrans, transitionEnd: this.endTrans}}>
 				  		<div>
-							<Progress subjectsP={this.props.subjects}/>
+							<Progress subjects={this.props.subjects} color='rgb(33, 150, 243)'/>
 							<Preference  data={this.props.preference}/>
 							<GlobalStatic data={this.props.globalstatic}/>
 						</div>

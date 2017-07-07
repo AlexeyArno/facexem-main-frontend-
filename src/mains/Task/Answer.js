@@ -4,6 +4,8 @@ import Paper from 'material-ui/Paper';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'; // ES6
 import MainDecodeWorkDisplay from '../Decode/mainDecode.js'
 import ControlPanel from './ControlPanel.js'
+import ActionDoneAll from 'material-ui/svg-icons/action/done-all' 
+import ActionThumbDown from 'material-ui/svg-icons/action/thumb-down'
 
 export default class Answer extends Component{
 
@@ -84,14 +86,18 @@ constructor(props) {
 
 
 			getFinalAnswer=(type)=>{
-				var data = (type)? {label: 'Правильно!','img':'/checked.svg'} : {label: 'Ошибочка!','img':'/cancel.svg'}
+				const style={
+					width: 60,
+					height: 60
+				}
+				var data = (type)? {label: 'Правильно!','img':<ActionDoneAll color='#33ce4a' style={style}/>} : {label: 'Ошибочка!','img':<ActionThumbDown color='#f27a74' style={style}/>}
 				return  <div>
 							<div  style={{textAlign: 'center', color: "rgb(115, 135, 156)",
 												 fontSize: 24, margin: 10}} id='answerLabel'>
 									{data.label}
 								</div>
 								<div style={{textAlign: 'center', minHeight: 100}}>
-									<img src={data.img} style={{width: 100}}/>
+									{data.img}
 								</div>
 						</div>
 			}

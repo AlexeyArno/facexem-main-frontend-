@@ -13,7 +13,9 @@ import FlatButton from 'material-ui/FlatButton';
 import Toggle from 'material-ui/Toggle';
 import HardwareKeyboardArrowLeft from 'material-ui/svg-icons/hardware/keyboard-arrow-left'
 import HardwareKeyboardArrowRight from 'material-ui/svg-icons/hardware/keyboard-arrow-right'
-
+import FloatingActionButton from 'material-ui/FloatingActionButton';
+import HardwareKeyboardArrowUp from 'material-ui/svg-icons/hardware/keyboard-arrow-up'
+// import Links from './main-panel/links.js'
 
 export default class MainPanel extends Component{
 
@@ -23,29 +25,45 @@ constructor(props) {
 		    	key: Math.random(),
 		    	dialogSearch: false,
 		    	slide: 0,
-		    	list: false
+		    	list: false,
+		    	top: false
 		    };
 		  }
 
 		  next=()=>{
 		  	
 		  	this.refs.reactSwipe.next()
-		  	// this.setState({
-		  	// 	slide: this.refs.reactSwipe.getPos()
-		  	// })
+
 		  }
 
 		   prev=()=>{
-		   	
+		 
 		  	this.refs.reactSwipe.prev()
-		  	// this.setState({
-		  	// 	slide: this.refs.reactSwipe.getPos()
-		  	// })
 		  }
 
 		  getPos=()=>{
 		  	this.refs.reactSwipe.getPos()
 		  }
+
+		  slideTo=(i)=>{
+		  	if(!this.state.list){
+		  		this.refs.reactSwipe.slide(i)
+		  	}else{
+		  		var el=document.getElementById('taskNumber'+i).offsetTop
+		  		el.scrollIntoView(false)
+		  		// this.scrollTo(500, el)
+		  	}
+		  }
+
+
+
+
+
+
+		
+
+
+
 
 
 		  dialogSearch=()=>{
@@ -64,6 +82,39 @@ constructor(props) {
 		  	this.setState({
 		  		dialogSearch: !this.state.dialogSearch
 		  	})
+		  }
+
+
+		  
+
+
+
+
+
+
+		  scroll=(evt)=>{
+		  	var doc = document.documentElement
+			var top = (window.pageYOffset || doc.scrollTop)  - (doc.clientTop || 0)
+			if(top>=240){
+				if(this.state.top != true && this.state.list){
+					this.setState({
+						top: true
+					})
+				}
+			}else{
+				if(this.state.top != false){
+					this.setState({
+						top: false
+					})
+				}
+			}
+		  }
+
+
+		  componentDidMount=()=>{
+			 // window.addEventListener("scroll", function(e){
+			 // 	this.scroll(e)
+			 // }.bind(this));
 		  }
 
 
@@ -99,6 +150,22 @@ constructor(props) {
 		  	}.bind(this))
 		  }
 		  
+		  scrollTop=()=>{
+		  	var 	scrollDuration = 500
+		  	const   scrollHeight = window.scrollY,
+			        scrollStep = Math.PI / ( scrollDuration / 15 ),
+			        cosParameter = scrollHeight / 2;
+			var     scrollCount = 0,
+			        scrollMargin,
+			        scrollInterval = setInterval( function() {
+			            if ( window.scrollY != 0 ) {
+			                scrollCount = scrollCount + 1;  
+			                scrollMargin = cosParameter - cosParameter * Math.cos( scrollCount * scrollStep );
+			                window.scrollTo( 0, ( scrollHeight - scrollMargin ) );
+			            } 
+			            else clearInterval(scrollInterval); 
+			        }, 15 );
+		  }
 
 
 		  getTasks=()=>{
@@ -108,9 +175,10 @@ constructor(props) {
 				 		</div>
 		  	}.bind(this))
 		  }
+
 		  change=(i)=>{
 		  	this.setState({
-		  		state: i
+		  		slide: i
 		  	})
 		  }
 
@@ -139,8 +207,8 @@ render(){
 	}else{
 		var onec = 100/tasks.length
 		var width = onec*(this.state.slide+1)
-		var body = <div>
-						<ReactSwipe  ref="reactSwipe" swipeOptions={{continuous: false, 
+		var body = <div >
+						<ReactSwipe ref="reactSwipe" swipeOptions={{continuous: false, 
 							  			startSlide: this.state.slide,	speed: 600,  callback: function(index, elem) {
 							  				this.setState({
 							  					slide: index
@@ -172,31 +240,34 @@ render(){
 							{search}
 							</div>
 					</Dialog>
-
+	var buttonUp=(!this.state.list)?<div/>:<FloatingActionButton style={{position: 'fixed', bottom: 10, left: 10}} onClick={this.scrollTop}
+										 					backgroundColor="rgb(33, 150, 243)" className='UpButton'>
+									      <HardwareKeyboardArrowUp />
+									    </FloatingActionButton>				
 	return(<div>
-			{searchDialog}
-			<div >
-				<IconButton style={{}}>
-					<ActionFindInPage onClick={this.dialogSearch} color='rgb(33, 150, 243)'/>
-				</IconButton>
-				<div style={{minWidth: 160, float: "right"}}>
-					<IconButton style={{display: "inline-block"}} onClick={()=>this.setState({list: false})}>
-						<ActionViewCarousel  color={(!this.state.list)? 'rgb(33, 150, 243)':  'rgba(0,0,0,0.5)'}/>
-					</IconButton>
-					 <Toggle
-					 	defaultToggled={this.state.list}
-					 	  thumbSwitchedStyle={{backgroundColor: 'rgb(33, 150, 243)' }}
-      						trackSwitchedStyle={{backgroundColor: 'rgba(33, 150, 243, 0.5)' }}
-      						onToggle={(e, v)=>this.setState({list: v})}
-				      	style={{display: 'inline-block', maxWidth: 50, position: "relative", bottom: 5}}
-				    />
-				    <IconButton style={{display: "inline-block"}} onClick={()=>this.setState({list: true})}>
-				    	<ActionViewDay  color={(this.state.list)? 'rgb(33, 150, 243)': 'rgba(0,0,0,0.5)'}/>
-					</IconButton>
+			<div style={{width: '100%'}}>
+
+				<div style={{display:" inline-block"}}><Links data={this.props.data} changePos={this.slideTo}  top={this.state.top}/></div>
+				<div style={{display: 'inline-block', textAlign: 'right'}}>
+					<div style={{width: 300}}>
+						<IconButton style={{display: "inline-block"}} onClick={()=>this.setState({list: false})}>
+							<ActionViewCarousel  color={(!this.state.list)? 'rgb(33, 150, 243)':  'rgba(0,0,0,0.5)'}/>
+						</IconButton>
+						 <Toggle
+						 	defaultToggled={this.state.list}
+						 	  thumbSwitchedStyle={{backgroundColor: 'rgb(33, 150, 243)' }}
+	      						trackSwitchedStyle={{backgroundColor: 'rgba(33, 150, 243, 0.5)' }}
+	      						onToggle={(e, v)=>this.setState({list: v})}
+					      	style={{display: 'inline-block', maxWidth: 50, position: "relative", bottom: 5}}
+					    />
+					    <IconButton style={{display: "inline-block"}} onClick={()=>this.setState({list: true})}>
+					    	<ActionViewDay  color={(this.state.list)? 'rgb(33, 150, 243)': 'rgba(0,0,0,0.5)'}/>
+						</IconButton>
+				    </div>
 			    </div>
 			</div>
 				{body}
-			
+			{buttonUp}
 		</div>
 
 		
@@ -209,4 +280,6 @@ render(){
 
 }
 
-// <Links data={this.props.data} changePos={this.changePos} pos={this.state.pos}/>
+// <IconButton style={{}}>
+				// 	<ActionFindInPage onClick={this.dialogSearch} color='rgb(33, 150, 243)'/>
+				// </IconButton>

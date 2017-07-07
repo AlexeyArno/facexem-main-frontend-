@@ -65,37 +65,41 @@ constructor(props) {
 
 
 
-		  getTasks=()=>{
-		  	var last_task = this.props.last_task_procents
-		  	var tasks = this.processArray(this.props.task_table)
-		  	console.log(last_task)
-		  	console.log(tasks)
-		  	return tasks.map(function (item, index) {
+
+
+
+		  getThemes=()=>{
+		  	var data = this.props.data
+		  	var	themes = data.themes
+		  	var	last_themes = data.last_themes
+		  	var	last_themes_list = last_themes.map(function(item, index){
+		  			return item.name
+		  		})
+		  	return themes.map(function(item, index){
 		  		var color = '#F29F05'
 		  		if(item.color === 'red'){
 		  			color = '#E74D49'
 		  		}else if(item.color === 'green'){
 		  			color = '#89D8C2'
 		  		}
-		  		var last_num = last_task[item.num]
-		  		var icon = this.getRightIcon(item.procent*100,last_num*100)
-				return <TableRow key={index} >
+		  		var last_theme = (last_themes_list.indexOf(item.name) >=0)? last_themes[last_themes_list.indexOf(item.name)].procent:0
+		  		var icon = this.getRightIcon(item.procent*100,last_theme*100)
+		  		return <TableRow key={index} >
 			                <TableRowColumn style={{width: 20}}>
 			                	<div style={{width: 10, height: 10, background: color, borderRadius: 5,
 						     				 left: -6,top: 22, filter: 'blur(1px)'}}/>
 			                </TableRowColumn>
-			                <TableRowColumn>{item.theme}</TableRowColumn>
+			                <TableRowColumn>{item.name}</TableRowColumn>
 			                <TableRowColumn>
 			                	{Math.floor(item.procent*100)+'%'}
 			                </TableRowColumn>
 			                <TableRowColumn>{icon}</TableRowColumn>
 			              </TableRow>
-		  				
 		  	}.bind(this))
 		  }
 
 render(){
-	var tasks = this.getTasks()
+	var tasks = this.getThemes()
 	return(
 			<div>
 			<ReactCSSTransitionGroup

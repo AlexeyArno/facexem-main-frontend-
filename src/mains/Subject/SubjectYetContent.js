@@ -61,10 +61,10 @@ export default class SubjectYetContent extends Component{
 		 	}else{
 		 		this.setState({value: 0})
 		 	}
-		 	document.getElementById('bodySubjectContents').style.filter = "blur(2px)"
+		 	// document.getElementById('bodySubjectContents').style.filter = "blur(2px)"
 		 }
 		 endTrans=()=>{
-		 	document.getElementById('bodySubjectContents').style.filter = "blur(0px)"
+		 	// document.getElementById('bodySubjectContents').style.filter = "blur(0px)"
 		 }
 		 smth=(i)=>{
 		  	this.refs.reactSwipe.slide(i);

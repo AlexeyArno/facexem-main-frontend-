@@ -21,23 +21,24 @@ render(){
 	const stylePhoto = {
       backgroundImage: 'url(/avatars/' + photo + ')',
       width: 60,
+      backgroundPositionX: 4,
       height: 60,
-      backgroundColor: 'rgba(0,0,0,0)',
       margin: 15,
       marginTop: 0,
-      backgroundSize: '100%'  ,
       display: 'inline-block'   
     }
       const styleBg = {
-      backgroundImage: 'url(' + bg + ')',
-      // background: 'black',
-
+      backgroundImage: 'url(/bg/' + bg + ')',
       width: '100%',
+      backgroundSize: "250%",
       height: 100,
       paddingTop: 20,
     }
     const styleName={
       color: '#fff',
+      maxWidth: 160,
+      overflowX: "hidden", 
+      whiteSpace: "nowrap",
       display: 'inline-block',
       fontWeight: '400',
       position: 'absolute',
@@ -70,7 +71,7 @@ render(){
     }
 	
 	return(<div style= {styleBg}>
-        <Paper style={stylePhoto} zDepth={3} circle={true}></Paper>
+        <Paper style={stylePhoto} zDepth={3} circle={true} className='userAvatar'></Paper>
         <div style={styleName}>{name}</div>
         <div style={styleCity}>{city}</div>
       </div>

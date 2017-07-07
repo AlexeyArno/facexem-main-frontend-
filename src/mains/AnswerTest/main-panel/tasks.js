@@ -145,15 +145,19 @@ render(){
 			        </Dialog>
 
 
-
 	return(<ReactCSSTransitionGroup
 				 transitionName="example"
 	               transitionAppear={true} transitionAppearTimeout={350}
 	               transitionEnter={false} transitionLeave={false}>
 			{windowDialog}
 			{issueOpen}
-			<div style={{padding:5}}>
+			<div style={{padding:5, marginBottom: 15}} id={'taskNumber'+this.props.pos}>
 			<Paper style={{padding: 5,  marginTop: 10}}>
+				<div>
+					<div style={{display: 'inline-block', opacity: 0.7}}>Номер: <div style={{display: 'inline-block', color: 'rgb(33, 150, 243)'}}>{number.number}</div></div>
+					<div style={{display: 'inline-block', float: 'right', opacity: 0.7}}>{number.count}/{number.need_count}</div>
+				</div>
+				<hr/>
 				<div style={{display:'inline-block', width:" 100%"}}>
 									{mainquest}
 				</div>

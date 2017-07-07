@@ -9,7 +9,10 @@ constructor(props) {
 		    super(props);
 		    this.state = {
 		    	achievs: 0,
-		    	persondata: this.props.data
+		    	load: 0,
+		    	pics: [],
+		    	persondata: this.props.data,
+		    	backgrounds: []
 		    };
 		  }
 
@@ -25,23 +28,23 @@ constructor(props) {
 	LoadData=()=>{
 				var xmlhttp = new XMLHttpRequest()
 				var body =  JSON.stringify({token: this.props.token})  
-				xmlhttp.open('POST', 'http://127.0.0.1:9999/api/user/get_achievements', false);
+				xmlhttp.open('POST', 'http://127.0.0.1:9999/api/user/get_change_data', false);
 				xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
 				xmlhttp.send(body);  
 				if(xmlhttp.status == 200) {
 				var data = JSON.parse(xmlhttp.responseText)
 				if (data.result != 'Error' ){
-					this.setState({achievs: data})
-					// return(data)
+					this.setState({pics: data.pics,backgrounds: data.backgrounds, load: 1})
 				}
 			}
+
 			
 	}
 
 
 
 render(){
-	if(this.state.achievs === 0){
+	if(this.state.load === 0){
 		const style = {
 			margin: "auto",
 			maxWidth: '50px',
@@ -51,11 +54,12 @@ render(){
 
 		return(<div style={style} >
 
-					<CircularProgress size={40} thickness={5} mode={'indeterminate'}/>
+					<CircularProgress size={40} thickness={3} mode={'indeterminate'} color={this.props.color}/>
 				</div>)
 	}
 	return(<div>
-				<Main person={this.state.persondata} color={this.props.color} achievs={this.state.achievs}/>
+				<Main person={this.state.persondata} color={this.props.color}
+					 pics={this.state.pics} change={this.props.change} backgrounds={this.state.backgrounds}/>
 			</div>
 
 		

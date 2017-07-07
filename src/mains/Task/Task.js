@@ -41,15 +41,18 @@ constructor(props) {
 
 		  answer=(type, data, index)=>{
 		  	var answer = this.state.answer
-		  	console.log(type, data, index)
 		  	switch(type){
 		  		case 'text':
 		  			answer[index] = data
 		  			break;
+		  		case 'few-fields':
 		  		case 'check':
 		  			answer[index][data.index] = data.value
 		  			break;
 		  		case 'radio':
+		  			answer[index] = data
+		  			break;
+		  		case 'few-fields-create':
 		  			answer[index] = data
 		  			break;
 		  		case 'check_create':
@@ -60,8 +63,8 @@ constructor(props) {
 		  			this.setState({answer})
 		  			return 0;
 		  			break;
+
 		  	}
-		  	console.log(answer)
 		  	this.setState({
 		  		answer, answer_input: this.state.answer_input+1
 		  	})

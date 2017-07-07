@@ -55,7 +55,7 @@ class SubjectPage extends Component{
 
 					<div style={style} >
 
-					<CircularProgress size={40} thickness={5} mode={'indeterminate'}/>
+					<CircularProgress size={40} thickness={3} mode={'indeterminate'} color='#2196F3'/>
 				</div>
 				)
 		}

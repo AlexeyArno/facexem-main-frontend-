@@ -93,7 +93,7 @@ prev=()=>{
 
 launch=()=>{
 	if(this.state.launch){
-		 		document.getElementById('root').style.filter = 'blur(0px)'
+		 		document.getElementById('root').style.filter = ''
 		 	}else{
 		 		document.getElementById('root').style.filter = 'blur(2px)'
 		 	}

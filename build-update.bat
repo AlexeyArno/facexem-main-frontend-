@@ -1,0 +1,2 @@
+move "C:\Users\User\Desktop\Work Facexem\main-front\build\static\css\*.css" "C:\Users\User\Desktop\Work Facexem\engine\frontend\user\static\css\user.css"
+move "C:\Users\User\Desktop\Work Facexem\main-front\build\static\js\*.js" "C:\Users\User\Desktop\Work Facexem\engine\frontend\user\static\js\user.js"

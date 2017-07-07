@@ -77,24 +77,61 @@ constructor(props) {
 		  	}.bind(this))
 		  }
 
+
+
+		  getThemes=()=>{
+		  	var data = this.props.data.task_info
+		  	var last_themes = data.last_themes
+		  	var themes = data.themes
+		  	var end = (themes.length>=4)? 4: themes.length-1
+		  	themes =  themes.slice(0, end)
+		  	var last_themes_list = last_themes.map(function(item, index){
+		  		return item.name
+		  	})
+		  	return themes.map(function(item, index){
+		  		var color = '#F29F05'
+		  		if(item.color === 'red'){
+		  			color = '#E74D49'
+		  		}else if(item.color === 'green'){
+		  			color = '#89D8C2'
+		  		}
+		  		var last_theme = (last_themes_list.indexOf(item.name) >=0)? last_themes[last_themes_list.indexOf(item.name)].procent:0
+		  		var icon = this.getRightIcon(item.procent*100,last_theme*100)
+		  		return <ListItem key={index}
+		  					rightIcon={icon}
+		  					 style={{textAlign: 'left', padding: '5px', paddingLeft: 20}}
+						        primaryText={item.name}
+						        secondaryText={item.procent*100+'%'}
+						      >
+						     <div style={{width: 10, height: 10, background: color, borderRadius: 5,
+						     				 position: 'absolute', left: -6,top: 22, filter: 'blur(1px)'}}/>
+
+						    </ListItem>
+		  	}.bind(this))
+
+		  }
+
 		 statistic=()=>{
-		 	if(this.state.statistic){
-		 		document.getElementById('root').style.filter = 'blur(0px)'
-		 	}else{
-		 		document.getElementById('root').style.filter = 'blur(2px)'
-		 	}
+		 	// if(this.state.statistic){
+		 	// 	document.getElementById('root').style.filter = ''
+		 	// }else{
+		 	// 	document.getElementById('root').style.filter = 'blur(2px)'
+		 	// }
 		 	this.setState({
 		 		statistic: !this.state.statistic
 		 	})
 		 }
 
 render(){
-	var tasks = this.getTasks()
+	this.getThemes()
+	var tasks = this.getThemes()
 	const closeStyle={
 			position: 'absolute',
 			top: '18px',
 			right: '20px'
 		}
+
+	var data ={themes: this.props.data.task_info.themes, last_themes: this.props.data.task_info.last_themes}
 	return(<div className="col-xs-12 col-sm-4 paper variants">
 				<Paper className="preferencepaper variants">
 					<div className="Up">
@@ -121,7 +158,8 @@ render(){
 				          style={{maxHeight: 500}}
 				        >	
 				        <IconButton onClick={this.statistic} style={closeStyle}><Close color='rgb(33, 150, 243)'/></IconButton>
-				        	<ThemesStatic last_task_procents={this.props.data.task_info.last_task_procents} task_table={this.props.data.task_info.task_table}/>
+				        	<ThemesStatic last_task_procents={this.props.data.task_info.last_task_procents}
+				        					 task_table={this.props.data.task_info.task_table} data={data}/>
 				        </Dialog>
 			</div>)
 

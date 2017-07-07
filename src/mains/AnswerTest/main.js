@@ -14,7 +14,6 @@ constructor(props) {
 
 
 render(){
-	console.log(this.props.data)
 	return(<div >
 				<Paper style={{margin: 12, padding: 15}} zDepth={1} >
 					<UpPanel data={this.props.data.main}/>

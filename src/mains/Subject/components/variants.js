@@ -73,7 +73,7 @@ export default class Variants extends Component{
 	 }
 
 	 open=(index)=>{
-	 	document.getElementById('root').style.filter='blur(2px)'
+	 	// document.getElementById('root').style.filter='blur(2px)'
 	 	this.setState({
 	 		open: true, index, value: this.state.stories[index]
 	 	})
@@ -87,16 +87,16 @@ export default class Variants extends Component{
 	 	this.setState({
 	 		open: false
 	 	})
-	 	document.getElementById('root').style.filter='blur(0px)'
+	 	// document.getElementById('root').style.filter=''
 	 }
 
 
 	 	 statistic=()=>{
-		 	if(this.state.statistic){
-		 		document.getElementById('root').style.filter='blur(0px)'
-		 	}else{
-		 		document.getElementById('root').style.filter='blur(2px)'
-		 	}
+		 	// if(this.state.statistic){
+		 	// 	document.getElementById('root').style.filter=''
+		 	// }else{
+		 	// 	document.getElementById('root').style.filter='blur(2px)'
+		 	// }
 		 	this.setState({
 		 		statistic: !this.state.statistic
 		 	})
