@@ -8,6 +8,7 @@ import SubjectPage from './mains/Shells/SubjectPage.js';
 import NotFound from './mains/Shells/NotFound.jsx';
 import TaskPage from './mains/Shells/TaskPage.js'
 import AnswerTest from './mains/Shells/AnswerTestPage.js'
+import StTest from './mains/Shells/StTest'
 import { Provider, connect  } from 'react-redux';
 
 
@@ -20,21 +21,24 @@ class RoutersApp extends Component{
         var store = this.props.store;
         subjects = data.subjects.map(function (item, index) {
             var testLink = item.link + '/test';
+            var stTestLink = item.link + '/st-test/:id';
             var testAnswer = item.link + '/mytest/:test';
             var SinglTaskLink = item.link + '/singletask/:task';
             let RandomTaskLink = item.link + '/randomtask';
-            var mysubject = (props) => <Provider store={store}><SubjectPage
+            var mysubject = (props) => <Provider store={store}><SubjectPage 
 				setTestDataInRedux={this.props.setTestDataInRedux}/></Provider>;
-            var singletask = (props) => <Provider store={store}><TaskPage/></Provider>;
-            var randomtask = (props) => <Provider store={store}><TaskPage/></Provider>;
-            var testpage = (props) => <Provider store={store}><TestPage/></Provider>;
-            var answertest = (props) => <Provider store={store}><AnswerTest/></Provider>;
+            var singletask = (props) => <Provider store={store}><TaskPage /></Provider>;
+            var randomtask = (props) => <Provider store={store}><TaskPage /></Provider>;
+            var testpage = (props) => <Provider store={store}><TestPage /></Provider>;
+            var answertest = (props) => <Provider store={store}><AnswerTest /></Provider>;
+            var st_test = (props)=> <Provider store={store}><StTest/></Provider>
             return (
 				<div key={index}>
 					<Route path={item.link} component={mysubject}/>
 					<Route path={testLink} component={testpage}/>
 					<Route path={testAnswer} component={answertest}/>
 					<Route path={SinglTaskLink} component={singletask}/>
+					<Route path={stTestLink} component={st_test}/>
 					<Route path={RandomTaskLink} component={randomtask}/>
 				</div>
 
@@ -60,7 +64,7 @@ class RoutersApp extends Component{
 
 				const NewUser = (props) => <div>
 					 <Provider store={this.props.store}>
-						<UserPage setDataInRedux={this.props.setDataInRedux}/>
+						<UserPage setDataInRedux={this.props.setDataInRedux} />
 					 </Provider>
 				</div>;
 

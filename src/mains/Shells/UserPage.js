@@ -3,7 +3,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Whallpaper from '../User/whall.js';
 import { connect } from 'react-redux'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'; // ES6
-
+import CircularProgress from 'material-ui/CircularProgress';
 
 
 
@@ -13,23 +13,46 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group'; // ES6
 class UserPage extends Component{
 	
 	componentWillMount=()=>{
-		const { token} = this.props.user
-		var xmlhttp = new XMLHttpRequest()
-			var body =  JSON.stringify({token: token})  
-			xmlhttp.open('POST', 'http://127.0.0.1:9999/api/user/get_mypage', false);
+		this.LoadData()
+	}
+
+
+	LoadData=()=>{
+			const { token} = this.props.user
+			var xmlhttp = new XMLHttpRequest()
+			var body =  JSON.stringify({token: token})
+			xmlhttp.open('POST', 'http://127.0.0.1:9999/api/user/get_my_subject', true);
 			xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-			xmlhttp.send(body);  
-			if(xmlhttp.status == 200) {
-			var data = JSON.parse(xmlhttp.responseText)
-			if (data.result != 'Error' ){
-				this.props.setDataInRedux(data)
-			}
-			}
+			xmlhttp.send(body); 
+			xmlhttp.onreadystatechange = function() { // (3)
+			  if (xmlhttp.status === 200) {
+			  var data = JSON.parse(xmlhttp.responseText)
+				if (data.result != 'Error' ){
+					this.props.setDataInRedux(data)
+				}
+			  }
+			  if (xmlhttp.status != 200) {
+			    console.log( 'Ошибка: ' + (xmlhttp.status ? xmlhttp.statusText : 'запрос не удался') );
+			    return;
+			  }
+		}.bind(this)
 	}
 
 
 	render(){
 		const {data, token} = this.props.user
+		if(data === 0){
+			const style = {
+			margin: "auto",
+			maxWidth: '50px',
+			marginTop: (screen.height-100)/2
+		}
+		return(
+			<div style={style} >
+				<CircularProgress size={40} thickness={3} mode={'indeterminate'} color='#2196F3'/>
+			</div>
+			)
+		}
  		return(	
  				<ReactCSSTransitionGroup
 								 transitionName="opacity"

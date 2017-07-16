@@ -84,7 +84,7 @@ export default class TestBody extends Component{
 		var time = new Date() - this.state.timer
 		time = Math.floor(time/1000)
 		var xmlhttp = new XMLHttpRequest()
-		var body =  JSON.stringify({token, answers, time, codename})  
+		var body =  JSON.stringify({token, answers, time, codename, type: this.props.type})  
 		xmlhttp.open('POST', 'http://127.0.0.1:9999/api/user/check-test', true);
 		xmlhttp.send(body); 
 		xmlhttp.onreadystatechange = function () {

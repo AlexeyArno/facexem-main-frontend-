@@ -60,10 +60,11 @@ class Application extends Component{
 	getToken=()=>{
 			var xmlhttp = new XMLHttpRequest()
 			xmlhttp.open('POST', 'http://127.0.0.1:9999/api/user/get_token', false);
-			xmlhttp.send(null);  
+			xmlhttp.send(); 
+			
 			if(xmlhttp.status === 200) {
 			var request = JSON.parse(xmlhttp.responseText)
-			request ="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJwdWJsaWMiOiIxZGU2NDA4N2E3ZWQ5ZWQxZmRhZmQ1ZDk1MGU0YTBlOWU5MTdmZjBmIiwiZXhwIjoxNTAyMDI2OTM5fQ.K2CUltNu9T4nXpsZZA5dtzY12Gj2AnMyALDZrgcJ__g"
+			request ="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJwdWJsaWMiOiIxN2YwNTU3OWFjYjNkYzUyNTU3YzhhNWI3OTExNjY1ZTZiOGVkNmUyIiwiZXhwIjoxNTAyODExODQyfQ.JiFoQTZHYGooyNC6LZLwhqLYfFMfkgXZU8ZZ9MpE-Rw"
 				if (!request.result){
 					this.setTokenInRedux(request)
 					return(request)
@@ -73,20 +74,21 @@ class Application extends Component{
 
 
 	LoadData=(token)=>{
-
 			var xmlhttp = new XMLHttpRequest()
 			var body =  JSON.stringify({token: token})  
 			xmlhttp.open('POST', 'http://127.0.0.1:9999/api/user/get_mypage', false);
-			xmlhttp.send(body);  
-			if(xmlhttp.status === 200) {
-			var data = JSON.parse(xmlhttp.responseText)
-			if (data.result !== 'Error' ){
-				this.setDataInRedux(data)
-				this.setState({fulldata: data})
-			}
+			xmlhttp.send(body); 
+			 
+			  if (xmlhttp.status === 200) {
+			    var data = JSON.parse(xmlhttp.responseText)
+				if (data.result !== 'Error' ){
+					this.setDataInRedux(data)
+					this.setState({fulldata: data})
+				}
+			  }
+
 			}
 			
-	}
 
 	reload=(data)=>{
 		var o_data = this.state.fulldata
@@ -119,7 +121,7 @@ class Application extends Component{
 				)
 		}else{
 		return(
-					<div>
+					<div >
 						<RoutersApp store={this.props.store} setDataInRedux={this.setDataInRedux}
 						 setTestDataInRedux={this.setTestDataInRedux} reload={this.reload} key={this.state.key}/>
 					</div>

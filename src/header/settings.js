@@ -78,7 +78,7 @@ constructor(props) {
 render(){
 	if(this.state.publick_key == 0){
 		return(<div style={{height: 200, textAlign: 'center', paddingTop: 60}}>
-				 <CircularProgress size={60} thickness={7} color={this.props.color}/>
+				 <CircularProgress size={60} thickness={3} color={this.props.color}/>
 			 </div>
 			 )
 	}

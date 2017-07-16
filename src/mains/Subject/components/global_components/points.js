@@ -10,11 +10,11 @@ constructor(props) {
 		    };
 		  }
 
-		   getTimeSpin=(data)=>{
-		  	var color;
-		var styleFill={transform: "rotate(180deg)"};
-		var styleSlice={};
-		var rating = this.props.data.test_points;
+	getTimeSpin=(middle_point)=>{
+		var color
+		var styleFill={transform: "rotate(180deg)"}
+		var styleSlice={}
+		var rating = middle_point
 		if(rating<45){
 			color="red"
 		}else if(rating<75){
@@ -47,11 +47,39 @@ constructor(props) {
 		  }
 
 render(){
-	var spin = this.getTimeSpin()
+	var data = this.props.data
+	if(data.result == 'Error' && data.type =='Less'){
+		var spin = this.getTimeSpin(0)
+		var test_word = 'тестов'
+		switch(data.need - data.have){
+			case 4:
+			case 3:
+			case 2:
+				test_word = 'теста'
+				break;
+			case 1:
+				test_word = 'тест'
+		}
+
+		return <div>
+				<div style={{position: 'absolute', zIndex: 99, padding: 40, paddingTop: 30}}>
+					<p style={{margin: 0, textAlign: 'center'}}>🔒</p>
+					Вам нужно решить ещё {data.need - data.have+" "+test_word} 
+				</div>
+				<div style={{padding: 15, paddingTop: 10, filter: 'blur(7px)'}}>
+				<div style={{float: 'left', paddingTop: 10}}>
+					<div style={{fontSize: 21}}>Ваш бал равен</div>
+					<div style={{fontSize: 12, color: 'rgb(115, 135, 156)', paddingLeft: 1}}>На основе последних 0 тестов</div>
+				</div>
+				{spin}
+				</div>
+		 	</div>
+	}
+	var spin = this.getTimeSpin(data.middle_point)
 	return(<div style={{padding: 15, paddingTop: 10}}>
 			<div style={{float: 'left', paddingTop: 10}}>
 				<div style={{fontSize: 21}}>Ваш бал равен</div>
-				<div style={{fontSize: 12, color: 'rgb(115, 135, 156)', paddingLeft: 1}}>На основе последних {this.props.data.count_tests} тестов</div>
+				<div style={{fontSize: 12, color: 'rgb(115, 135, 156)', paddingLeft: 1}}>На основе последних {data.test} тестов</div>
 			</div>
 			{spin}
 			</div>

@@ -35,31 +35,30 @@ constructor(props) {
 		}
 
 		  menu_open=()=>{
-		  	// document.getElementById('nowpage').style.filter = 'blur(2px)'
+		  	document.getElementById('nowpage').style.filter = 'blur(2px)'
 		  	this.setState({
 		  		menu: true
 		  	})
 		  }
 
 		  menu_close=()=>{
-		  	// document.getElementById('nowpage').style.filter = ''
+		  	document.getElementById('nowpage').style.filter = ''
 		  	this.setState({
 		  		menu: false
 		  	})
 		  }
 
 		  blurControll=(bool)=>{
-		  	// if(bool){
-		  	// 	document.getElementById('root').style.filter = ''
-		  	// }else{
-		  	// 	document.getElementById('root').style.filter = 'blur(2px)'
-		  	// }
+		  	if(bool){
+		  		document.getElementById('nowpage').style.filter = ''
+		  	}else{
+		  		document.getElementById('nowpage').style.filter = 'blur(2px)'
+		  	}
 		  }
 
 		  windowController=(type)=>{
 		  	this.menu_close()
 		  	var data = this.state.windows
-		  	console.log(data)
 		  	this.blurControll(data[type])
 		  	data[type] = !data[type]
 		  	this.setState({
@@ -71,11 +70,11 @@ constructor(props) {
 
 		  settings =()=>{
 		  	this.menu_close()
-		  	// if(this.state.settings){
-		  	// 	document.getElementById('root').style.filter = ''
-		  	// }else{
-		  	// 	document.getElementById('root').style.filter = 'blur(2px)'
-		  	// }
+		  	if(this.state.settings){
+		  		document.getElementById('nowpage').style.filter = ''
+		  	}else{
+		  		document.getElementById('nowpage').style.filter = 'blur(2px)'
+		  	}
 		  	this.setState({
 		  		settings: !this.state.settings
 		  	})
@@ -83,11 +82,11 @@ constructor(props) {
 
 		  achievs = () =>{
 		  	this.menu_close()
-		  	// if(this.state.achievs){
-		  	// 	document.getElementById('root').style.filter = ''
-		  	// }else{
-		  	// 	document.getElementById('root').style.filter = 'blur(2px)'
-		  	// }
+		  	if(this.state.achievs){
+		  		document.getElementById('nowpage').style.filter = ''
+		  	}else{
+		  		document.getElementById('nowpage').style.filter = 'blur(2px)'
+		  	}
 		  	this.setState({
 		  		achievs: !this.state.achievs
 		  	})
@@ -156,7 +155,7 @@ render(){
 	var color_sett = '#7bc6cc'
 	var color_issue = '#ff9f89'
 	var icon_right = <div/>
-	if(data_header.type === 'randomtask' || data_header.type === "singletask" || data_header.type === 'test'){
+	if(data_header.type === 'randomtask' || data_header.type === "singletask" || data_header.type === 'test' || data_header.type === 'mytest' || data_header.type=== 'st-test'){
 		icon_right = <IconButton onClick={()=>this.handllink(data_header.subject)} tooltip="Вернуться"><ContentReply/></IconButton>
 	}else if(data_header.subject !== 'mypage'){
 		icon_right = <IconButton onClick={()=>this.handllink('mypage')} tooltip="Моя страница"><SocialPerson/></IconButton>
@@ -174,6 +173,7 @@ render(){
 			  	/>
 			  	<Drawer
 		          docked={false}
+		          overlayClassName='overlay'
 		          width={250}
 		          disableSwipeToOpen={true}
 		          open={this.state.menu}
@@ -187,6 +187,7 @@ render(){
 				<Dialog
 				 	open={this.state.windows.settings}
 		 			title="Настройки"
+		 			overlayClassName='overlay'
 				    contentStyle={{padding: 0}}
 					onRequestClose={()=>this.windowController('settings')}
 				    contentLabel="Modal"
@@ -204,6 +205,7 @@ render(){
 				 	open={this.state.windows.issue}
 		 			title="Ошибка?"
 		 			modal={true}
+		 			overlayClassName='overlay'
 				    contentStyle={{padding: 0}}
 					onRequestClose={()=>this.windowController('issue')}
 				    contentLabel="Modal"

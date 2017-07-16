@@ -51,7 +51,7 @@ constructor(props) {
 		  getTasks=()=>{
 		  	var last_task = this.props.data.task_info.last_task_procents
 		  	var tasks = this.props.data.task_info.task_table
-		  	var end = (tasks.length>=4)? 4: tasks.length-1
+		  	var end = (tasks.length>=4)? 4: tasks.length
 		  	tasks =  tasks.slice(0, end)
 		  	return tasks.map(function (item, index) {
 		  		var color = '#F29F05'
@@ -83,7 +83,7 @@ constructor(props) {
 		  	var data = this.props.data.task_info
 		  	var last_themes = data.last_themes
 		  	var themes = data.themes
-		  	var end = (themes.length>=4)? 4: themes.length-1
+		  	var end = (themes.length>=4)? 4: themes.length
 		  	themes =  themes.slice(0, end)
 		  	var last_themes_list = last_themes.map(function(item, index){
 		  		return item.name
@@ -112,11 +112,12 @@ constructor(props) {
 		  }
 
 		 statistic=()=>{
-		 	// if(this.state.statistic){
-		 	// 	document.getElementById('root').style.filter = ''
-		 	// }else{
-		 	// 	document.getElementById('root').style.filter = 'blur(2px)'
-		 	// }
+		 	if(this.state.statistic){
+		 		// document.getElementsByTagName("BODY")[0].style.filter = ''
+		 		// document.getElementById('WholeBody').style.filter = ''
+		 	}else{
+		 		// document.getElementsByTagName("BODY")[0].style.filter = 'blur(2px)'
+		 	}
 		 	this.setState({
 		 		statistic: !this.state.statistic
 		 	})
@@ -151,6 +152,7 @@ render(){
 				          titleStyle={{color: 'rgb(33, 150, 243)'}}
 				          open={this.state.statistic}
 				          autoScrollBodyContent={true}
+				          overlayClassName='overlay'
 				          bodyClassName='dialogBodyTable'
 				          onRequestClose={this.statistic}
 				          contentStyle={{padding: 0,  maxWidth: 600, width: "90%"}}

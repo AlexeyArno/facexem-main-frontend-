@@ -17,7 +17,7 @@ class SubjectPage extends Component{
 			  }	
 
 
-	componentDidMount=()=>{
+	componentWillMount=()=>{
 		const {token} = this.props.user
 		if(this.state.data === 0){
 			this.LoadData(token)
@@ -27,21 +27,25 @@ class SubjectPage extends Component{
 
 
 	LoadData=(token)=>{
-		if (this.state.data === 0){
 			var subject = window.location.pathname
 			var xmlhttp = new XMLHttpRequest()
 			var body =  JSON.stringify({token: token, subject: subject.slice(1)})  
-			xmlhttp.open('POST', 'http://127.0.0.1:9999/api/user/get_my_subject', false);
-			xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-			xmlhttp.send(body);  
-			if(xmlhttp.status == 200) {
-			var data = JSON.parse(xmlhttp.responseText)
-			if (data.result !== 'Error' ){
-				this.setState({data: data})
-			}
-			}
-			
-		}
+			xmlhttp.open('POST', 'http://127.0.0.1:9999/api/user/get_my_subject', true);
+			// xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+			xmlhttp.send(body); 
+
+			xmlhttp.onreadystatechange = function() { // (3)
+			  if (xmlhttp.status === 200) {
+			  var data = JSON.parse(xmlhttp.responseText)
+				if (data.result != 'Error' ){
+					this.setState({data: data})
+				}
+			  }
+			  if (xmlhttp.status != 200) {
+			    console.log( 'Ошибка: ' + (xmlhttp.status ? xmlhttp.statusText : 'запрос не удался') );
+			    return;
+			  }
+		}.bind(this)
 	}
 
 	render(){
@@ -58,13 +62,7 @@ class SubjectPage extends Component{
 					<CircularProgress size={40} thickness={3} mode={'indeterminate'} color='#2196F3'/>
 				</div>
 				)
-		}
-
-
-
-
-
-
+		}else{
 
 
 		var pathname=window.location.pathname;
@@ -115,6 +113,7 @@ class SubjectPage extends Component{
 				</div>
 			</ReactCSSTransitionGroup>)
 
+		}
 	}
 }
 

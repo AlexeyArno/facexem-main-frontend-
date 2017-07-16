@@ -18,23 +18,23 @@ render(){
 		height: 100
 
 	}
-
+	console.log(this.props.data)
 	return(<div >
 				<div className="col-xs-12 col-sm-4 paper variants">
 					<Paper style={paper_style}> 
-							<Points data={this.props.data}/>
+							<Points data={this.props.data.test_info}/>
 					</Paper>
 
 				</div>
 				<div className="col-xs-12 col-sm-4 paper variants" >
 					<Paper style={paper_style}>
-						<Tasks data={this.props.data.solve_tasks}/>
+						<Tasks data={this.props.data.task_info.solve_tasks}/>
 					</Paper>
 
 				</div>
 				<div className="col-xs-12 col-sm-4 paper variants" >
 					<Paper style={paper_style}>
-						<Relatives solve={this.props.data.solve_tasks} unsolve={this.props.data.unsolve_tasks}/>
+						<Relatives solve={this.props.data.task_info.solve_tasks} unsolve={this.props.data.task_info.unsolve_tasks}/>
 					</Paper>
 
 				</div>

@@ -34,11 +34,11 @@ export default class UserRow extends Component{
 
 			  closeBest=()=>{
 			  	this.setState({modalIsOpenBest: false});
-		  			// document.getElementById('root').style.filter = ''
+		  			document.getElementById('nowpage').style.filter = ''
 				}
 				
 			  someFuncBest=()=>{
-		  		// document.getElementById('root').style.filter = 'blur(2px)'
+		  		document.getElementById('nowpage').style.filter = 'blur(2px)'
 			  	this.setState({open: false});
 			  	this.setState({modalIsOpenBest: true});
 			  }
@@ -160,6 +160,7 @@ export default class UserRow extends Component{
 					  open={this.state.modalIsOpenBest}
 					   title="Изменить"
 					  modal={true}
+					  overlayClassName='overlay'
 					  actions={actions}
 					  contentStyle={{padding: 0, maxWidth: 500, width: "90%"}}
 					  onRequestClose={this.closeBest}

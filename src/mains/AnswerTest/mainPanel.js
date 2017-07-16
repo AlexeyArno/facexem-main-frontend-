@@ -217,8 +217,8 @@ render(){
 							{tasks}
 						</ReactSwipe>
 						
-						<RaisedButton style={{margin: 12, float: "left"}} onClick={this.prev} icon={<HardwareKeyboardArrowLeft />}/>
-						<RaisedButton style={{margin: 12, float: "right"}} onClick={this.next} icon={<HardwareKeyboardArrowRight />}/>
+						<RaisedButton style={{margin: 12, float: "left"}} onClick={this.prev} disabled={(this.state.slide==0)? true:false} icon={<HardwareKeyboardArrowLeft />}/>
+						<RaisedButton style={{margin: 12, float: "right"}} onClick={this.next} disabled={(this.state.slide==tasks.length-1)? true:false}icon={<HardwareKeyboardArrowRight />}/>
 						<div style={{height: 2, backgroundColor: 'rgba(0,0,0,0.3)', margin: '30px auto', width: "35%", }}>
 							<div style={{width: width+'%', height: 2, backgroundColor: 'rgb(33, 150, 243)', transition: 'width 0.5s ease-in-out'}}/>
 						</div>
@@ -243,7 +243,8 @@ render(){
 	var buttonUp=(!this.state.list)?<div/>:<FloatingActionButton style={{position: 'fixed', bottom: 10, left: 10}} onClick={this.scrollTop}
 										 					backgroundColor="rgb(33, 150, 243)" className='UpButton'>
 									      <HardwareKeyboardArrowUp />
-									    </FloatingActionButton>				
+									    </FloatingActionButton>	
+
 	return(<div>
 			<div style={{width: '100%'}}>
 

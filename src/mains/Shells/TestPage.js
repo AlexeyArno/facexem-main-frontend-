@@ -13,6 +13,7 @@ class TestPage extends Component{
 			    super(props);
 			    this.state = {
 			    	data: 0,
+			    	type: 0,
 			    	time: 0
 			    };
 
@@ -33,7 +34,7 @@ class TestPage extends Component{
 			if(xmlhttp.status === 200) {
 				var data = JSON.parse(xmlhttp.responseText)
 				if (data.result !== 'Error' ){
-						this.setState({data})
+						this.setState({data: data.content, type: data.type})
 						
 					}
 			}
@@ -143,7 +144,7 @@ class TestPage extends Component{
 	}
 		var {token} = this.props.user
 		return(<div id="nowpage" style={{marginTop: 50}}>
-					<TestBody data={this.state.data} color={color} token={token}/>
+					<TestBody data={this.state.data} color={color} token={token} type={this.state.type}/>
 				</div>	)
 		}
 			

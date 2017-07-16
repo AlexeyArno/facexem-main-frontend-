@@ -4,39 +4,12 @@ body {
   font-family: sans-serif;
   overflow-x: hidden;
   background-color: #fafafa;
+
 }
-::-webkit-scrollbar {
-      width:  '5px' !important;
-  }
 
-  ::-webkit-scrollbar-thumb {
-      background: #fff !important;
-  }
 
-  ::-webkit-scrollbar-track {
-      background: #fff !important;
-  }
 
-  // For Internet Explorer
-  body {
-    scrollbar-face-color: #fff !important;
-    scrollbar-track-color: #fff !important;
-  }
 
-.header{
-	z-index: 666;
-	position: fixed !important;
-	top: -1px;
-	height: 50px;
-	padding: 0 !important;
-	padding-right: 15px !important;
-	padding-left: 15px !important;
-	transition: background 12s;
-}
-#TitlesBar{
-	height: 50px !important;
-	line-height: 1,6 !important;
-}
 .codeDescription>h1{
 	line-height: 2 !important
 }
@@ -762,8 +735,11 @@ width: 0;
 	opacity: 1
 }
 .testContent{
-	height: 285px;
+	height: 255px;
 	overflow-y: auto;
+}
+.buttonChangeTypeSubject:hover{
+	opacity: 0.6
 }
 .contentModalCountVariants{
 	padding-bottom: 0 !important;
@@ -1230,4 +1206,9 @@ a{
 	background-position-x: 7px;
 	background-position-y: 15px;
 	background-repeat: no-repeat;
+}
+
+.overlay{
+	background-color: rgba(0,0,0,0.75) !important;
+    /*filter: alpha(opacity = 50) ; /* required for opacity to work in IE * !important/*/
 }

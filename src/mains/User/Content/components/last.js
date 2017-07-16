@@ -30,6 +30,7 @@ render(){
 
 			)
 	}.bind(this))
+	lasts = (lasts.length>0)? lasts: <div style={{textAlign: 'center', marginTop: '30%', opacity: '0.6'}}>Пусто</div>
 	return(
 
 		<div className="col-xs-12 col-sm-4 paper">

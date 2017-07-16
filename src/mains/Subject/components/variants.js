@@ -15,6 +15,9 @@ import ContentRemove from 'material-ui/svg-icons/content/remove'
 import ContentAdd from 'material-ui/svg-icons/content/add'
 import NavigationMoreHoriz from 'material-ui/svg-icons/navigation/more-horiz'
 import VariantStatistic from './statistics/variants.js'
+import HardwareKeyboardArrowUp from 'material-ui/svg-icons/hardware/keyboard-arrow-up'
+import HardwareKeyboardArrowDown from 'material-ui/svg-icons/hardware/keyboard-arrow-down'
+import StaticTasks from './variants/staticTasks.js'
 
 
 export default class Variants extends Component{
@@ -23,6 +26,7 @@ export default class Variants extends Component{
 			    super(props);
 			    this.state = { 
 			    count: this.props.data.task_table.length,
+			    type: false,
 			    open: false,
 			    index: -1,
 			    value: 0,
@@ -51,7 +55,12 @@ export default class Variants extends Component{
 
 
 
-
+	goToStaticTest=(id)=>{
+		var subject = this.getSubjectName()
+			this.context.router.push({
+				 pathname: '/'+subject+'/st-test/'+id
+		})
+	}
 
 
 
@@ -73,7 +82,7 @@ export default class Variants extends Component{
 	 }
 
 	 open=(index)=>{
-	 	// document.getElementById('root').style.filter='blur(2px)'
+	 	document.getElementById('nowpage').style.filter='blur(2px)'
 	 	this.setState({
 	 		open: true, index, value: this.state.stories[index]
 	 	})
@@ -87,16 +96,16 @@ export default class Variants extends Component{
 	 	this.setState({
 	 		open: false
 	 	})
-	 	// document.getElementById('root').style.filter=''
+	 	document.getElementById('nowpage').style.filter=''
 	 }
 
 
 	 	 statistic=()=>{
-		 	// if(this.state.statistic){
-		 	// 	document.getElementById('root').style.filter=''
-		 	// }else{
-		 	// 	document.getElementById('root').style.filter='blur(2px)'
-		 	// }
+		 	if(this.state.statistic){
+		 		document.getElementById('nowpage').style.filter=''
+		 	}else{
+		 		document.getElementById('nowpage').style.filter='blur(2px)'
+		 	}
 		 	this.setState({
 		 		statistic: !this.state.statistic
 		 	})
@@ -173,6 +182,7 @@ export default class Variants extends Component{
 	}
 
 	render(){
+
 		const muiTheme=getMuiTheme({
 		  slider: {
 		      handleSize: 15,
@@ -189,6 +199,19 @@ export default class Variants extends Component{
 			right: '20px'
 		}
 		var elements=this.getCountsTasks()
+		var height1 = 0
+		var	height2 = 0
+		var	overflow1 = 'hidden'
+		var	overflow2 = 'hidden'
+		if(!this.state.type){
+			height1 = 255
+			overflow1 = 'auto'
+		}else{
+			height2 = 255
+			overflow2 = 'auto'
+		}
+		var height1 = (!this.state.type)? 255:0 
+		var height2 = (this.state.type)? 255:0 
 		return(	<div className="col-xs-12 col-sm-4 paper variants">
 				<Paper className="preferencepaper variants" >
 					<div className="Up">
@@ -196,9 +219,20 @@ export default class Variants extends Component{
 						<NavigationMoreHoriz color="rgb(115, 135, 156)" className="buttonMoreInUp" onClick={this.statistic}/>
 					</div>
 					<hr/>
-					<div className="testContent">
+					<div className="testContent" style={{maxHeight: height1, transition: 'max-height 450ms ease-in-out', overflowY: overflow1}}>
 						<div >
 							{elements}
+						</div>
+					</div>
+					<hr style={{display: (!this.state.type)?'': 'none'}}/>
+					<div style={{textAlign: 'center', cursor: 'pointer', transition: 'all 450ms ease-in-out'}}
+						 className='buttonChangeTypeSubject' onClick={()=>this.setState({type: !this.state.type})}>
+						<HardwareKeyboardArrowUp color="rgb(115, 135, 156)" style={{transform: (!this.state.type)? '':'rotate(180deg)'}}/>
+					</div>
+					<hr style={{display: (!this.state.type)?'none': ''}}/>
+					<div style={{height: height2, transition: 'height 450ms ease-in-out',  overflowY: overflow2}}>
+						<div>
+							<StaticTasks data={this.props.static_tests} goToStaticTest={this.goToStaticTest}/>
 						</div>
 					</div>
 					<hr/>
@@ -226,8 +260,9 @@ export default class Variants extends Component{
 				          open={this.state.statistic}
 				          autoScrollBodyContent={true}
 				          bodyClassName='dialogBodyTable'
+				          overlayClassName='overlay'
 				          onRequestClose={this.statistic}
-				          contentStyle={{padding: 0,  maxWidth: 400, width: "90%"}}
+				          contentStyle={{padding: 0,  maxWidth: 500, width: "90%", minHeight: 400}}
 				          autoDetectWindowHeight={false}
 				          style={{maxHeight: 500}}
 				        >	
@@ -242,6 +277,7 @@ export default class Variants extends Component{
 		          open={this.state.open}
 		          titleStyle={{color: "rgb(33, 150, 243)"}}
 		          actions={actions}
+				  overlayClassName='overlay'
 		          modal={false}
 		          bodyClassName="contentModalCountVariants"
 		          contentStyle={{width: 300, padding: 0}}

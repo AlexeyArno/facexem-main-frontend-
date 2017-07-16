@@ -4,6 +4,9 @@ import Dialog from 'material-ui/Dialog';
 import IconButton from 'material-ui/IconButton';
 import Close from 'material-ui/svg-icons/navigation/close';
 import NavigationMoreHoriz from 'material-ui/svg-icons/navigation/more-horiz'
+import ReactSwipe from 'react-swipe';
+import HardwareKeyboardArrowLeft from 'material-ui/svg-icons/hardware/keyboard-arrow-left'
+import HardwareKeyboardArrowRight from 'material-ui/svg-icons/hardware/keyboard-arrow-right'
 
 
 import Random from './task/randomtask/randomTasks.js'
@@ -17,7 +20,7 @@ export default class Tasks extends Component{
 				  super(props);
 				  this.state = {
 				  	dialog: false,
-				  	value: 1
+				  	value: 0
 				  }
 		 }
 
@@ -42,7 +45,7 @@ export default class Tasks extends Component{
 		 			padding: 2
 		 		}
 
-		 	if(this.state.value === 2){
+		 	if(this.state.value === 1){
 		 		var st1 = style_active
 		 		var st2 = style_us
 
@@ -60,11 +63,11 @@ export default class Tasks extends Component{
 		 }
 
 	 dialog=()=>{
-	 	// if(this.state.dialog){
-		 // 		document.getElementById('root').style.filter = ''
-		 // 	}else{
-		 // 		document.getElementById('root').style.filter = 'blur(2px)'
-		 // 	}
+	 	if(this.state.dialog){
+		 		document.getElementById('nowpage').style.filter = ''
+		 	}else{
+		 		document.getElementById('nowpage').style.filter = 'blur(2px)'
+		 	}
 		 	this.setState({dialog: !this.state.dialog})
 		 }
 
@@ -73,9 +76,12 @@ export default class Tasks extends Component{
 	  handleChange = (event, index, value) => this.setState({value});
 
 
+	  // smth=(i)=>{
+	  // 	this.setState({value: i});
+	  // }
 	  smth=(i)=>{
-	  	this.setState({value: i});
-	  }
+		  	this.refs.reactSwipeTask.slide(i);
+		  }
 
 	render(){
 
@@ -107,14 +113,33 @@ export default class Tasks extends Component{
 					</div>
 					<hr/>
 					<div style={{padding: 10}}>
-						{menu}
 					</div>
-						{element}
+					<ReactSwipe className="carousel-task" id='carouselTask' ref="reactSwipeTask"  
+			  					swipeOptions={{continuous: false, startSlide: this.state.value,
+			  					speed: 600}}>
+			  					<div>
+			  						<div>
+			  							<div style={{color:"rgb(115, 135, 156)"}}>Случайные</div>
+			  							<IconButton onClick={()=>this.smth(1)} style={{position: 'absolute', right: 0, top: -15}}>
+			  								<HardwareKeyboardArrowRight/>
+			  							</IconButton>
+			  						</div>
+			  						<Random color={this.props.color} data={this.props.data}/>
+			  					</div>
+			  					<div>
+			  						<div>
+			  							<IconButton onClick={()=>this.smth(0)} style={{position: 'absolute', left: 0, top: -15}}><HardwareKeyboardArrowLeft/></IconButton>
+			  							<div style={{color:"rgb(115, 135, 156)"}}>Определенные</div>
+			  						</div>
+			  						<Onetask color={this.props.color} data={this.props.data}/>
+			  					</div>
+			  		</ReactSwipe>
 				</Paper>
 				 <Dialog
 				          title="Статистика"
 				          modal={false}
 				          task={true}
+				          overlayClassName='overlay'
 				          titleStyle={{color: 'rgb(33, 150, 243)'}}
 				          open={this.state.dialog}
 				          autoScrollBodyContent={true}

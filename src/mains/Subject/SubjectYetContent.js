@@ -51,7 +51,7 @@ export default class SubjectYetContent extends Component{
 		 	st2.borderRadius = '0px 3px 3px 0px'
 		 	return <div style={{border: '2px solid rgb(33, 150, 243)', borderRadius: 5,  width: 290, marginLeft: 15}} className='controlSubjectPage'>
 		 				<div style={st1} onClick={()=>this.smth(0)} className="button-change-pos">Основные</div>
-		 				<div style={st2} onClick={()=>this.smth(1)} className="button-change-pos">Дополнительне</div>
+		 				<div style={st2} onClick={()=>this.smth(1)} className="button-change-pos">Дополнительные</div>
 		 			</div>
 		 }
 
@@ -64,7 +64,7 @@ export default class SubjectYetContent extends Component{
 		 	// document.getElementById('bodySubjectContents').style.filter = "blur(2px)"
 		 }
 		 endTrans=()=>{
-		 	// document.getElementById('bodySubjectContents').style.filter = "blur(0px)"
+		 	// document.getElementById('bodySubjectContents').style.filter = ""
 		 }
 		 smth=(i)=>{
 		  	this.refs.reactSwipe.slide(i);
@@ -72,6 +72,7 @@ export default class SubjectYetContent extends Component{
 
 
 	render(){
+		var static_tests = [{'number': 1, 'solve': false, date: '26.01.2017'}, {'number': 2, 'solve': false, date: '14.04.2017'}, {'number': 3, 'solve': true, date: '26.06.2017', count: 54}]
 		var data = this.props.data
 		var menu = this.getMenu()
 		return(	<div id='YetChoose'>
@@ -81,9 +82,10 @@ export default class SubjectYetContent extends Component{
 			  					swipeOptions={{continuous: false, startSlide: this.state.value,
 			  					speed: 600, callback: this.startTrans, transitionEnd: this.endTrans}}>
 			  				<div>
-								<GlobalStaticLine data={data.task_info}/>
+								<GlobalStaticLine data={data}/>
 								<Tasks color={this.props.color} closeColor={this.props.close} data={data.task_info}/>
 								<Variants color={this.props.color} closeColor={this.props.close} data={data.task_info}
+											static_tests={static_tests}
 										  setTestDataInRedux={this.props.setTestDataInRedux} test_info={data.test_info}/>
 								<Theme data={data}/>
 							</div>

@@ -27,16 +27,16 @@ constructor(props) {
 			 }
 		 openChange=()=>{
 		 	if(this.state.openchange){
-		 		document.getElementById('root').style.filter = 'blur(0px)'
+		 		document.getElementById('nowpage').style.filter = ''
 		 	}else{
-		 		document.getElementById('root').style.filter = 'blur(2px)'
+		 		document.getElementById('nowpage').style.filter = 'blur(2px)'
 		 	}
 		 	 this.setState({openchange: !this.state.openchange});
 		 	}
 		 	
 
 		chooseNumberClick=(n)=>{
-			document.getElementById('root').style.filter = 'blur(0px)'
+			document.getElementById('nowpage').style.filter = ''
 			this.setState({
 				number: n,
 				openchange: false
@@ -99,6 +99,7 @@ render(){
 				          modal={false}
 				          titleStyle={{color: 'rgb(33, 150, 243)'}}
 				          open={this.state.openchange}
+				          overlayClassName='overlay'
 				          autoScrollBodyContent={true}
 				          bodyClassName='dialogBodyTable'
 				          onRequestClose={this.openChange}
