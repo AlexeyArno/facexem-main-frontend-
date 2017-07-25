@@ -16,7 +16,7 @@ export default class Progress extends Component{
 
 	getList=()=>{
 		return this.props.subjects.map(function(item, index){
-			return  <ListItem primaryText={item.subjectName} key={index} onClick={()=>this.handllink(item.link)}
+			return  <ListItem primaryText={item.subjectName} key={index} onClick={()=>this.handllink(item.link)} style={{textAlign: 'left'}}
 							  rightIcon={<div style={{width: 25, height: 25, paddingTop: 5, color: this.props.color}}>{item.subjectCount}</div>} />
 		}.bind(this))
 	}

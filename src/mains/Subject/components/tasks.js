@@ -120,15 +120,17 @@ export default class Tasks extends Component{
 			  					<div>
 			  						<div>
 			  							<div style={{color:"rgb(115, 135, 156)"}}>Случайные</div>
-			  							<IconButton onClick={()=>this.smth(1)} style={{position: 'absolute', right: 0, top: -15}}>
-			  								<HardwareKeyboardArrowRight/>
+			  							<IconButton onClick={()=>this.smth(1)} style={{position: 'absolute', right: 0, top: '25%'}}>
+			  								<HardwareKeyboardArrowRight color='rgba(0,0,0,0.4)'/>
 			  							</IconButton>
 			  						</div>
 			  						<Random color={this.props.color} data={this.props.data}/>
 			  					</div>
 			  					<div>
 			  						<div>
-			  							<IconButton onClick={()=>this.smth(0)} style={{position: 'absolute', left: 0, top: -15}}><HardwareKeyboardArrowLeft/></IconButton>
+			  							<IconButton onClick={()=>this.smth(0)} style={{position: 'absolute', left: 0, top: '25%'}}>
+			  								<HardwareKeyboardArrowLeft color='rgba(0,0,0,0.4)'/>
+			  							</IconButton>
 			  							<div style={{color:"rgb(115, 135, 156)"}}>Определенные</div>
 			  						</div>
 			  						<Onetask color={this.props.color} data={this.props.data}/>

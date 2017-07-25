@@ -79,13 +79,19 @@ export default class TestBody extends Component{
 		this.state.answer.map(function(item,index){
 			answers[this.state.ids[index]] = item
 		}.bind(this))
+
 		var token = this.props.token
 		var codename = this.getSubjectName()
 		var time = new Date() - this.state.timer
 		time = Math.floor(time/1000)
 		var xmlhttp = new XMLHttpRequest()
-		var body =  JSON.stringify({token, answers, time, codename, type: this.props.type})  
-		xmlhttp.open('POST', 'http://127.0.0.1:9999/api/user/check-test', true);
+		if(this.props.test_type == 'st'){
+			var body =  JSON.stringify({token, answers, time, codename, id: this.props.id})
+			xmlhttp.open('POST', 'http://127.0.0.1:9999/api/user/check-static-test', true);
+		}else{
+			var body =  JSON.stringify({token, answers, time, codename, type: this.props.type})
+			xmlhttp.open('POST', 'http://127.0.0.1:9999/api/user/check-test', true);
+		}
 		xmlhttp.send(body); 
 		xmlhttp.onreadystatechange = function () {
 			if (xmlhttp.readyState !== 4) return;

@@ -50,9 +50,9 @@ constructor(props) {
 
 		  dialog=()=>{
 		  	if(!this.state.open){
-				document.getElementById('root').style.filter = 'blur(2px)'
+				document.getElementById('nowpage').style.filter = 'blur(2px)'
 			}else{
-				document.getElementById('root').style.filter = 'blur(0px)'
+				document.getElementById('nowpage').style.filter = ''
 			}
 		  	this.setState({
 		  		open: !this.state.open
@@ -60,9 +60,9 @@ constructor(props) {
 		  }
 		  issue=()=>{
 		  	if(!this.state.issue){
-				document.getElementById('root').style.filter = 'blur(2px)'
+				document.getElementById('nowpage').style.filter = 'blur(2px)'
 			}else{
-				document.getElementById('root').style.filter = 'blur(0px)'
+				document.getElementById('nowpage').style.filter = ''
 			}
 		  	this.setState({
 		  		issue: !this.state.issue

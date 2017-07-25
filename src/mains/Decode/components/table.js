@@ -31,12 +31,12 @@ constructor(props) {
 					var id = this.props.data.id+'head'+index+index1
 					ids.push(id)
 					return <td key={index+index1} style={style}>
-								 <p>{item1}</p>
+								 <p style={{margin: 5}}>{item1}</p>
 							</td>
 				}.bind(this)) 
 				return <tr key={index}>{row}</tr>
 			}.bind(this))
-			var table = <table style={{width: "100%", borderCollapse: "collapse"}}>
+			var table = <table style={{width: "100%", borderCollapse: "collapse", opacity: 0.7}}>
 						 <tbody >
 							  {body}
 							 </tbody>
@@ -55,7 +55,7 @@ constructor(props) {
 		// console.log(this.props.data.content)
 		var table = this.getTable(this.props.data.content)
 		table = table.table
-		return(<div className={name}>
+		return(<div className={name} style={{margin: 10}}>
 	
 					{table}
 				</div>

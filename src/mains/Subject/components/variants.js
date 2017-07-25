@@ -232,7 +232,7 @@ export default class Variants extends Component{
 					<hr style={{display: (!this.state.type)?'none': ''}}/>
 					<div style={{height: height2, transition: 'height 450ms ease-in-out',  overflowY: overflow2}}>
 						<div>
-							<StaticTasks data={this.props.static_tests} goToStaticTest={this.goToStaticTest}/>
+							<StaticTasks data={this.props.static_tests} goToStaticTest={this.goToStaticTest} token={this.props.token}/>
 						</div>
 					</div>
 					<hr/>
@@ -262,12 +262,12 @@ export default class Variants extends Component{
 				          bodyClassName='dialogBodyTable'
 				          overlayClassName='overlay'
 				          onRequestClose={this.statistic}
-				          contentStyle={{padding: 0,  maxWidth: 500, width: "90%", minHeight: 400}}
+				          contentStyle={{padding: 10,  maxWidth: 600, width: "90%", minHeight: 400}}
 				          autoDetectWindowHeight={false}
 				          style={{maxHeight: 500}}
 				        >	
 				        <IconButton onClick={this.statistic} style={closeStyle}><Close color='rgb(33, 150, 243)'/></IconButton>
-				        	<VariantStatistic data={this.props.test_info}/>
+				        	<VariantStatistic data={this.props.test_info} color='rgb(33, 150, 243)'/>
 				 </Dialog>
 
 
@@ -301,7 +301,7 @@ export default class Variants extends Component{
 						        	 <MuiThemeProvider muiTheme={muiTheme}>
 							          
 							          		<Slider value={this.state.value} min={0} max={5} step={1}
-							          	 		onChange={this.changeSlider}/>
+							          	 		onChange={this.changeSlider} sliderStyle={{borderColor: 'rgb(33, 150, 243)'}}/>
 
 							           </MuiThemeProvider>
 						          </div>

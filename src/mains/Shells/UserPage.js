@@ -11,6 +11,13 @@ import CircularProgress from 'material-ui/CircularProgress';
 
 
 class UserPage extends Component{
+	constructor(props) {
+		    super(props);
+		    this.state = {
+		    	load: 0,
+		    	data: []
+		    };
+		  }
 	
 	componentWillMount=()=>{
 		this.LoadData()
@@ -21,14 +28,17 @@ class UserPage extends Component{
 			const { token} = this.props.user
 			var xmlhttp = new XMLHttpRequest()
 			var body =  JSON.stringify({token: token})
-			xmlhttp.open('POST', 'http://127.0.0.1:9999/api/user/get_my_subject', true);
+			xmlhttp.open('POST', 'http://127.0.0.1:9999/api/user/get_mypage', true);
 			xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
 			xmlhttp.send(body); 
 			xmlhttp.onreadystatechange = function() { // (3)
 			  if (xmlhttp.status === 200) {
 			  var data = JSON.parse(xmlhttp.responseText)
 				if (data.result != 'Error' ){
-					this.props.setDataInRedux(data)
+					// this.props.setDataInRedux(data)
+					this.setState({
+						data, load: 1
+					})
 				}
 			  }
 			  if (xmlhttp.status != 200) {
@@ -41,7 +51,8 @@ class UserPage extends Component{
 
 	render(){
 		const {data, token} = this.props.user
-		if(data === 0){
+		var real_data = this.state.data
+		if(this.state.load === 0){
 			const style = {
 			margin: "auto",
 			maxWidth: '50px',
@@ -60,8 +71,8 @@ class UserPage extends Component{
 					               transitionEnter={false} transitionLeave={false}>
 				 <div id='nowpage'>
 						  <MuiThemeProvider>
-						      <Whallpaper user={data.info} subjects={data.subjects} last={data.actions} token={token}
-						       static={data.activity} preference={data.preference} globalstatic={data.global_activ}/>
+						      <Whallpaper user={data.info} subjects={data.subjects} last={real_data.actions} token={token}
+						       static={real_data.activity} preference={real_data.preference} globalstatic={real_data.global_activ}/>
 						   </MuiThemeProvider>
 				  </div>
 				  </ReactCSSTransitionGroup>)

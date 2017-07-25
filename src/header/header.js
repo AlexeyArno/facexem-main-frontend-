@@ -137,7 +137,7 @@ constructor(props) {
 				case 'information':
 					return('Информатика')
 				default:
-					return('Facexem');
+					return('Facexam');
 			}
 			
 		  }
@@ -150,7 +150,7 @@ render(){
 		}
 	var data_header = this.getUrlhData()
 	var title = this.getTitle(data_header)
-	document.title = (title!=='Facexem')? title+' | Facexem': title
+	document.title = (title!=='Facexam')? title+' | Facexem': title
 	var color_achiev = 'rgb(33, 150, 243)'
 	var color_sett = '#7bc6cc'
 	var color_issue = '#ff9f89'

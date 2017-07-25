@@ -144,7 +144,7 @@ class TestPage extends Component{
 	}
 		var {token} = this.props.user
 		return(<div id="nowpage" style={{marginTop: 50}}>
-					<TestBody data={this.state.data} color={color} token={token} type={this.state.type}/>
+					<TestBody data={this.state.data} color={color} token={token} type={this.state.type} test_type='some'/>
 				</div>	)
 		}
 			

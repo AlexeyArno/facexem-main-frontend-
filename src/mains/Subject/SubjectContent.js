@@ -24,7 +24,7 @@ export default class SubjectContent extends Component{
 				
 				<div className="contentRow" id='contentRowSubjectPage'>
 					<div >
-					      <SubjectYetContent  color={color}  data={this.props.data} setTestDataInRedux={this.props.setTestDataInRedux}/>
+					      <SubjectYetContent  color={color}  data={this.props.data} setTestDataInRedux={this.props.setTestDataInRedux} token={this.props.token}/>
 					</div>
 
 					

@@ -28,7 +28,7 @@ constructor(props) {
 		  			answer.push('')
 		  		}
 		 		 if(!this.props.unchangeble){
-				  		this.props.answer('few-fields-create', answer, this.props.index)
+				  		this.props.answer('check_create', answer, this.props.index)
 					}
 					this.setState({
 						answer
@@ -45,6 +45,9 @@ constructor(props) {
 		  		value: d,
 		  		index: v
 		  	}
+		  	var answer = this.state.answer
+		  	answer[v] = d
+		  	this.setState({answer})
 		  	this.props.answer('few-fields', data, this.props.index)
 		  }
 		
@@ -62,9 +65,9 @@ constructor(props) {
 				  }
 				};
 			return data.map(function (item, index) {
-				if(this.props.value){
+				if(this.props.unchangeble){
 					return <TextField floatingLabelText={item}
-						key={index} value={this.state.answer[index]}
+						key={index} value={this.state.answer[0][index]}
 						name={this.props.data.id+'TextField'+index}
 						style={{display: 'inline-block', maxWidth: 100, margin: '0px 10px'}}
 						underlineStyle ={styles.underlineStyle}
@@ -88,6 +91,7 @@ render(){
 		if(this.props.data.size == 'half'){
 			name = 'col-md-6'
 		}
+	console.log(this.state.answer)
 	const styles = {
 				  underlineStyle: {
 				    borderColor: '#4285f4',

@@ -35,7 +35,7 @@ class SubjectPage extends Component{
 			xmlhttp.send(body); 
 
 			xmlhttp.onreadystatechange = function() { // (3)
-			  if (xmlhttp.status === 200) {
+			  if (xmlhttp.status === 200 && xmlhttp.readyState === 4) {
 			  var data = JSON.parse(xmlhttp.responseText)
 				if (data.result != 'Error' ){
 					this.setState({data: data})
@@ -95,7 +95,7 @@ class SubjectPage extends Component{
 		// <MuiThemeProvider>
 			// <SubjectRow data={info} subject={this.state.subject} reset={() => this.forceUpdate()} key={Math.random()}/>
 		  // </MuiThemeProvider>
-
+		  const {token} = this.props.user
 		return(	<ReactCSSTransitionGroup
 								 transitionName="opacity"
 					               transitionAppear={true} transitionAppearTimeout={800}
@@ -106,7 +106,7 @@ class SubjectPage extends Component{
 					 	</MuiThemeProvider>
 					  <MuiThemeProvider>
 
-					  	<SubjectContent subject={this.state.subject} data={this.state.data}
+					  	<SubjectContent subject={this.state.subject} data={this.state.data} token={token}
 					  					 reset={() => this.forceUpdate()} key={Math.random()}
 					  					  setTestDataInRedux={this.props.setTestDataInRedux}/>
 					  	</MuiThemeProvider>

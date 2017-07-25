@@ -6,6 +6,9 @@ import GlobalStatic from './components/global.js';
 import Statisc from './components/static.js';
 import Last from './components/last.js';
 import ReactSwipe from 'react-swipe';
+import HardwareKeyboardArrowLeft from 'material-ui/svg-icons/hardware/keyboard-arrow-left'
+import HardwareKeyboardArrowRight from 'material-ui/svg-icons/hardware/keyboard-arrow-right'
+import IconButton from 'material-ui/IconButton';
 
 export default class Subjects extends Component{
 	 constructor(props){
@@ -20,11 +23,11 @@ export default class Subjects extends Component{
 		 	}else{
 		 		this.setState({value: 0})
 		 	}
-		 	// document.getElementById('userPagecomponents').style.filter = "blur(2px)"
+		 	document.getElementById('userPagecomponents').style.filter = "blur(2px)"
 		 }
 		 endTrans=()=>{
 
-		 	// document.getElementById('userPagecomponents').style.filter = "blur(0px)"
+		 	document.getElementById('userPagecomponents').style.filter = ""
 		 }
 		 getMenu=()=>{
 		 	var style_active={
@@ -59,9 +62,8 @@ export default class Subjects extends Component{
 		 	}
 		 	st1.borderRadius = '3px 0px 0px 3px'
 		 	st2.borderRadius = '0px 3px 3px 0px'
-		 	return <div style={{border: '2px solid rgb(33, 150, 243)', borderRadius: 5,  width: 290, marginLeft: 15, display: 'inline-block'}} className='controlSubjectPage'>
-		 				<div style={st1} onClick={()=>this.smth(0)} className="button-change-pos">Основные</div>
-		 				<div style={st2} onClick={()=>this.smth(1)} className="button-change-pos">Дополнительне</div>
+		 	return <div style={{border: '2px solid rgb(33, 150, 243)', borderRadius: 5,  width: 290, marginLeft: 15, display: 'inline-block', visibility: 'hidden'}} className='controlSubjectPage'>
+
 		 			</div>
 		 }
 
@@ -71,6 +73,7 @@ export default class Subjects extends Component{
 
 	render(){
 		var menu = this.getMenu()
+		var color= 'rgba(33, 150, 243, 0.7)'
 		return(
 			<div className='contentRow'>
 				<SubjectsLine subjects={this.props.subjects}/>
@@ -80,16 +83,28 @@ export default class Subjects extends Component{
 				  					swipeOptions={{continuous: false, startSlide: this.state.value,
 				  					speed: 600, callback: this.startTrans, transitionEnd: this.endTrans}}>
 				  		<div>
+				  			<div style={{textAlign: 'center',  padding: 15, paddingBottom: 10, marginTop: -10}}>
+				  				<div style={{display: 'inline-block', color}}>Главная</div>
+				  				<IconButton style={{position: 'absolute', right: 0, top: -9}} onClick={()=>this.smth(1)}>
+									<HardwareKeyboardArrowRight color='rgba(0,0,0,0.4)'/>
+								</IconButton>
+				  			</div>
 							<Progress subjects={this.props.subjects} color='rgb(33, 150, 243)'/>
 							<Preference  data={this.props.preference}/>
 							<GlobalStatic data={this.props.globalstatic}/>
 						</div>
 						<div>
-							
+							<div style={{textAlign: 'center',  padding: 15, paddingBottom: 10, marginTop: -10}}>
+								<IconButton style={{position: 'absolute', left: 0, top: -9}} onClick={()=>this.smth(0)}>
+										<HardwareKeyboardArrowLeft color='rgba(0,0,0,0.4)'/>
+									</IconButton>
+				  				<div style={{display: 'inline-block', color}}>Активность</div>
+				  			</div>
 							<Statisc data={this.props.static}/>
 							<Last data={this.props.last}/>
 						</div>
 					</ReactSwipe>
+					
 				</div>
 			</div>
 

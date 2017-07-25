@@ -1212,3 +1212,9 @@ a{
 	background-color: rgba(0,0,0,0.75) !important;
     /*filter: alpha(opacity = 50) ; /* required for opacity to work in IE * !important/*/
 }
+
+.closeButton{
+	position: absolute !important;
+	top: 18px !important;
+	right: 20px !important;
+}

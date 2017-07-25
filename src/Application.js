@@ -76,7 +76,7 @@ class Application extends Component{
 	LoadData=(token)=>{
 			var xmlhttp = new XMLHttpRequest()
 			var body =  JSON.stringify({token: token})  
-			xmlhttp.open('POST', 'http://127.0.0.1:9999/api/user/get_mypage', false);
+			xmlhttp.open('POST', 'http://127.0.0.1:9999/api/user/get_basic_info', false);
 			xmlhttp.send(body); 
 			 
 			  if (xmlhttp.status === 200) {

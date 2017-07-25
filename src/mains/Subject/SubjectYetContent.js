@@ -74,26 +74,18 @@ export default class SubjectYetContent extends Component{
 	render(){
 		var static_tests = [{'number': 1, 'solve': false, date: '26.01.2017'}, {'number': 2, 'solve': false, date: '14.04.2017'}, {'number': 3, 'solve': true, date: '26.06.2017', count: 54}]
 		var data = this.props.data
+		static_tests = data.static_tests
 		var menu = this.getMenu()
 		return(	<div id='YetChoose'>
-					{menu}
 					<div id='bodySubjectContents'>
-						<ReactSwipe className="carousel" id='carousel' ref="reactSwipe"  
-			  					swipeOptions={{continuous: false, startSlide: this.state.value,
-			  					speed: 600, callback: this.startTrans, transitionEnd: this.endTrans}}>
-			  				<div>
+						<div>
 								<GlobalStaticLine data={data}/>
 								<Tasks color={this.props.color} closeColor={this.props.close} data={data.task_info}/>
 								<Variants color={this.props.color} closeColor={this.props.close} data={data.task_info}
-											static_tests={static_tests}
+											static_tests={static_tests} token={this.props.token}
 										  setTestDataInRedux={this.props.setTestDataInRedux} test_info={data.test_info}/>
 								<Theme data={data}/>
 							</div>
-							<div style={{textAlign: 'center', paddingTop: 100}}>
-								<ActionPanTool style={{width: 100, height: 100, opacity: 0.7}}/>
-								<div style={{fontSize: 18, opacity: 0.7}}>Простите, но здесь, пока не на что смотреть</div>
-							</div>
-						</ReactSwipe>
 					</div>
 
 				</div>)
@@ -101,3 +93,21 @@ export default class SubjectYetContent extends Component{
 	}
 }
 
+
+
+// <ReactSwipe className="carousel" id='carousel' ref="reactSwipe"  
+// 			  					swipeOptions={{continuous: false, startSlide: this.state.value,
+// 			  					speed: 600, callback: this.startTrans, transitionEnd: this.endTrans}}>
+			  				// <div>
+								// <GlobalStaticLine data={data}/>
+								// <Tasks color={this.props.color} closeColor={this.props.close} data={data.task_info}/>
+								// <Variants color={this.props.color} closeColor={this.props.close} data={data.task_info}
+											// static_tests={static_tests}
+										  // setTestDataInRedux={this.props.setTestDataInRedux} test_info={data.test_info}/>
+								// <Theme data={data}/>
+							// </div>
+// 							<div style={{textAlign: 'center', paddingTop: 100}}>
+// 								<ActionPanTool style={{width: 100, height: 100, opacity: 0.7}}/>
+// 								<div style={{fontSize: 18, opacity: 0.7}}>Простите, но здесь, пока не на что смотреть</div>
+// 							</div>
+// 						</ReactSwipe>

@@ -35,6 +35,7 @@ constructor(props) {
 			  		case 'text':
 			  			answer[index] = data
 			  			break;
+			  		case 'few-fields':
 			  		case 'check':
 			  			answer[index][data.index] = data.value
 			  			break;
