@@ -29,7 +29,7 @@ constructor(props) {
 	  componentWillMount=()=>{
 			var xmlhttp = new XMLHttpRequest()
 			var body =  JSON.stringify({token: this.props.token,id: this.props.id})  
-			xmlhttp.open('POST', 'http://127.0.0.1:9999/api/user/get_solve_st_test_info', true);
+			xmlhttp.open('POST', 'https://api.facexam.ru/api/user/get_solve_st_test_info', true);
 			// xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
 			xmlhttp.send(body); 
 			xmlhttp.onreadystatechange = function() { // (3)

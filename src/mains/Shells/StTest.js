@@ -50,7 +50,7 @@ constructor(props) {
 		  	var {token} = this.props.user
 			var xmlhttp = new XMLHttpRequest()
 			var body =  JSON.stringify({token: token, id: info.number, subject: info.subject})  
-			xmlhttp.open('POST', 'http://127.0.0.1:9999/api/user/get_static_test', true);
+			xmlhttp.open('POST', 'https://api.facexam.ru/api/user/get_static_test', true);
 			xmlhttp.send(body); 
 			xmlhttp.onreadystatechange = function () {
 				if(xmlhttp.status === 200 && xmlhttp.readyState === 4) {

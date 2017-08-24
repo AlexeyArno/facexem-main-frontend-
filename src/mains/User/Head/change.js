@@ -28,7 +28,7 @@ constructor(props) {
 	LoadData=()=>{
 				var xmlhttp = new XMLHttpRequest()
 				var body =  JSON.stringify({token: this.props.token})  
-				xmlhttp.open('POST', 'http://127.0.0.1:9999/api/user/get_change_data', false);
+				xmlhttp.open('POST', 'https://api.facexam.ru/api/user/get_change_data', false);
 				xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
 				xmlhttp.send(body);  
 				if(xmlhttp.status == 200) {

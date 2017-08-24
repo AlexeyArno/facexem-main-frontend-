@@ -28,11 +28,11 @@ class UserPage extends Component{
 			const { token} = this.props.user
 			var xmlhttp = new XMLHttpRequest()
 			var body =  JSON.stringify({token: token})
-			xmlhttp.open('POST', 'http://127.0.0.1:9999/api/user/get_mypage', true);
+			xmlhttp.open('POST', 'https://api.facexam.ru/api/user/get_mypage', true);
 			xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
 			xmlhttp.send(body); 
 			xmlhttp.onreadystatechange = function() { // (3)
-			  if (xmlhttp.status === 200) {
+			  if (xmlhttp.status === 200 && xmlhttp.readyState === 4) {
 			  var data = JSON.parse(xmlhttp.responseText)
 				if (data.result != 'Error' ){
 					// this.props.setDataInRedux(data)

@@ -54,7 +54,7 @@ export default class UserRow extends Component{
 			  	var photo = this.state.data.photo
 			  	var body =  JSON.stringify({token: this.props.token, city, about, photo, background})  
 				var xhr  = new XMLHttpRequest();   
-				xhr .open('POST', 'http://127.0.0.1:9999/api/user/set_page_info', true);
+				xhr .open('POST', 'https://api.facexam.ru/api/user/set_page_info', true);
 				xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");  
 				xhr .send([body]);
 				xhr.onreadystatechange =  function() {

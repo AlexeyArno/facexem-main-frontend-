@@ -30,7 +30,7 @@ class SubjectPage extends Component{
 			var subject = window.location.pathname
 			var xmlhttp = new XMLHttpRequest()
 			var body =  JSON.stringify({token: token, subject: subject.slice(1)})  
-			xmlhttp.open('POST', 'http://127.0.0.1:9999/api/user/get_my_subject', true);
+			xmlhttp.open('POST', 'https://api.facexam.ru/api/user/get_my_subject', true);
 			// xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
 			xmlhttp.send(body); 
 

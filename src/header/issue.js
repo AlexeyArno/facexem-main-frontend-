@@ -62,7 +62,7 @@ constructor(props) {
 		  	var page = window.location.pathname
 		  	var browser = this.getBrowser()
   			var body = JSON.stringify({token: this.props.token, page, browser, type: this.state.type, content: this.state.content})  
-			xmlhttp.open('POST', 'http://127.0.0.1:9999/api/user/set_general_report', true);
+			xmlhttp.open('POST', 'https://api.facexam.ru/api/user/set_general_report', true);
 			xmlhttp.send(body);  
 			xmlhttp.onload = function (e) {
 			    if (xmlhttp.status === 200) {

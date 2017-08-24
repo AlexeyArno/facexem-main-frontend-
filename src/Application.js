@@ -53,30 +53,41 @@ class Application extends Component{
 
 
 	componentWillMount=()=>{
-		var token = this.getToken()
+		var token = this.getCoockie('user_token')
+		if(!token){
+			window.location.pathname = '/login'
+		}
+		this.setTokenInRedux(token)
 		this.LoadData(token);
 	}
 
-	getToken=()=>{
-			var xmlhttp = new XMLHttpRequest()
-			xmlhttp.open('POST', 'http://127.0.0.1:9999/api/user/get_token', false);
-			xmlhttp.send(); 
+	// getToken=()=>{
+	// 		var xmlhttp = new XMLHttpRequest()
+	// 		xmlhttp.open('POST', 'http://127.0.0.1:9999/api/user/get_token', false);
+	// 		xmlhttp.send(); 
 			
-			if(xmlhttp.status === 200) {
-			var request = JSON.parse(xmlhttp.responseText)
-			request ="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJwdWJsaWMiOiIxN2YwNTU3OWFjYjNkYzUyNTU3YzhhNWI3OTExNjY1ZTZiOGVkNmUyIiwiZXhwIjoxNTAyODExODQyfQ.JiFoQTZHYGooyNC6LZLwhqLYfFMfkgXZU8ZZ9MpE-Rw"
-				if (!request.result){
-					this.setTokenInRedux(request)
-					return(request)
-				}
-			}
-	}
+	// 		if(xmlhttp.status === 200) {
+	// 		var request = JSON.parse(xmlhttp.responseText)
+	// 		// request ="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJwdWJsaWMiOiJkOWIwMzEzMjc1MTZmYzY2NDRiNDE0ZTVhZmY0YjFjZGJkMDk5ODI0IiwiZXhwIjoxNTA0Njc1MDU0fQ.XJSyTUMk6jh-dFbGDeqtxEPHRTE1WIDaW18khijU9-0"
+	// 			if (!request.result){
+	// 				this.setTokenInRedux(request)
+	// 				return(request)
+	// 			}
+	// 		}
+	// }
+
+	getCoockie=(name)=>{
+			  var matches = document.cookie.match(new RegExp(
+			    "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+			  ));
+			  return matches ? decodeURIComponent(matches[1]) : undefined;
+		}
 
 
 	LoadData=(token)=>{
 			var xmlhttp = new XMLHttpRequest()
 			var body =  JSON.stringify({token: token})  
-			xmlhttp.open('POST', 'http://127.0.0.1:9999/api/user/get_basic_info', false);
+			xmlhttp.open('POST', 'https://api.facexam.ru/api/user/get_basic_info', false);
 			xmlhttp.send(body); 
 			 
 			  if (xmlhttp.status === 200) {
@@ -84,6 +95,8 @@ class Application extends Component{
 				if (data.result !== 'Error' ){
 					this.setDataInRedux(data)
 					this.setState({fulldata: data})
+				}else{
+					console.log(data)
 				}
 			  }
 

@@ -87,10 +87,10 @@ export default class TestBody extends Component{
 		var xmlhttp = new XMLHttpRequest()
 		if(this.props.test_type == 'st'){
 			var body =  JSON.stringify({token, answers, time, codename, id: this.props.id})
-			xmlhttp.open('POST', 'http://127.0.0.1:9999/api/user/check-static-test', true);
+			xmlhttp.open('POST', 'https://api.facexam.ru/api/user/check-static-test', true);
 		}else{
 			var body =  JSON.stringify({token, answers, time, codename, type: this.props.type})
-			xmlhttp.open('POST', 'http://127.0.0.1:9999/api/user/check-test', true);
+			xmlhttp.open('POST', 'https://api.facexam.ru/api/user/check-test', true);
 		}
 		xmlhttp.send(body); 
 		xmlhttp.onreadystatechange = function () {

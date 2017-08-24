@@ -98,7 +98,7 @@ constructor(props) {
 		  	}
 		  	var body=  JSON.stringify({token: data.token, id: data.id, answers: data.answer,
 		  	 time, type: this.props.type, session_key:this.props.session_key})
-			xmlhttp.open('POST', 'http://127.0.0.1:9999/api/user/get_answer', false);
+			xmlhttp.open('POST', 'https://api.facexam.ru/api/user/get_answer', false);
 			xmlhttp.send(body);  
 			if(xmlhttp.status == 200) {
 				var request = JSON.parse(xmlhttp.responseText)

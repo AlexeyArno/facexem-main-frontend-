@@ -29,7 +29,7 @@ constructor(props) {
 		  getDescription=()=>{
 			  	var xmlhttp = new XMLHttpRequest()
 			  	var body=  JSON.stringify({token: this.props.token, id: this.props.id})
-				xmlhttp.open('POST', 'http://127.0.0.1:9999/api/user/get_description', false);
+				xmlhttp.open('POST', 'https://api.facexam.ru/api/user/get_description', false);
 				xmlhttp.send(body);  
 				if(xmlhttp.status === 200) {
 					var request = JSON.parse(xmlhttp.responseText)

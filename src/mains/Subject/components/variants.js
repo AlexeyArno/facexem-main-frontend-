@@ -290,11 +290,11 @@ export default class Variants extends Component{
 			        	<div style={{textAlign: "center", 'fontSize': 22}}>{this.state.value}</div>
 			        		        	<div>
 			        	<IconButton onClick={()=>this.changeButton('del')} 
-			        		style={{display: 'inline-block', position: 'relative', bottom: 44}}>
+			        		style={{display: 'inline-block', position: 'relative', bottom: 43}}>
 				          	<ContentRemove color="#dddddd"/>
 				          </IconButton>
 					        	<div style={{display: 'inline-block', width: 150}}>
-						        	<hr style={{position: 'relative', top: 33}}/>
+						        	<hr style={{position: 'relative', top: 34}}/>
 						        	<hr style={{position: 'relative', top: 32.5, border: '0.5px solid rgb(33, 150, 243)',
 						        				opacity: 0.5, width: this.state.value*20+'%'}}/>
 						        		
@@ -305,7 +305,7 @@ export default class Variants extends Component{
 
 							           </MuiThemeProvider>
 						          </div>
-				           	<IconButton onClick={()=>this.changeButton('add')} style={{display: 'inline-block', position: 'relative', bottom: 44}}>
+				           	<IconButton onClick={()=>this.changeButton('add')} style={{display: 'inline-block', position: 'relative', bottom: 43}}>
 				          		<ContentAdd color="#dddddd"/>
 				          	</IconButton>
 			         </div>

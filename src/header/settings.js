@@ -36,7 +36,7 @@ constructor(props) {
 		  	this.setState({save: 1})
 		  	var xmlhttp = new XMLHttpRequest()
 		  			var body = JSON.stringify({token: this.props.token, name: this.state.name})  
-					xmlhttp.open('POST', 'http://127.0.0.1:9999/api/user/save_settings', true);
+					xmlhttp.open('POST', 'https://api.facexam.ru/api/user/save_settings', true);
 					xmlhttp.send(body);  
 					xmlhttp.onload = function (e) {
 					    if (xmlhttp.status === 200) {
@@ -56,7 +56,7 @@ constructor(props) {
 		  componentWillMount=()=>{
 		  			var xmlhttp = new XMLHttpRequest()
 		  			var body = JSON.stringify({token: this.props.token})  
-					xmlhttp.open('POST', 'http://127.0.0.1:9999/api/user/get_my_settings', true);
+					xmlhttp.open('POST', 'https://api.facexam.ru/api/user/get_my_settings', true);
 					xmlhttp.send(body);  
 					xmlhttp.onload = function (e) {
 					    if (xmlhttp.status === 200) {

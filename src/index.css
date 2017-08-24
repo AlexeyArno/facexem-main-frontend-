@@ -1040,7 +1040,13 @@ a{
 
 
 }
+@media (max-width: 1200px) {
+	.userRows{
+		top: 425px !important;
+	}
+}
 @media (max-width: 996px) {
+	
 	.procent{
 		display: none;
 	}

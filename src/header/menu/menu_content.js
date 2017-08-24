@@ -31,6 +31,10 @@ export default class MenuContent extends Component{
 					});
 	}
 
+	redirect=(link)=>{
+		document.location.href = link;
+	}
+
 	// openachievs=()=>{
 	// 	this.props.achievs()
 	// }
@@ -72,8 +76,8 @@ render(){
 			{subjects}
 			<Divider className="DividerMenu" />
 			<MenuItem onClick={()=>this.clickOnItem('mypage')} primaryText="Помощь" leftIcon={<Help style={icon_style} color={color}/>}/>
-			<MenuItem onClick={()=>this.clickOnItem('mypage')} primaryText="Сообщество" leftIcon={<ActionQuestionAnswer style={icon_style} color={color}/>}/>
-			<MenuItem onClick={()=>this.clickOnItem('mypage')} primaryText="О нас" leftIcon={<Streetview style={icon_style} color={color}/>}/>
+			<MenuItem onClick={()=>this.redirect('https://vk.com/facexam_ege')} primaryText="Сообщество" leftIcon={<ActionQuestionAnswer style={icon_style} color={color}/>}/>
+			<MenuItem onClick={()=>this.clickOnItem('https://facexam.ru')} primaryText="О нас" leftIcon={<Streetview style={icon_style} color={color}/>}/>
 			<MenuItem onClick={()=>this.issue()} primaryText="Ошибка?" leftIcon={<Whatshot style={icon_style} color={color}/>}/>
 		</div>
 

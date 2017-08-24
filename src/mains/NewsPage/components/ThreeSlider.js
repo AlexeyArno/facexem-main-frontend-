@@ -26,7 +26,7 @@ export default class ThreeSlider extends Component{
 			 }
 	render(){
 		var data=this.props.data
-		console.log(data)
+		// console.log(data)
 		var states=data.map(function(item, index){
 			var style={
 			background: 'url('+item.img+')',

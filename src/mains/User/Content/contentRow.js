@@ -79,32 +79,33 @@ export default class Subjects extends Component{
 				<SubjectsLine subjects={this.props.subjects}/>
 				{menu}
 				<div id='userPagecomponents'>
+
 					<ReactSwipe className="carousel" id='carousel' ref="reactSwipe"  
 				  					swipeOptions={{continuous: false, startSlide: this.state.value,
 				  					speed: 600, callback: this.startTrans, transitionEnd: this.endTrans}}>
 				  		<div>
-				  			<div style={{textAlign: 'center',  padding: 15, paddingBottom: 10, marginTop: -10}}>
-				  				<div style={{display: 'inline-block', color}}>Главная</div>
-				  				<IconButton style={{position: 'absolute', right: 0, top: -9}} onClick={()=>this.smth(1)}>
-									<HardwareKeyboardArrowRight color='rgba(0,0,0,0.4)'/>
-								</IconButton>
-				  			</div>
+				  	
 							<Progress subjects={this.props.subjects} color='rgb(33, 150, 243)'/>
 							<Preference  data={this.props.preference}/>
 							<GlobalStatic data={this.props.globalstatic}/>
+							
 						</div>
 						<div>
-							<div style={{textAlign: 'center',  padding: 15, paddingBottom: 10, marginTop: -10}}>
-								<IconButton style={{position: 'absolute', left: 0, top: -9}} onClick={()=>this.smth(0)}>
-										<HardwareKeyboardArrowLeft color='rgba(0,0,0,0.4)'/>
-									</IconButton>
-				  				<div style={{display: 'inline-block', color}}>Активность</div>
-				  			</div>
+						
 							<Statisc data={this.props.static}/>
 							<Last data={this.props.last}/>
 						</div>
 					</ReactSwipe>
-					
+					<div style={{display: 'inline-block', float: 'right', position: 'absolute', right: 20, top: 600}} className="userRows">
+								<IconButton onClick={()=>this.smth(1)}>
+									<HardwareKeyboardArrowRight color='rgba(0,0,0,0.4)'/>
+								</IconButton>
+							</div>
+					<div style={{display: 'inline-block', float: 'left', position: 'absolute', left: 20, top: 600}} className="userRows">
+								<IconButton onClick={()=>this.smth(0)}>
+									<HardwareKeyboardArrowLeft color='rgba(0,0,0,0.4)'/>
+								</IconButton>
+							</div>
 				</div>
 			</div>
 

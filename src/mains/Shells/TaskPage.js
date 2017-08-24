@@ -28,7 +28,7 @@ constructor(props) {
 		  	const {token} = this.props.user
 		  	var xmlhttp = new XMLHttpRequest()
 		  	var body=  JSON.stringify({token, subject})
-			xmlhttp.open('POST', 'http://127.0.0.1:9999/api/user/session_start', false);
+			xmlhttp.open('POST', 'https://api.facexam.ru/api/user/session_start', false);
 			xmlhttp.send(body);  
 			if(xmlhttp.status === 200) {
 			var request = JSON.parse(xmlhttp.responseText)
@@ -81,7 +81,7 @@ constructor(props) {
 		  	var data = this.getSearchData()
 		  	var xmlhttp = new XMLHttpRequest()
 		  	var body=  JSON.stringify({token: token, type: data.type, number: data.number, subject: data.subject})
-			xmlhttp.open('POST', 'http://127.0.0.1:9999/api/user/get_task', true);
+			xmlhttp.open('POST', 'https://api.facexam.ru/api/user/get_task', true);
 			xmlhttp.send(body); 
 			xmlhttp.onload  = function(e){
 				if(xmlhttp.status === 200) {
@@ -116,7 +116,7 @@ render(){
 								<Paper style={{maxWidth: 700, margin: 'auto', transform: "rotate(1deg)"}}>
 									<div style={{width: '100%', minHeight: 400, textAlign: 'center', verticalAlign: 'middle',
 									paddingTop: 150}}>
-										<CircularProgress size={60} thickness={7} />
+										<CircularProgress size={40} thickness={3} mode={'indeterminate'} color='#2196F3'/>
 									</div>
 								</Paper>
 							</Paper>

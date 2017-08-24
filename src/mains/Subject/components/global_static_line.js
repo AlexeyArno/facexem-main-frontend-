@@ -18,7 +18,7 @@ render(){
 		height: 100
 
 	}
-	console.log(this.props.data)
+	// console.log(this.props.data)
 	return(<div >
 				<div className="col-xs-12 col-sm-4 paper variants">
 					<Paper style={paper_style}> 

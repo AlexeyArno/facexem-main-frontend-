@@ -42,10 +42,10 @@ constructor(props) {
 		  	const {token} = this.props.user
 		  	var xmlhttp = new XMLHttpRequest()
 		  	var body=  JSON.stringify({token: token, id: data.test, codename: data.subject})
-			xmlhttp.open('POST', 'http://127.0.0.1:9999/api/user/test-result', true);
+			xmlhttp.open('POST', 'https://api.facexam.ru/api/user/test-result', true);
 			xmlhttp.send(body); 
 			xmlhttp.onload  = function(e){
-				if(xmlhttp.status === 200) {
+				if(xmlhttp.status === 200 && xmlhttp.readyState === 4) {
 
 					var request = JSON.parse(xmlhttp.responseText)
 					if (request.result !== 'Error' || !request.result ){

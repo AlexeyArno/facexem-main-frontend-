@@ -62,7 +62,7 @@ render(){
 		}
 
 		return <div>
-				<div style={{position: 'absolute', zIndex: 99, padding: 40, paddingTop: 30}}>
+				<div style={{position: 'absolute', zIndex: 99, paddingTop: 23, textAlign: 'center', paddingRight: 30, width: "100%"}}>
 					<p style={{margin: 0, textAlign: 'center'}}>🔒</p>
 					Вам нужно решить ещё {data.need - data.have+" "+test_word} 
 				</div>

@@ -27,7 +27,7 @@ constructor(props) {
 		  	var body_data = {token, id, content}
 			var xmlhttp = new XMLHttpRequest()
 			var body =  JSON.stringify(body_data)  
-			xmlhttp.open('POST', 'http://127.0.0.1:9999/api/user/set_report_task', true);
+			xmlhttp.open('POST', 'https://api.facexam.ru/api/user/set_report_task', true);
 			xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
 			xmlhttp.send(body);  
 			xmlhttp.onreadystatechange = function() { // (3)

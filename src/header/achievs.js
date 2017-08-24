@@ -28,7 +28,7 @@ export default class Achievs extends Component{
 	loadAchieve=()=>{
 		var body =  JSON.stringify({token: this.state.token})  
 			var xhr  = new XMLHttpRequest();   
-			xhr.open('POST', 'http://127.0.0.1:9999/api/user/get_achievements', true);
+			xhr.open('POST', 'https://api.facexam.ru/api/user/get_achievements', true);
 			xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");  
 			xhr.send([body]);
 			xhr.onreadystatechange =  function() {
